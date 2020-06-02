@@ -1,5 +1,8 @@
 # README
 
+## Backend
+The Rails backend of this project is located [here](https://github.com/Sdcrouse/crazy-coffee-concoctions-backend).
+
 ## License
 
 Licensed under the [MIT License](LICENSE).
