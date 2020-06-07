@@ -3,7 +3,7 @@ h1 {
 }
 
 img {
-  width: 216px; /* Half of the original image's width */
-  height: 177px; /* Half of the original image's height */
+  width: 249px; /* Half of the original image's width */
+  height: 208px; /* Half of the original image's height */
   border-radius: 50%;
 }
