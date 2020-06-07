@@ -1,3 +1,9 @@
 h1 {
   color: brown;
 }
+
+img {
+  width: 216px; /* Half of the original image's width */
+  height: 177px; /* Half of the original image's height */
+  border-radius: 50%;
+}
