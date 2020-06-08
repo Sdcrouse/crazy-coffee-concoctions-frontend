@@ -8,6 +8,9 @@ body {
 
 header {
   background-color: #A65F40;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
@@ -29,4 +32,6 @@ section {
 
 #main-container{
   background-color: white;
+  width: 95%;
+  height: 90%;
 }
