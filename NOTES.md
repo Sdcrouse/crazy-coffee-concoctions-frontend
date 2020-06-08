@@ -5,13 +5,26 @@ I want to implement the first idea down below, among others. However, in order f
 
 So, here's the intended order of operations (subject to change):
 1. Wireframe the app on Figma
+
 2. Based on that, translate that into HTML and CSS
+  * Some of the page elements will need to be inside of containers and/or wrappers
+  * I ought to make use of CSS Grid
+  * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Box_Alignment_in_CSS_Grid_Layout
+  * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout
+  * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout
+
 3. Build out the api/v1/concoctions/:id route, and figure out how/when to display the data
+  * Initially, I want to show the last Concoction when the user loads the page
+  * I will later replace the default view with the "New Concoction" form
+
 4. Build out the route, form, button, JS, etc. for creating and displaying a new concoction
   * That form will be shown by default, with the "New Concoction" button disabled.
   * I want to replace the form with the new concoction or a saved concoction, so that may need to be inside of a "div" element
+
 5. Build out the list of Saved Concoctions that will each be linked to a concoction, along with the needed JavaScript
-6. Refactor with OOJS, DRY, etc
+
+6. Refactor with OOJS, DRY, CSS frameworks, etc
+
 7. Implement stretch goals (especially that "I'm a teapot" HTTP status)
 
 ## Ideas

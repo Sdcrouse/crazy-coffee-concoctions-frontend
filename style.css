@@ -1,3 +1,43 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#wrapper {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 1fr 2fr;
+  grid-gap: 5%;
+  padding: 2%;
+}
+
+header {
+  background-color: #A65F40;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 h1 {
-  color: brown;
+  color: white;
+}
+
+img {
+  width: 249px; /* Half of the original image's width */
+  height: 208px; /* Half of the original image's height */
+  border-radius: 50%;
+}
+
+section {
+  background-color: #A65F40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#main-container{
+  background-color: white;
+  width: 95%;
+  height: 90%;
 }
