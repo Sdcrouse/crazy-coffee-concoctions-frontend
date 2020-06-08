@@ -1,3 +1,11 @@
+body {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 1fr 2fr;
+  grid-gap: 5%;
+  padding: 2%;
+}
+
 header {
   background-color: #A65F40;
 }
