@@ -19,18 +19,17 @@ function displayConcoction(concoction) {
   const mainContainer = document.getElementById('main-container');
 
   // <h2>Name of Concoction</h2>
-  const concoctionName = document.createElement('h2');
-  concoctionName.innerText = `${concoctionAttributes.name}`;
+  const concoctionName = newElementWithText('h2', `${concoctionAttributes.name}`);
 
   // <label>Coffees:</label>
-  const coffeesLabel = document.createElement('label');
-  coffeesLabel.textContent = "Coffee(s):";
+  const coffeesLabel = newElementWithText('label', "Coffee(s):");
 
   // Unordered list of coffees
   const coffeesList = document.createElement('ul');
   coffees.forEach(function(coffee) {
-    const coffeeItem = document.createElement('li');
-    coffeeItem.textContent = `${coffee.attributes.amount} ${coffee.attributes.brand} ${coffee.attributes.variety}`;
+    const coffeeItem = newElementWithText(
+      'li', `${coffee.attributes.amount} ${coffee.attributes.brand} ${coffee.attributes.variety}`
+    );
     coffeesList.append(coffeeItem);
   });
 
@@ -67,4 +66,12 @@ function displayConcoction(concoction) {
    *   <p>Notes: My notes about this coffee concoction</p>
    * </div>
    */
+}
+
+function newElementWithText(elementType, elementText) {
+  // Can this be refactored with something like Ruby's #tap method?
+  // https://stackoverflow.com/questions/21497919/a-function-to-tap-into-any-methods-chain
+  const newElement = document.createElement(elementType);
+  newElement.textContent = elementText;
+  return newElement;
 }
