@@ -13,6 +13,7 @@ function getConcoction(concoction_id) {
 function displayConcoction(concoction) {
   // Concoction attributes and associated coffees and ingredients
   const concoctionAttributes = concoction.data.attributes;
+  const coffees = concoction.included.filter(associatedObj => associatedObj.type === 'coffee');
 
   // The main container that will display the concoction
   const mainContainer = document.getElementById('main-container');
@@ -20,7 +21,21 @@ function displayConcoction(concoction) {
   // <h2>Name of Concoction</h2>
   const concoctionName = document.createElement('h2');
   concoctionName.innerText = `${concoctionAttributes.name}`;
-  mainContainer.appendChild(concoctionName);
+
+  // <label>Coffees:</label>
+  const coffeesLabel = document.createElement('label');
+  coffeesLabel.textContent = "Coffee(s):";
+
+  // Unordered list of coffees
+  const coffeesList = document.createElement('ul');
+  coffees.forEach(function(coffee) {
+    const coffeeItem = document.createElement('li');
+    coffeeItem.textContent = `${coffee.attributes.amount} ${coffee.attributes.brand} ${coffee.attributes.variety}`;
+    coffeesList.append(coffeeItem);
+  });
+
+  // Put everything together in the mainContainer
+  mainContainer.append(concoctionName, coffeesLabel, coffeesList);
   
   // Goal: HTML that looks something like this (not necessarily concoction #1).
   // I may want to style this as a table or with CSS Grid instead - I need to separate the labels from the content.
