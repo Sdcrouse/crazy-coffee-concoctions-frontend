@@ -11,9 +11,17 @@ function getConcoction(concoction_id) {
 }
 
 function displayConcoction(concoction) {
-  // const mainContainer = document.getElementById('main-container');
-  console.log(`Now displaying Concoction #${concoction.data.id}`)
+  // Concoction attributes and associated coffees and ingredients
+  const concoctionAttributes = concoction.data.attributes;
 
+  // The main container that will display the concoction
+  const mainContainer = document.getElementById('main-container');
+
+  // <h2>Name of Concoction</h2>
+  const concoctionName = document.createElement('h2');
+  concoctionName.innerText = `${concoctionAttributes.name}`;
+  mainContainer.appendChild(concoctionName);
+  
   // Goal: HTML that looks something like this (not necessarily concoction #1).
   // I may want to style this as a table or with CSS Grid instead - I need to separate the labels from the content.
   /*
