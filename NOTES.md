@@ -37,3 +37,8 @@ https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
 I may need to add a label to it (but I'd rather not use one).
 The idea is when a user chooses a concoction (with a data-concoction-id and name), that will get rendered.
 When the DOM is loaded, add "option" tags to it, each with a linked concoction.
+
+Later, I want to refactor how a concoction is displayed:
+  * If no coffees, creamers, other ingredients, etc. were added to the concoction, don't display the label for them
+  * Else if only ONE coffee, creamer, etc. was added to the concoction, the label should be singular (Coffee:)
+  * Else, the label should be plural (Coffees:)
