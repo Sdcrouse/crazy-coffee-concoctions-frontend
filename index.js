@@ -7,5 +7,41 @@ document.addEventListener("DOMContentLoaded", function() {
 function getConcoction(concoction_id) {
   fetch(`${BASE_URL}/1`)
     .then(resp => resp.json())
-    .then(json => console.log(json))
+    .then(concoctionJson => displayConcoction(concoctionJson));
+}
+
+function displayConcoction(concoction) {
+  // const mainContainer = document.getElementById('main-container');
+  console.log(`Now displaying Concoction #${concoction.data.id}`)
+
+  // Goal: HTML that looks something like this (not necessarily concoction #1).
+  // I may want to style this as a table or with CSS Grid instead - I need to separate the labels from the content.
+  /*
+   * <div id="main-container">
+   *   <h2>Regular Mocha</h2>
+   *   <ul>
+   *     Coffee(s):
+   *     <li>1 tsp Folger's Instant</li>
+   *     <li>t tsp Yuban Instant</li>
+   *   </ul>
+   *   <ul>
+   *     Liquid(s):
+   *     <li>8 fl oz hot milk</li>
+   *   </ul>
+   *   <ul>
+   *     Sweetener(s):
+   *     <li>1 tsp sugar</li>
+   *     <li>1/2 packet Sweet and Low</li>
+   *   </ul>
+   *   <ul>Creamer(s):
+   *     <li>1 tsp vanilla creamer</li>
+   *   </ul>
+   *   <ul>Additional Ingredients:
+   *     <li>1 tsp chocolate syrup</li>
+   *     <li>1 pinch cinnamon</li>
+   *   </ul>
+   *   <p>Instructions: Lorem Ipsum Dolor Sit Amet</p>
+   *   <p>Notes: My notes about this coffee concoction</p>
+   * </div>
+   */
 }
