@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function() {
   getConcoction(1); // This is a temporary default, until I add the "New Concoction" form.
 });
 
-function getConcoction(concoction_id) {
-  fetch(`${BASE_URL}/1`)
+function getConcoction(concoctionId) {
+  fetch(`${BASE_URL}/${concoctionId}`)
     .then(resp => resp.json())
     .then(concoctionJson => displayConcoction(concoctionJson));
 }
