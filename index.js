@@ -1,7 +1,7 @@
 const BASE_URL = "http://localhost:3000/api/v1/concoctions";
 
 document.addEventListener("DOMContentLoaded", function() {
-  getConcoction(1); // This is a temporary default, until I add the "New Concoction" form.
+  getConcoction(4); // This is a temporary default, until I add the "New Concoction" form.
 });
 
 function getConcoction(concoctionId) {
@@ -35,7 +35,7 @@ function displayConcoction(concoction) {
   const coffeesList = document.createElement('ul');
   coffees.forEach(function(coffee) {
     const coffeeItem = newElementWithText(
-      'li', `${coffee.attributes.amount} ${coffee.attributes.brand} ${coffee.attributes.variety}`
+      'li', buildDescriptionFor(coffee)
     );
     coffeesList.append(coffeeItem);
   });
@@ -93,4 +93,16 @@ function appendLabeledIngredientSubList(element, allIngredAttrs, ingredCategory,
   });
 
   element.append(ingredSubLabel, ingredSubList);
+}
+
+function buildDescriptionFor(obj) {
+  // I can use this to refactor the appendLabeledIngredientSubList and displayConcoction functions.
+  // For the first version of this function, the object is assumed to be a Coffee.
+  const attrs = obj.attributes;
+  
+  if (attrs.brand) {
+    return `${attrs.amount} ${attrs.brand} ${attrs.variety}`;
+  } else {
+    return `${attrs.amount} ${attrs.variety}`;
+  }
 }
