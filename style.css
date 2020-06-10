@@ -7,9 +7,8 @@ body {
 #wrapper {
   display: grid;
   grid-template-columns: 1fr 5fr;
-  grid-template-rows: 1fr 2fr;
   grid-gap: 5%;
-  padding: 2%;
+  padding: 3%;
 }
 
 header {
@@ -34,12 +33,14 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 7% 10%;
 }
 
 #main-container{
   background-color: white;
   width: 95%;
   height: 90%;
+  padding: 3%;
 }
 
 #main-container div:first-child {
