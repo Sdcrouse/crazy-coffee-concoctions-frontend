@@ -43,6 +43,12 @@ function displayConcoction(concoction) {
 
   // Append a labeled sublist of sweeteners.
   appendLabeledIngredientSubList(mainContainer, allIngredAttrs, "Sweetener");
+
+  // Append a labeled sublist of creamers.
+  appendLabeledIngredientSubList(mainContainer, allIngredAttrs, "Creamer");
+
+  // Append any additional ingredients.
+  appendLabeledIngredientSubList(mainContainer, allIngredAttrs, "Other");
   
   // Goal: HTML that looks something like this (not necessarily concoction #1).
   // I may want to style this as a table or with CSS Grid instead - I need to separate the labels from the content.
