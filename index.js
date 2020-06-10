@@ -48,7 +48,7 @@ function displayConcoction(concoction) {
   appendLabeledIngredientSubList(mainContainer, allIngredAttrs, "Creamer");
 
   // Append any additional ingredients.
-  appendLabeledIngredientSubList(mainContainer, allIngredAttrs, "Other");
+  appendLabeledIngredientSubList(mainContainer, allIngredAttrs, "Other", "Additional Ingredient(s):");
   
   // Goal: HTML that looks something like this (not necessarily concoction #1).
   // I may want to style this as a table or with CSS Grid instead - I need to separate the labels from the content.
@@ -90,11 +90,11 @@ function newElementWithText(elementType, elementText) {
   return newElement;
 }
 
-function appendLabeledIngredientSubList(element, allIngredAttrs, ingredCategory) {
+function appendLabeledIngredientSubList(element, allIngredAttrs, ingredCategory, label = `${ingredCategory}(s):`) {
   // This will probably get encapsulated by a method, once I refactor with Object Orientation.
 
   const filteredByCategory = allIngredAttrs.filter(attr => attr.category === ingredCategory.toLowerCase());
-  const ingredSubLabel = newElementWithText('label', `${ingredCategory}(s):`);
+  const ingredSubLabel = newElementWithText('label', label);
   const ingredSubList = document.createElement('ul');
 
   filteredByCategory.forEach(function(ingredient) {
