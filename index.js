@@ -84,17 +84,22 @@ function appendLabeledIngredientSubList(element, allIngredAttrs, ingredCategory,
   // This will probably get encapsulated by a method, once I refactor with Object Orientation.
   
   const filteredByCategory = allIngredAttrs.filter(attr => attr.category === ingredCategory.toLowerCase());
-  const ingredSubLabel = newElementWithText('h3', label);
-  const ingredSubList = document.createElement('ul');
 
-  filteredByCategory.forEach(function(ingredient) {
-    const ingredientItem = newElementWithText(
-      'li', `${ingredient.amount} ${ingredient.name}`
-    );
-    ingredSubList.append(ingredientItem);
-  });
+  if (filteredByCategory.length) {
+    // The filtered array is not empty - i.e. it has at least one ingredient with a certain ingredCategory 
 
-  element.append(ingredSubLabel, ingredSubList);
+    const ingredSubLabel = newElementWithText('h3', label);
+    const ingredSubList = document.createElement('ul');
+  
+    filteredByCategory.forEach(function(ingredient) {
+      const ingredientItem = newElementWithText(
+        'li', `${ingredient.amount} ${ingredient.name}`
+      );
+      ingredSubList.append(ingredientItem);
+    });
+  
+    element.append(ingredSubLabel, ingredSubList);
+  }
 }
 
 function buildDescriptionFor(obj) {
