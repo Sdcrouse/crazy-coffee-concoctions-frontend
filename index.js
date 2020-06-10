@@ -12,8 +12,12 @@ function getConcoction(concoction_id) {
 
 function displayConcoction(concoction) {
   // Concoction attributes and associated coffees and ingredients
+  // Is there a way to refactor this to be more DRY?
   const concoctionAttributes = concoction.data.attributes;
   const coffees = concoction.included.filter(associatedObj => associatedObj.type === 'coffee');
+  const ingredients = concoction.included.filter(associatedObj => associatedObj.type === 'ingredient');
+  const allIngredAttrs = ingredients.map(ingred => ingred.attributes);
+  // This can be refactored with ES6 syntax, if I later want the "id" attribute of an ingredient.
 
   // The main container that will display the concoction
   const mainContainer = document.getElementById('main-container');
@@ -33,8 +37,19 @@ function displayConcoction(concoction) {
     coffeesList.append(coffeeItem);
   });
 
+  // Labeled unordered list of liquids
+  const liquids = allIngredAttrs.filter(attr => attr.category === 'liquid');
+  const liquidsLabel = newElementWithText('label', "Liquid(s):");
+  const liquidsList = document.createElement('ul');
+  liquids.forEach(function(liquid) {
+    const liquidItem = newElementWithText(
+      'li', `${liquid.amount} ${liquid.name}`
+    );
+    liquidsList.append(liquidItem);
+  })
+
   // Put everything together in the mainContainer
-  mainContainer.append(concoctionName, coffeesLabel, coffeesList);
+  mainContainer.append(concoctionName, coffeesLabel, coffeesList, liquidsLabel, liquidsList);
   
   // Goal: HTML that looks something like this (not necessarily concoction #1).
   // I may want to style this as a table or with CSS Grid instead - I need to separate the labels from the content.
