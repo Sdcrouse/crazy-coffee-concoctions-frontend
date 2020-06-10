@@ -49,7 +49,18 @@ function displayConcoction(concoction) {
 
   // Append any additional ingredients.
   appendLabeledIngredientSubList(mainContainer, allIngredAttrs, "Other", "Additional Ingredient(s):");
-  
+
+  // Concoction instructions
+  const instructionsLabel = newElementWithText('label', "Instructions:");
+  const instructions = newElementWithText('p', `${concoctionAttributes.instructions}`);
+
+  // Concoction notes
+  const notesLabel = newElementWithText('label', "Notes:");
+  const notes = newElementWithText('p', `${concoctionAttributes.notes}`);
+
+  // Append the instructions and notes.
+  mainContainer.append(instructionsLabel, instructions, notesLabel, notes);
+
   // Goal: HTML that looks something like this (not necessarily concoction #1).
   // I may want to style this as a table or with CSS Grid instead - I need to separate the labels from the content.
   /*
