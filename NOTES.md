@@ -42,3 +42,35 @@ Later, I want to refactor how a concoction is displayed:
   * If no coffees, creamers, other ingredients, etc. were added to the concoction, don't display the label for them
   * Else if only ONE coffee, creamer, etc. was added to the concoction, the label should be singular (Coffee:)
   * Else, the label should be plural (Coffees:)
+
+### Notes for the `displayConcoction()` function:
+Goal: HTML that looks something like this (not necessarily concoction #1).
+I may want to style this as a table or with CSS Grid instead - I need to separate the labels from the content.
+```
+<div id="main-container">
+  <h2>Regular Mocha</h2>
+  <ul>
+    Coffee(s):
+    <li>1 tsp Folger's Instant</li>
+    <li>t tsp Yuban Instant</li>
+  </ul>
+  <ul>
+    Liquid(s):
+    <li>8 fl oz hot milk</li>
+  </ul>
+  <ul>
+    Sweetener(s):
+    <li>1 tsp sugar</li>
+    <li>1/2 packet Sweet and Low</li>
+  </ul>
+  <ul>Creamer(s):
+    <li>1 tsp vanilla creamer</li>
+  </ul>
+  <ul>Additional Ingredients:
+    <li>1 tsp chocolate syrup</li>
+    <li>1 pinch cinnamon</li>
+  </ul>
+  <p>Instructions: Lorem Ipsum Dolor Sit Amet</p>
+  <p>Notes: My notes about this coffee concoction</p>
+</div>
+```
