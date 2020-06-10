@@ -41,3 +41,10 @@ section {
   width: 95%;
   height: 90%;
 }
+
+#main-container div {
+  color: #A65F40;
+  text-decoration: underline;
+  display: flex;
+  justify-content: center;
+}

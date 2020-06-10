@@ -22,8 +22,10 @@ function displayConcoction(concoction) {
   // The main container that will display the concoction
   const mainContainer = document.getElementById('main-container');
 
-  // <h2>Name of Concoction</h2>
+  // Name of concoction
+  const concoctionWrapper = document.createElement('div');
   const concoctionName = newElementWithText('h2', `${concoctionAttributes.name}`);
+  concoctionWrapper.append(concoctionName);
 
   // Labeled unordered list of coffees; this can probably be refactored, but I don't yet know how.
   const coffeesLabel = newElementWithText('label', "Coffee(s):");
@@ -36,7 +38,7 @@ function displayConcoction(concoction) {
   });
 
   // Append everything above.
-  mainContainer.append(concoctionName, coffeesLabel, coffeesList);
+  mainContainer.append(concoctionWrapper, coffeesLabel, coffeesList);
 
   // Append a labeled sublist of liquids.
   appendLabeledIngredientSubList(mainContainer, allIngredAttrs, "Liquid");
