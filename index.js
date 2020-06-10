@@ -25,10 +25,8 @@ function displayConcoction(concoction) {
   // <h2>Name of Concoction</h2>
   const concoctionName = newElementWithText('h2', `${concoctionAttributes.name}`);
 
-  // <label>Coffees:</label>
+  // Labeled unordered list of coffees
   const coffeesLabel = newElementWithText('label', "Coffee(s):");
-
-  // Unordered list of coffees
   const coffeesList = document.createElement('ul');
   coffees.forEach(function(coffee) {
     const coffeeItem = newElementWithText(
