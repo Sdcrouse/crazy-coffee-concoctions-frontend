@@ -46,10 +46,23 @@ function displayConcoction(concoction) {
       'li', `${liquid.amount} ${liquid.name}`
     );
     liquidsList.append(liquidItem);
-  })
+  });
+
+  // Labeled unordered list of sweeteners
+  const sweeteners = allIngredAttrs.filter(attr => attr.category === 'sweetener');
+  const sweetenersLabel = newElementWithText('label', "Sweetener(s):");
+  const sweetenersList = document.createElement('ul');
+  sweeteners.forEach(function(sweetener) {
+    const sweetenerItem = newElementWithText(
+      'li', `${sweetener.amount} ${sweetener.name}`
+    );
+    sweetenersList.append(sweetenerItem);
+  });
 
   // Put everything together in the mainContainer
-  mainContainer.append(concoctionName, coffeesLabel, coffeesList, liquidsLabel, liquidsList);
+  mainContainer.append(
+    concoctionName, coffeesLabel, coffeesList, liquidsLabel, liquidsList, sweetenersLabel, sweetenersList
+  );
   
   // Goal: HTML that looks something like this (not necessarily concoction #1).
   // I may want to style this as a table or with CSS Grid instead - I need to separate the labels from the content.
