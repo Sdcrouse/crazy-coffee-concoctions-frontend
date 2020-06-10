@@ -42,9 +42,14 @@ section {
   height: 90%;
 }
 
-#main-container div {
+#main-container div:first-child {
   color: #A65F40;
   text-decoration: underline;
   display: flex;
   justify-content: center;
+}
+
+#main-container div:last-child {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
