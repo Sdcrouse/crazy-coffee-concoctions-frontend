@@ -23,9 +23,12 @@ function displayConcoction(concoction) {
   const mainContainer = document.getElementById('main-container');
 
   // Name of concoction
-  const concoctionWrapper = document.createElement('div');
+  const concoctionNameWrapper = document.createElement('div');
   const concoctionName = newElementWithText('h2', `${concoctionAttributes.name}`);
-  concoctionWrapper.append(concoctionName);
+  concoctionNameWrapper.append(concoctionName);
+
+  // Wrapper for the concoction attributes other than "name"
+  const concoctionAttrsWrapper = document.createElement('div');
 
   // Labeled unordered list of coffees; this can probably be refactored, but I don't yet know how.
   const coffeesLabel = newElementWithText('label', "Coffee(s):");
@@ -37,31 +40,34 @@ function displayConcoction(concoction) {
     coffeesList.append(coffeeItem);
   });
 
-  // Append everything above.
-  mainContainer.append(concoctionWrapper, coffeesLabel, coffeesList);
-
+  // Append coffee info to concoctionAttrsWrapper.
+  concoctionAttrsWrapper.append(coffeesLabel, coffeesList);
+  
   // Append a labeled sublist of liquids.
-  appendLabeledIngredientSubList(mainContainer, allIngredAttrs, "Liquid");
-
+  appendLabeledIngredientSubList(concoctionAttrsWrapper, allIngredAttrs, "Liquid");
+  
   // Append a labeled sublist of sweeteners.
-  appendLabeledIngredientSubList(mainContainer, allIngredAttrs, "Sweetener");
-
+  appendLabeledIngredientSubList(concoctionAttrsWrapper, allIngredAttrs, "Sweetener");
+  
   // Append a labeled sublist of creamers.
-  appendLabeledIngredientSubList(mainContainer, allIngredAttrs, "Creamer");
-
+  appendLabeledIngredientSubList(concoctionAttrsWrapper, allIngredAttrs, "Creamer");
+  
   // Append any additional ingredients.
-  appendLabeledIngredientSubList(mainContainer, allIngredAttrs, "Other", "Additional Ingredient(s):");
-
+  appendLabeledIngredientSubList(concoctionAttrsWrapper, allIngredAttrs, "Other", "Additional Ingredient(s):");
+  
   // Concoction instructions
   const instructionsLabel = newElementWithText('label', "Instructions:");
   const instructions = newElementWithText('p', `${concoctionAttributes.instructions}`);
-
+  
   // Concoction notes
   const notesLabel = newElementWithText('label', "Notes:");
   const notes = newElementWithText('p', `${concoctionAttributes.notes}`);
-
+  
   // Append the instructions and notes.
-  mainContainer.append(instructionsLabel, instructions, notesLabel, notes);
+  concoctionAttrsWrapper.append(instructionsLabel, instructions, notesLabel, notes);
+
+  // Finally, append the two wrappers to the mainContainer.
+  mainContainer.append(concoctionNameWrapper, concoctionAttrsWrapper);
 }
 
 function newElementWithText(elementType, elementText) {
@@ -74,7 +80,7 @@ function newElementWithText(elementType, elementText) {
 
 function appendLabeledIngredientSubList(element, allIngredAttrs, ingredCategory, label = `${ingredCategory}(s):`) {
   // This will probably get encapsulated by a method, once I refactor with Object Orientation.
-
+  
   const filteredByCategory = allIngredAttrs.filter(attr => attr.category === ingredCategory.toLowerCase());
   const ingredSubLabel = newElementWithText('label', label);
   const ingredSubList = document.createElement('ul');
