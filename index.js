@@ -35,32 +35,14 @@ function displayConcoction(concoction) {
     coffeesList.append(coffeeItem);
   });
 
-  // Labeled unordered list of liquids
-  const liquids = allIngredAttrs.filter(attr => attr.category === 'liquid');
-  const liquidsLabel = newElementWithText('label', "Liquid(s):");
-  const liquidsList = document.createElement('ul');
-  liquids.forEach(function(liquid) {
-    const liquidItem = newElementWithText(
-      'li', `${liquid.amount} ${liquid.name}`
-    );
-    liquidsList.append(liquidItem);
-  });
+  // Append everything above.
+  mainContainer.append(concoctionName, coffeesLabel, coffeesList);
 
-  // Labeled unordered list of sweeteners
-  const sweeteners = allIngredAttrs.filter(attr => attr.category === 'sweetener');
-  const sweetenersLabel = newElementWithText('label', "Sweetener(s):");
-  const sweetenersList = document.createElement('ul');
-  sweeteners.forEach(function(sweetener) {
-    const sweetenerItem = newElementWithText(
-      'li', `${sweetener.amount} ${sweetener.name}`
-    );
-    sweetenersList.append(sweetenerItem);
-  });
+  // Append a labeled sublist of liquids.
+  appendLabeledIngredientSubList(mainContainer, allIngredAttrs, "Liquid");
 
-  // Put everything together in the mainContainer
-  mainContainer.append(
-    concoctionName, coffeesLabel, coffeesList, liquidsLabel, liquidsList, sweetenersLabel, sweetenersList
-  );
+  // Append a labeled sublist of sweeteners.
+  appendLabeledIngredientSubList(mainContainer, allIngredAttrs, "Sweetener");
   
   // Goal: HTML that looks something like this (not necessarily concoction #1).
   // I may want to style this as a table or with CSS Grid instead - I need to separate the labels from the content.
@@ -100,4 +82,21 @@ function newElementWithText(elementType, elementText) {
   const newElement = document.createElement(elementType);
   newElement.textContent = elementText;
   return newElement;
+}
+
+function appendLabeledIngredientSubList(element, allIngredAttrs, ingredCategory) {
+  // This will probably get encapsulated by a method, once I refactor with Object Orientation.
+
+  const filteredByCategory = allIngredAttrs.filter(attr => attr.category === ingredCategory.toLowerCase());
+  const ingredSubLabel = newElementWithText('label', `${ingredCategory}(s):`);
+  const ingredSubList = document.createElement('ul');
+
+  filteredByCategory.forEach(function(ingredient) {
+    const ingredientItem = newElementWithText(
+      'li', `${ingredient.amount} ${ingredient.name}`
+    );
+    ingredSubList.append(ingredientItem);
+  });
+
+  element.append(ingredSubLabel, ingredSubList);
 }
