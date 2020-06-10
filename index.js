@@ -1,7 +1,7 @@
 const BASE_URL = "http://localhost:3000/api/v1/concoctions";
 
 document.addEventListener("DOMContentLoaded", function() {
-  getConcoction(4); // This is a temporary default, until I add the "New Concoction" form.
+  getConcoction(5); // This is a temporary default, until I add the "New Concoction" form.
 });
 
 function getConcoction(concoctionId) {
@@ -58,13 +58,15 @@ function displayConcoction(concoction) {
   // Concoction instructions
   const instructionsLabel = newElementWithText('h3', "Instructions:");
   const instructions = newElementWithText('p', `${concoctionAttributes.instructions}`);
+  concoctionAttrsWrapper.append(instructionsLabel, instructions);
   
   // Concoction notes
-  const notesLabel = newElementWithText('h3', "Notes:");
-  const notes = newElementWithText('p', `${concoctionAttributes.notes}`);
-  
-  // Append the instructions and notes.
-  concoctionAttrsWrapper.append(instructionsLabel, instructions, notesLabel, notes);
+  // Side note: It looks like I can abstract the code for instructions and notes into a helper function.
+  if (concoctionAttributes.notes) {
+    const notesLabel = newElementWithText('h3', "Notes:");
+    const notes = newElementWithText('p', `${concoctionAttributes.notes}`);
+    concoctionAttrsWrapper.append(notesLabel, notes);
+  }
 
   // Finally, append the two wrappers to the mainContainer.
   mainContainer.append(concoctionNameWrapper, concoctionAttrsWrapper);
