@@ -8,7 +8,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 5fr;
   grid-gap: 5%;
-  padding: 3%;
+  padding: 5%;
 }
 
 header {
@@ -57,5 +57,10 @@ section {
 
 #main-container h3 {
   color: #A65F40;
-  margin: 1em;
+  margin-inline-start: 2em;
+}
+
+#main-container ul {
+  padding-inline-start: 0;
+  list-style-type: none;
 }
