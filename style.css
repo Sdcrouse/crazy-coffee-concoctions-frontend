@@ -54,3 +54,8 @@ section {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+#main-container h3 {
+  color: #A65F40;
+  margin: 1em;
+}

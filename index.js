@@ -31,7 +31,7 @@ function displayConcoction(concoction) {
   const concoctionAttrsWrapper = document.createElement('div');
 
   // Labeled unordered list of coffees; this can probably be refactored, but I don't yet know how.
-  const coffeesLabel = newElementWithText('label', "Coffee(s):");
+  const coffeesLabel = newElementWithText('h3', "Coffee(s):");
   const coffeesList = document.createElement('ul');
   coffees.forEach(function(coffee) {
     const coffeeItem = newElementWithText(
@@ -56,11 +56,11 @@ function displayConcoction(concoction) {
   appendLabeledIngredientSubList(concoctionAttrsWrapper, allIngredAttrs, "Other", "Additional Ingredient(s):");
   
   // Concoction instructions
-  const instructionsLabel = newElementWithText('label', "Instructions:");
+  const instructionsLabel = newElementWithText('h3', "Instructions:");
   const instructions = newElementWithText('p', `${concoctionAttributes.instructions}`);
   
   // Concoction notes
-  const notesLabel = newElementWithText('label', "Notes:");
+  const notesLabel = newElementWithText('h3', "Notes:");
   const notes = newElementWithText('p', `${concoctionAttributes.notes}`);
   
   // Append the instructions and notes.
@@ -82,7 +82,7 @@ function appendLabeledIngredientSubList(element, allIngredAttrs, ingredCategory,
   // This will probably get encapsulated by a method, once I refactor with Object Orientation.
   
   const filteredByCategory = allIngredAttrs.filter(attr => attr.category === ingredCategory.toLowerCase());
-  const ingredSubLabel = newElementWithText('label', label);
+  const ingredSubLabel = newElementWithText('h3', label);
   const ingredSubList = document.createElement('ul');
 
   filteredByCategory.forEach(function(ingredient) {
