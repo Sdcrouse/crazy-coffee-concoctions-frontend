@@ -45,16 +45,11 @@ function displayConcoction(concoction) {
   appendLabeledIngredientSubList(attrsWrapper, ingredients, "Other", "Additional Ingredient(s):");
   
   // Concoction instructions
-  const instructionsLabel = newElementWithText('h3', "Instructions:");
-  const instructions = newElementWithText('p', `${concoctionAttributes.instructions}`);
-  attrsWrapper.append(instructionsLabel, instructions);
+  appendLabeledContent(attrsWrapper, `${concoctionAttributes.instructions}`, 'p', "Instructions:");
   
   // Concoction notes
-  // Side note: It looks like I can abstract the code for instructions and notes into a helper function.
   if (concoctionAttributes.notes) {
-    const notesLabel = newElementWithText('h3', "Notes:");
-    const notes = newElementWithText('p', `${concoctionAttributes.notes}`);
-    attrsWrapper.append(notesLabel, notes);
+    appendLabeledContent(attrsWrapper, `${concoctionAttributes.notes}`, 'p', "Notes:");
   }
 
   // Finally, append the two wrappers to the mainContainer.
@@ -110,4 +105,10 @@ function createListWithItems(listType, items) {
   });
 
   return list;
+}
+
+function appendLabeledContent(wrapper, content, contentType, labelText, labelType = 'h3') {
+  const label = newElementWithText(labelType, labelText);
+  const contentElement = newElementWithText(contentType, content); // First, test this on non-Array content; then extend it for Arrays.
+  wrapper.append(label, contentElement);
 }
