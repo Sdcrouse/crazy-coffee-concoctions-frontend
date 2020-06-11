@@ -80,6 +80,9 @@ function newElementWithText(elementType, elementText) {
 function appendLabeledIngredientSubList(element, allIngredAttrs, ingredCategory, label = `${ingredCategory}(s):`) {
   // This will probably get encapsulated by a method, once I refactor with Object Orientation.
   
+  // Refactoring plan: use the ingredient objects instead of allIngredAttrs.
+  // Then, get each ingredient's attributes, and filter that collection by category below.
+  
   const filteredByCategory = allIngredAttrs.filter(attr => attr.category === ingredCategory.toLowerCase());
 
   if (filteredByCategory.length) {
@@ -103,10 +106,15 @@ function buildDescriptionFor(obj) {
   // I can use this to refactor the appendLabeledIngredientSubList and displayConcoction functions.
   // For the first version of this function, the object is assumed to be a Coffee.
   const attrs = obj.attributes;
+  let descriptionStr = `${attrs.amount} `; // So far, obj is either a Coffee or an Ingredient; both have amounts.
   
-  if (attrs.brand) {
-    return `${attrs.amount} ${attrs.brand} ${attrs.variety}`;
+  if (obj.type === "ingredient") {
+    descriptionStr += `${attrs.amount} ${attrs.name}`;
+  } else if (attrs.brand) { // Here and below, obj is assumed to be a Coffee.
+    descriptionStr += `${attrs.brand} ${attrs.variety}`;
   } else {
-    return `${attrs.amount} ${attrs.variety}`;
+    descriptionStr += `${attrs.variety}`;
   }
+
+  return descriptionStr;
 }
