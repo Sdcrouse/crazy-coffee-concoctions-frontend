@@ -29,12 +29,8 @@ function displayConcoction(concoction) {
   // Wrapper for the concoction attributes other than "name"
   const attrsWrapper = document.createElement('div');
 
-  // Labeled unordered list of coffees; this can probably be refactored, but I don't yet know how.
-  const coffeesLabel = newElementWithText('h3', "Coffee(s):");
-  const coffeesList = createListWithItems('ul', coffees);
-
-  // Append coffee info to attrsWrapper.
-  attrsWrapper.append(coffeesLabel, coffeesList);
+  // Labeled unordered list of coffees
+  appendLabeledContent(attrsWrapper, coffees, 'ul', "Coffee(s):");
 
   // Append a labeled sublist of each ingredient category except "other".
   mainIngredCategories.forEach(
@@ -109,6 +105,13 @@ function createListWithItems(listType, items) {
 
 function appendLabeledContent(wrapper, content, contentType, labelText, labelType = 'h3') {
   const label = newElementWithText(labelType, labelText);
-  const contentElement = newElementWithText(contentType, content); // First, test this on non-Array content; then extend it for Arrays.
+  let contentElement;
+
+  if (Array.isArray(content)) {
+    contentElement = createListWithItems(contentType, content);
+  } else { // The content is (presumably) a String.
+    contentElement = newElementWithText(contentType, content);
+  }
+
   wrapper.append(label, contentElement);
 }
