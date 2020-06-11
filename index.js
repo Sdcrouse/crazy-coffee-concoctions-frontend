@@ -16,8 +16,6 @@ function displayConcoction(concoction) {
   const concoctionAttributes = concoction.data.attributes;
   const coffees = concoction.included.filter(associatedObj => associatedObj.type === 'coffee');
   const ingredients = concoction.included.filter(associatedObj => associatedObj.type === 'ingredient');
-  const allIngredAttrs = ingredients.map(ingred => ingred.attributes);
-  // This can be refactored with ES6 syntax, if I later want the "id" attribute of an ingredient.
   const mainIngredCategories = ["Liquid", "Sweetener", "Creamer"];
 
   // The main container that will display the concoction
@@ -46,11 +44,11 @@ function displayConcoction(concoction) {
 
   // Append a labeled sublist of each ingredient category except "other".
   mainIngredCategories.forEach(
-    ingredCat => appendLabeledIngredientSubList(concoctionAttrsWrapper, allIngredAttrs, ingredCat)
+    ingredCat => appendLabeledIngredientSubList(concoctionAttrsWrapper, ingredients, ingredCat)
   );
   
   // Append any additional ingredients.
-  appendLabeledIngredientSubList(concoctionAttrsWrapper, allIngredAttrs, "Other", "Additional Ingredient(s):");
+  appendLabeledIngredientSubList(concoctionAttrsWrapper, ingredients, "Other", "Additional Ingredient(s):");
   
   // Concoction instructions
   const instructionsLabel = newElementWithText('h3', "Instructions:");
@@ -77,13 +75,12 @@ function newElementWithText(elementType, elementText) {
   return newElement;
 }
 
-function appendLabeledIngredientSubList(element, allIngredAttrs, ingredCategory, label = `${ingredCategory}(s):`) {
+function appendLabeledIngredientSubList(element, ingredients, ingredCategory, label = `${ingredCategory}(s):`) {
   // This will probably get encapsulated by a method, once I refactor with Object Orientation.
   
-  // Refactoring plan: use the ingredient objects instead of allIngredAttrs.
-  // Then, get each ingredient's attributes, and filter that collection by category below.
-  
-  const filteredByCategory = allIngredAttrs.filter(attr => attr.category === ingredCategory.toLowerCase());
+  const filteredByCategory = ingredients.filter(
+    ingred => ingred.attributes.category === ingredCategory.toLowerCase()
+  );
 
   if (filteredByCategory.length) {
     // The filtered array is not empty - i.e. it has at least one ingredient with a certain ingredCategory 
@@ -93,7 +90,7 @@ function appendLabeledIngredientSubList(element, allIngredAttrs, ingredCategory,
   
     filteredByCategory.forEach(function(ingredient) {
       const ingredientItem = newElementWithText(
-        'li', `${ingredient.amount} ${ingredient.name}`
+        'li', buildDescriptionFor(ingredient)
       );
       ingredSubList.append(ingredientItem);
     });
@@ -103,13 +100,11 @@ function appendLabeledIngredientSubList(element, allIngredAttrs, ingredCategory,
 }
 
 function buildDescriptionFor(obj) {
-  // I can use this to refactor the appendLabeledIngredientSubList and displayConcoction functions.
-  // For the first version of this function, the object is assumed to be a Coffee.
   const attrs = obj.attributes;
   let descriptionStr = `${attrs.amount} `; // So far, obj is either a Coffee or an Ingredient; both have amounts.
   
   if (obj.type === "ingredient") {
-    descriptionStr += `${attrs.amount} ${attrs.name}`;
+    descriptionStr += `${attrs.name}`;
   } else if (attrs.brand) { // Here and below, obj is assumed to be a Coffee.
     descriptionStr += `${attrs.brand} ${attrs.variety}`;
   } else {
