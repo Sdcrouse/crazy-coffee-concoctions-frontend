@@ -34,7 +34,7 @@ function displayConcoction(concoction) {
   const coffeesList = document.createElement('ul');
   coffees.forEach(function(coffee) {
     const coffeeItem = newElementWithText(
-      'li', buildDescriptionFor(coffee)
+      'li', attributeString(coffee)
     );
     coffeesList.append(coffeeItem);
   });
@@ -90,7 +90,7 @@ function appendLabeledIngredientSubList(element, ingredients, ingredCategory, la
   
     filteredByCategory.forEach(function(ingredient) {
       const ingredientItem = newElementWithText(
-        'li', buildDescriptionFor(ingredient)
+        'li', attributeString(ingredient)
       );
       ingredSubList.append(ingredientItem);
     });
@@ -99,17 +99,17 @@ function appendLabeledIngredientSubList(element, ingredients, ingredCategory, la
   }
 }
 
-function buildDescriptionFor(obj) {
+function attributeString(obj) {
   const attrs = obj.attributes;
-  let descriptionStr = `${attrs.amount} `; // So far, obj is either a Coffee or an Ingredient; both have amounts.
+  let attrStr = `${attrs.amount} `; // So far, obj is either a Coffee or an Ingredient; both have amounts.
   
   if (obj.type === "ingredient") {
-    descriptionStr += `${attrs.name}`;
+    attrStr += `${attrs.name}`;
   } else if (attrs.brand) { // Here and below, obj is assumed to be a Coffee.
-    descriptionStr += `${attrs.brand} ${attrs.variety}`;
+    attrStr += `${attrs.brand} ${attrs.variety}`;
   } else {
-    descriptionStr += `${attrs.variety}`;
+    attrStr += `${attrs.variety}`;
   }
 
-  return descriptionStr;
+  return attrStr;
 }
