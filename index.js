@@ -22,43 +22,43 @@ function displayConcoction(concoction) {
   const mainContainer = document.getElementById('main-container');
 
   // Name of concoction
-  const concoctionNameWrapper = document.createElement('div');
-  const concoctionName = newElementWithText('h2', `${concoctionAttributes.name}`);
-  concoctionNameWrapper.append(concoctionName);
+  const nameWrapper = document.createElement('div');
+  const name = newElementWithText('h2', `${concoctionAttributes.name}`);
+  nameWrapper.append(name);
 
   // Wrapper for the concoction attributes other than "name"
-  const concoctionAttrsWrapper = document.createElement('div');
+  const attrsWrapper = document.createElement('div');
 
   // Labeled unordered list of coffees; this can probably be refactored, but I don't yet know how.
   const coffeesLabel = newElementWithText('h3', "Coffee(s):");
   const coffeesList = createListWithItems('ul', coffees);
 
-  // Append coffee info to concoctionAttrsWrapper.
-  concoctionAttrsWrapper.append(coffeesLabel, coffeesList);
+  // Append coffee info to attrsWrapper.
+  attrsWrapper.append(coffeesLabel, coffeesList);
 
   // Append a labeled sublist of each ingredient category except "other".
   mainIngredCategories.forEach(
-    ingredCat => appendLabeledIngredientSubList(concoctionAttrsWrapper, ingredients, ingredCat)
+    ingredCat => appendLabeledIngredientSubList(attrsWrapper, ingredients, ingredCat)
   );
   
   // Append any additional ingredients.
-  appendLabeledIngredientSubList(concoctionAttrsWrapper, ingredients, "Other", "Additional Ingredient(s):");
+  appendLabeledIngredientSubList(attrsWrapper, ingredients, "Other", "Additional Ingredient(s):");
   
   // Concoction instructions
   const instructionsLabel = newElementWithText('h3', "Instructions:");
   const instructions = newElementWithText('p', `${concoctionAttributes.instructions}`);
-  concoctionAttrsWrapper.append(instructionsLabel, instructions);
+  attrsWrapper.append(instructionsLabel, instructions);
   
   // Concoction notes
   // Side note: It looks like I can abstract the code for instructions and notes into a helper function.
   if (concoctionAttributes.notes) {
     const notesLabel = newElementWithText('h3', "Notes:");
     const notes = newElementWithText('p', `${concoctionAttributes.notes}`);
-    concoctionAttrsWrapper.append(notesLabel, notes);
+    attrsWrapper.append(notesLabel, notes);
   }
 
   // Finally, append the two wrappers to the mainContainer.
-  mainContainer.append(concoctionNameWrapper, concoctionAttrsWrapper);
+  mainContainer.append(nameWrapper, attrsWrapper);
 }
 
 function newElementWithText(elementType, elementText) {
