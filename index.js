@@ -1,7 +1,7 @@
 const BASE_URL = "http://localhost:3000/api/v1/concoctions";
 
 document.addEventListener("DOMContentLoaded", function() {
-  getConcoction(4); // This is a temporary default, until I add the "New Concoction" form.
+  getConcoction(2); // This is a temporary default, until I add the "New Concoction" form.
 });
 
 function getConcoction(concoctionId) {
@@ -80,14 +80,7 @@ function appendLabeledIngredientSubList(element, ingredients, ingredCategory, la
     // The filtered array is not empty - i.e. it has at least one ingredient with a certain ingredCategory 
 
     const ingredSubLabel = newElementWithText('h3', label);
-    const ingredSubList = document.createElement('ul');
-  
-    filteredByCategory.forEach(function(ingredient) {
-      const ingredientItem = newElementWithText(
-        'li', attributeString(ingredient)
-      );
-      ingredSubList.append(ingredientItem);
-    });
+    const ingredSubList = createListWithItems('ul', filteredByCategory);
   
     element.append(ingredSubLabel, ingredSubList);
   }
