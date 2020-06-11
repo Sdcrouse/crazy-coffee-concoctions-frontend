@@ -1,7 +1,7 @@
 const BASE_URL = "http://localhost:3000/api/v1/concoctions";
 
 document.addEventListener("DOMContentLoaded", function() {
-  getConcoction(5); // This is a temporary default, until I add the "New Concoction" form.
+  getConcoction(4); // This is a temporary default, until I add the "New Concoction" form.
 });
 
 function getConcoction(concoctionId) {
@@ -18,6 +18,7 @@ function displayConcoction(concoction) {
   const ingredients = concoction.included.filter(associatedObj => associatedObj.type === 'ingredient');
   const allIngredAttrs = ingredients.map(ingred => ingred.attributes);
   // This can be refactored with ES6 syntax, if I later want the "id" attribute of an ingredient.
+  const mainIngredCategories = ["Liquid", "Sweetener", "Creamer"];
 
   // The main container that will display the concoction
   const mainContainer = document.getElementById('main-container');
@@ -42,15 +43,11 @@ function displayConcoction(concoction) {
 
   // Append coffee info to concoctionAttrsWrapper.
   concoctionAttrsWrapper.append(coffeesLabel, coffeesList);
-  
-  // Append a labeled sublist of liquids.
-  appendLabeledIngredientSubList(concoctionAttrsWrapper, allIngredAttrs, "Liquid");
-  
-  // Append a labeled sublist of sweeteners.
-  appendLabeledIngredientSubList(concoctionAttrsWrapper, allIngredAttrs, "Sweetener");
-  
-  // Append a labeled sublist of creamers.
-  appendLabeledIngredientSubList(concoctionAttrsWrapper, allIngredAttrs, "Creamer");
+
+  // Append a labeled sublist of each ingredient category except "other".
+  mainIngredCategories.forEach(
+    ingredCat => appendLabeledIngredientSubList(concoctionAttrsWrapper, allIngredAttrs, ingredCat)
+  );
   
   // Append any additional ingredients.
   appendLabeledIngredientSubList(concoctionAttrsWrapper, allIngredAttrs, "Other", "Additional Ingredient(s):");
