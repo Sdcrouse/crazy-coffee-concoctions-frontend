@@ -70,10 +70,7 @@ function appendLabeledIngredientSubList(element, ingredients, ingredCategory, la
   if (filteredByCategory.length) {
     // The filtered array is not empty - i.e. it has at least one ingredient with a certain ingredCategory 
 
-    const ingredSubLabel = newElementWithText('h3', label);
-    const ingredSubList = createListWithItems('ul', filteredByCategory);
-  
-    element.append(ingredSubLabel, ingredSubList);
+    appendLabeledContent(element, filteredByCategory, 'ul', label);
   }
 }
 
