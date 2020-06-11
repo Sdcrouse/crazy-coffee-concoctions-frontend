@@ -31,13 +31,7 @@ function displayConcoction(concoction) {
 
   // Labeled unordered list of coffees; this can probably be refactored, but I don't yet know how.
   const coffeesLabel = newElementWithText('h3', "Coffee(s):");
-  const coffeesList = document.createElement('ul');
-  coffees.forEach(function(coffee) {
-    const coffeeItem = newElementWithText(
-      'li', attributeString(coffee)
-    );
-    coffeesList.append(coffeeItem);
-  });
+  const coffeesList = createListWithItems('ul', coffees);
 
   // Append coffee info to concoctionAttrsWrapper.
   concoctionAttrsWrapper.append(coffeesLabel, coffeesList);
@@ -112,4 +106,15 @@ function attributeString(obj) {
   }
 
   return attrStr;
+}
+
+function createListWithItems(listType, items) {
+  const list = document.createElement(listType);
+
+  items.forEach(function(item) {
+    const listItem = newElementWithText('li', attributeString(item));
+    list.append(listItem);
+  });
+
+  return list;
 }
