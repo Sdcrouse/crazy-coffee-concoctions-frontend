@@ -1,8 +1,15 @@
 const BASE_URL = "http://localhost:3000/api/v1/concoctions";
 
 document.addEventListener("DOMContentLoaded", function() {
+  getConcoctions();
   getConcoction(2); // This is a temporary default, until I add the "New Concoction" form.
 });
+
+function getConcoctions() {
+  fetch(BASE_URL)
+    .then(resp => resp.json())
+    .then(concoctions => console.log(concoctions));
+}
 
 function getConcoction(concoctionId) {
   fetch(`${BASE_URL}/${concoctionId}`)
