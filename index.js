@@ -55,7 +55,7 @@ function displayConcoction(concoction) {
   mainContainer.append(nameWrapper, attrsWrapper);
 }
 
-function newElementWithText(elementType, elementText) {
+function newElementWithText(elementType, elementText) { // elementType is usually 'p', so that could be the default.
   // Can this be refactored with something like Ruby's #tap method?
   // https://stackoverflow.com/questions/21497919/a-function-to-tap-into-any-methods-chain
 
@@ -67,6 +67,8 @@ function newElementWithText(elementType, elementText) {
 
 function appendLabeledIngredientSubList(element, ingredients, ingredCategory, label = `${ingredCategory}(s):`) {
   // This will probably get encapsulated by a method, once I refactor with Object Orientation.
+  // Note: The "element" parameter is really a wrapper: the same wrapper sent to appendLabeledContent; rename it.
+  // See test files for refactoring ideas.
   
   const filteredByCategory = ingredients.filter(
     ingred => ingred.attributes.category === ingredCategory.toLowerCase()
