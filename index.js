@@ -8,7 +8,18 @@ document.addEventListener("DOMContentLoaded", function() {
 function getConcoctions() {
   fetch(BASE_URL)
     .then(resp => resp.json())
-    .then(concoctions => console.log(concoctions));
+    .then(concoctions => addConcoctionsToList(concoctions));
+}
+
+function addConcoctionsToList(concoctions) {
+  const concoctionsList = document.querySelector('nav select');
+
+  concoctions.forEach(function(concoction) {
+    const concoctionOption = newElementWithText('option', concoction.name);
+
+    concoctionOption.setAttribute("value", concoction.id);
+    concoctionsList.append(concoctionOption);
+  })
 }
 
 function getConcoction(concoctionId) {
