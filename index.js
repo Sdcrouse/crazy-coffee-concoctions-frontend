@@ -13,20 +13,23 @@ function getConcoction(concoctionId) {
 function displayConcoction(concoction) {
   // Concoction attributes and associated coffees and ingredients
   // Is there a way to refactor this to be more DRY?
-  const concoctionAttributes = concoction.data.attributes;
+  // Update: Yes, with OOJS! E.g. I could use a Concoction class with a static method that accepts an objType and returns coffees, ingredients, etc.
+  // Coffees and Ingredients might need to inherit from another class, since they're fairly similar.
+  const concoctionAttributes = concoction.data.attributes; // This, obviously, should be in the constructor of a Concoction class.
   const coffees = concoction.included.filter(associatedObj => associatedObj.type === 'coffee');
   const ingredients = concoction.included.filter(associatedObj => associatedObj.type === 'ingredient');
-  const mainIngredCategories = ["Liquid", "Sweetener", "Creamer"];
+  const mainIngredCategories = ["Liquid", "Sweetener", "Creamer"]; // Maybe an Ingredient property?
 
   // The main container that will display the concoction
   const mainContainer = document.getElementById('main-container');
 
-  // Name of concoction
+  // Name of concoction - could be either a Concoction method or a static method of another class (General, maybe?)
   const nameWrapper = document.createElement('div');
   const name = newElementWithText('h2', `${concoctionAttributes.name}`);
   nameWrapper.append(name);
 
   // Wrapper for the concoction attributes other than "name"
+  // I use this same wrapper in a lot of function calls; maybe it should be a property of a class?
   const attrsWrapper = document.createElement('div');
 
   // Labeled unordered list of coffees
@@ -55,6 +58,8 @@ function displayConcoction(concoction) {
 function newElementWithText(elementType, elementText) {
   // Can this be refactored with something like Ruby's #tap method?
   // https://stackoverflow.com/questions/21497919/a-function-to-tap-into-any-methods-chain
+
+  // This could be refactored into a static method of a General class, which manages the main app flow.
   const newElement = document.createElement(elementType);
   newElement.textContent = elementText;
   return newElement;
@@ -101,6 +106,7 @@ function createListWithItems(listType, items) {
 }
 
 function appendLabeledContent(wrapper, content, contentType, labelText, labelType = 'h3') {
+  // This gets called a lot; maybe I could make this into an object method, and call it on an array?
   const label = newElementWithText(labelType, labelText);
   let contentElement;
 
