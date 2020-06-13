@@ -19,7 +19,11 @@ function addConcoctionsToList(concoctions) {
 
     concoctionOption.setAttribute("value", concoction.id);
     concoctionsList.append(concoctionOption);
-  })
+  });
+
+  concoctionsList.addEventListener("change", function(event) { // Display selected concoction
+    if(event.target.value) { console.log(event.target.value); }
+  });
 }
 
 function getConcoction(concoctionId) {
