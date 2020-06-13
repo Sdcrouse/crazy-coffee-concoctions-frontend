@@ -22,7 +22,7 @@ function addConcoctionsToList(concoctions) {
   });
 
   concoctionsList.addEventListener("change", function(event) { // Display selected concoction
-    if(event.target.value) { console.log(event.target.value); }
+    if(event.target.value) { getConcoction(event.target.value) }
   });
 }
 
@@ -44,6 +44,7 @@ function displayConcoction(concoction) {
 
   // The main container that will display the concoction
   const mainContainer = document.getElementById('main-container');
+  mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
 
   // Name of concoction - could be either a Concoction method or a static method of another class (General, maybe?)
   const nameWrapper = document.createElement('div');
