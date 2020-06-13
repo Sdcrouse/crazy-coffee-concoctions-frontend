@@ -44,6 +44,9 @@ Later, I want to refactor how a concoction is displayed:
   * Else if only ONE coffee, creamer, etc. was added to the concoction, the label should be singular (Coffee:)
   * Else, the label should be plural (Coffees:)
 
+According to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#Styling_with_CSS, `<select>` elements are "...notoriously difficult to style productively with CSS".
+As a stretch goal, I could make my own `<select>`-like `<div>` element for the list of Concoctions, and add additional styles like Flex centering, borders, list elements that don't overlap their container, etc.
+
 ### Notes for the `displayConcoction()` function:
 Goal: HTML that looks something like this (not necessarily concoction #1).
 I may want to style this as a table or with CSS Grid instead - I need to separate the labels from the content.

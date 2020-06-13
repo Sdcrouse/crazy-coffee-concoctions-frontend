@@ -1,8 +1,30 @@
 const BASE_URL = "http://localhost:3000/api/v1/concoctions";
 
 document.addEventListener("DOMContentLoaded", function() {
+  getConcoctions();
   getConcoction(2); // This is a temporary default, until I add the "New Concoction" form.
 });
+
+function getConcoctions() {
+  fetch(BASE_URL)
+    .then(resp => resp.json())
+    .then(concoctions => addConcoctionsToList(concoctions));
+}
+
+function addConcoctionsToList(concoctions) {
+  const concoctionsList = document.querySelector('nav select');
+
+  concoctions.forEach(function(concoction) {
+    const concoctionOption = newElementWithText('option', concoction.name);
+
+    concoctionOption.setAttribute("value", concoction.id);
+    concoctionsList.append(concoctionOption);
+  });
+
+  concoctionsList.addEventListener("change", function(event) { // Display selected concoction
+    if(event.target.value) { getConcoction(event.target.value) }
+  });
+}
 
 function getConcoction(concoctionId) {
   fetch(`${BASE_URL}/${concoctionId}`)
@@ -22,6 +44,7 @@ function displayConcoction(concoction) {
 
   // The main container that will display the concoction
   const mainContainer = document.getElementById('main-container');
+  mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
 
   // Name of concoction - could be either a Concoction method or a static method of another class (General, maybe?)
   const nameWrapper = document.createElement('div');
