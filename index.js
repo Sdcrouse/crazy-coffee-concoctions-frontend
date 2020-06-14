@@ -146,9 +146,15 @@ function appendLabeledContent(wrapper, content, contentType, labelText, labelTyp
 
 function newConcoctionForm() {
   const mainContainer = document.getElementById('main-container');
+
+  const headingWrapper = document.createElement('div');
   const newConcoctionHeading = newElementWithText('h2', "New Concoction");
+  headingWrapper.append(newConcoctionHeading);
+
+  const formWrapper = document.createElement('div');
   const concoctionForm = document.createElement('form');
+  formWrapper.append(concoctionForm);
 
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
-  mainContainer.append(newConcoctionHeading, concoctionForm);
+  mainContainer.append(headingWrapper, formWrapper);
 }
