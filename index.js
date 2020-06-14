@@ -152,6 +152,8 @@ function newConcoctionForm() {
   headingWrapper.append(newConcoctionHeading);
 
   const concoctionForm = document.createElement('form');
+  const submitButton = newElementWithText('button', "Create Concoction");
+  concoctionForm.append(submitButton);
 
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
   mainContainer.append(headingWrapper, concoctionForm);
