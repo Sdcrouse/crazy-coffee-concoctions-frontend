@@ -2,7 +2,7 @@ const BASE_URL = "http://localhost:3000/api/v1/concoctions";
 
 document.addEventListener("DOMContentLoaded", function() {
   getConcoctions();
-  getConcoction(2); // This is a temporary default, until I add the "New Concoction" form.
+  newConcoctionForm();
 });
 
 function getConcoctions() {
@@ -142,4 +142,13 @@ function appendLabeledContent(wrapper, content, contentType, labelText, labelTyp
   }
 
   wrapper.append(label, contentElement);
+}
+
+function newConcoctionForm() {
+  const mainContainer = document.getElementById('main-container');
+  const newConcoctionHeading = newElementWithText('h2', "New Concoction");
+  const concoctionForm = document.createElement('form');
+
+  mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
+  mainContainer.append(newConcoctionHeading, concoctionForm);
 }
