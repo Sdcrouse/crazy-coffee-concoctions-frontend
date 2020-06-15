@@ -2,7 +2,6 @@ const BASE_URL = "http://localhost:3000/api/v1/concoctions";
 
 document.addEventListener("DOMContentLoaded", function() {
   getConcoctions();
-  newConcoctionForm();
 });
 
 function getConcoctions() {
@@ -144,40 +143,7 @@ function appendLabeledContent(wrapper, content, contentType, labelText, labelTyp
   wrapper.append(label, contentElement);
 }
 
-function newConcoctionForm() {
-  const mainContainer = document.getElementById('main-container');
-
-  const headingWrapper = document.createElement('div');
-  const newConcoctionHeading = newElementWithText('h2', "New Concoction");
-  headingWrapper.append(newConcoctionHeading);
-
-  const concoctionForm = document.createElement('form');
-
-  appendLabelAndInput(concoctionForm, 'input', "Name");
-  appendLabelAndInput(concoctionForm, 'textarea', "Instructions");
-  appendLabelAndInput(concoctionForm, 'textarea', "Notes");
-
-  const submitButton = newElementWithText('button', "Create Concoction");
-  submitButton.setAttribute("type", "submit");
-
-  concoctionForm.append(submitButton);
-  concoctionForm.addEventListener('submit', createConcoction);
-
-  mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
-  mainContainer.append(headingWrapper, concoctionForm);
-}
-
-function appendLabelAndInput(wrapper, inputType, inputName) {
-  const lowercasedInput = inputName.toLowerCase();
-
-  const label = newElementWithText('label', `${inputName}:`);
-  label.setAttribute('for', `${lowercasedInput}`);
-
-  const input = document.createElement(inputType);
-  input.setAttribute('id', `${lowercasedInput}`);
-  input.setAttribute('name', `${lowercasedInput}`);
-
-  wrapper.append(label, input);
+function newConcoctionForm() { // This will be needed, once I add a "New Concoction" button.
 }
 
 function createConcoction(event) {
