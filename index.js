@@ -155,6 +155,7 @@ function newConcoctionForm() {
 
   appendLabelAndInput(concoctionForm, 'input', "Name");
   appendLabelAndInput(concoctionForm, 'textarea', "Instructions");
+  appendLabelAndInput(concoctionForm, 'textarea', "Notes");
 
   const submitButton = newElementWithText('button', "Create Concoction");
   submitButton.setAttribute("type", "submit");
