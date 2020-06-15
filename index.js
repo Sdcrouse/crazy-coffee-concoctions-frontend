@@ -161,6 +161,7 @@ function newConcoctionForm() {
   submitButton.setAttribute("type", "submit");
 
   concoctionForm.append(submitButton);
+  concoctionForm.addEventListener('submit', createConcoction);
 
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
   mainContainer.append(headingWrapper, concoctionForm);
@@ -177,4 +178,9 @@ function appendLabelAndInput(wrapper, inputType, inputName) {
   input.setAttribute('name', `${lowercasedInput}`);
 
   wrapper.append(label, input);
+}
+
+function createConcoction(event) {
+  console.log("Form successfully submitted!");
+  event.preventDefault();
 }
