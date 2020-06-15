@@ -1,7 +1,10 @@
 const BASE_URL = "http://localhost:3000/api/v1/concoctions";
 
 document.addEventListener("DOMContentLoaded", function() {
+  const concoctionForm = document.querySelector('#main-container form');
+
   getConcoctions();
+  concoctionForm.addEventListener('submit', createConcoction);
 });
 
 function getConcoctions() {
