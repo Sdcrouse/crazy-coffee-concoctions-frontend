@@ -153,22 +153,8 @@ function newConcoctionForm() {
 
   const concoctionForm = document.createElement('form');
 
-  const nameLabel = newElementWithText('label', "Name:");
-  nameLabel.setAttribute("for", "name");
-
-  const nameInput = document.createElement("input");
-  nameInput.setAttribute("type", "text"); // Note: This is default, so I can refactor without this line of code.
-  nameInput.setAttribute("id", "name");
-  nameInput.setAttribute("name", "name");
-  concoctionForm.append(nameLabel, nameInput);
-
-  const instructionsLabel = newElementWithText('label', "Instructions:");
-  instructionsLabel.setAttribute("for", "instructions");
-
-  const instructionsInput = document.createElement("textarea");
-  instructionsInput.setAttribute("id", "instructions");
-  instructionsInput.setAttribute("name", "instructions");
-  concoctionForm.append(instructionsLabel, instructionsInput);
+  appendLabelAndInput(concoctionForm, 'input', "Name");
+  appendLabelAndInput(concoctionForm, 'textarea', "Instructions");
 
   const submitButton = newElementWithText('button', "Create Concoction");
   submitButton.setAttribute("type", "submit");
@@ -177,4 +163,17 @@ function newConcoctionForm() {
 
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
   mainContainer.append(headingWrapper, concoctionForm);
+}
+
+function appendLabelAndInput(wrapper, inputType, inputName) {
+  const lowercasedInput = inputName.toLowerCase();
+
+  const label = newElementWithText('label', `${inputName}:`);
+  label.setAttribute('for', `${lowercasedInput}`);
+
+  const input = document.createElement(inputType);
+  input.setAttribute('id', `${lowercasedInput}`);
+  input.setAttribute('name', `${lowercasedInput}`);
+
+  wrapper.append(label, input);
 }
