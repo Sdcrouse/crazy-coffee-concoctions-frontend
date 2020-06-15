@@ -155,14 +155,22 @@ function newConcoctionForm() {
 
   const nameLabel = newElementWithText('label', "Name:");
   nameLabel.setAttribute("for", "name");
-  
+
   const nameInput = document.createElement("input");
-  nameInput.setAttribute("type", "text");
+  nameInput.setAttribute("type", "text"); // Note: This is default, so I can refactor without this line of code.
   nameInput.setAttribute("id", "name");
   nameInput.setAttribute("name", "name");
   concoctionForm.append(nameLabel, nameInput);
 
-  const submitButton = newElementWithText('button', "Create Concoction");
+  const instructionsLabel = newElementWithText('label', "Instructions:");
+  instructionsLabel.setAttribute("for", "instructions");
+
+  const instructionsInput = document.createElement("textarea");
+  instructionsInput.setAttribute("id", "instructions");
+  instructionsInput.setAttribute("name", "instructions");
+  concoctionForm.append(instructionsLabel, instructionsInput);
+
+  const submitButton = newElementWithText('button', "Create Concoction"); // Change this to an input whose type is "submit".
 
   concoctionForm.append(submitButton);
 
