@@ -170,7 +170,8 @@ function newConcoctionForm() {
   instructionsInput.setAttribute("name", "instructions");
   concoctionForm.append(instructionsLabel, instructionsInput);
 
-  const submitButton = newElementWithText('button', "Create Concoction"); // Change this to an input whose type is "submit".
+  const submitButton = newElementWithText('button', "Create Concoction");
+  submitButton.setAttribute("type", "submit");
 
   concoctionForm.append(submitButton);
 
