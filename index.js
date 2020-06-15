@@ -152,7 +152,18 @@ function newConcoctionForm() {
   headingWrapper.append(newConcoctionHeading);
 
   const concoctionForm = document.createElement('form');
+
+  const nameLabel = newElementWithText('label', "Name:");
+  nameLabel.setAttribute("for", "name");
+  
+  const nameInput = document.createElement("input");
+  nameInput.setAttribute("type", "text");
+  nameInput.setAttribute("id", "name");
+  nameInput.setAttribute("name", "name");
+  concoctionForm.append(nameLabel, nameInput);
+
   const submitButton = newElementWithText('button', "Create Concoction");
+
   concoctionForm.append(submitButton);
 
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
