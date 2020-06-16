@@ -174,7 +174,7 @@ function createConcoction(event) {
 function getConcoctionData(concForm) {
   let concData = {};
 
-  concData.name = concForm.querySelector('#name').value;
+  concData.name = concForm.querySelector('#concoction_name').value;
   concData.instructions = concForm.querySelector('#instructions').value;
 
   let notes = concForm.querySelector('#notes').value;
