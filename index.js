@@ -151,11 +151,7 @@ function newConcoctionForm() { // This will be needed, once I add a "New Concoct
 
 function createConcoction(event) {
   let formData = {
-    concoction: {
-      name: "Fake Concoction",
-      instructions: "Make the concoction.",
-      notes: "Lorem ipsum dolor sit amet."
-    }
+    concoction: getConcoctionData(event.target)
   }
 
   let configObj = {
@@ -166,11 +162,21 @@ function createConcoction(event) {
     },
     body: JSON.stringify(formData)
   };
-
+  
   event.preventDefault();
 
   fetch(BASE_URL, configObj)
     .then(resp => resp.json())
     .then(json => console.log(json))
     .catch(error => console.log(`Well, THAT didn't work! Here's the problem: ${error}`));
+}
+
+function getConcoctionData(concForm) {
+  let concData = {};
+
+  concData.name = concForm.querySelector('#name').value;
+  concData.instructions = concForm.querySelector('#instructions').value;
+  concData.notes = concForm.querySelector('#notes').value;
+  
+  return concData;
 }
