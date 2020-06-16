@@ -150,6 +150,24 @@ function newConcoctionForm() { // This will be needed, once I add a "New Concoct
 }
 
 function createConcoction(event) {
-  console.log("Form successfully submitted!");
+  let formData = {
+    concoction: {
+      name: "Fake Concoction",
+      instructions: "Make the concoction.",
+      notes: "Lorem ipsum dolor sit amet."
+    }
+  }
+
+  let configObj = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify(formData)
+  };
+
+  console.log(formData, configObj);
+
   event.preventDefault();
 }
