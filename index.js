@@ -167,7 +167,9 @@ function createConcoction(event) {
     body: JSON.stringify(formData)
   };
 
-  console.log(formData, configObj);
-
   event.preventDefault();
+
+  fetch(BASE_URL, configObj)
+    .then(resp => resp.json())
+    .then(json => console.log(json)); // Note: Be sure to catch any errors here.
 }
