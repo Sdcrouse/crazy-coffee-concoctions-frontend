@@ -183,6 +183,8 @@ function getConcoctionData(concForm) {
   concData.coffees_attributes = getCoffeeData();
   console.log(concData.coffees_attributes); // Remove this line after I can see Coffees in the returned JSON.
 
+  concData.ingredients_attributes = getIngredientData();
+
   return concData;
 }
 
@@ -200,4 +202,21 @@ function getCoffeeData() {
   );
 
   return coffeesArray;
+}
+
+function getIngredientData() {
+  // Get the Ingredient <li>s
+  // For each <li>, get the <input>s
+  // For each input, get the name and value
+  // Put the name and value into an Object
+  // Collect all of those Ingredient Objects into an array and return it.
+
+  // I want to return something like this:
+  /* [
+    {category: 'liquid', amount: '1 cup', name: 'hot water'},
+    {category: 'creamer', amount: '2 tsp', name: 'hazelnut creamer'},
+    {category: 'sweetener', amount: '1 packet', 'Sweet and Low'},
+    {category: 'other', amount: '1/4 tsp', name: 'cinnamon'}
+  ] */
+
 }
