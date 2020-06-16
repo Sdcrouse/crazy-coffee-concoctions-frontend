@@ -176,7 +176,9 @@ function getConcoctionData(concForm) {
 
   concData.name = concForm.querySelector('#name').value;
   concData.instructions = concForm.querySelector('#instructions').value;
-  concData.notes = concForm.querySelector('#notes').value;
-  
+
+  let notes = concForm.querySelector('#notes').value;
+  if(notes) {concData.notes = notes}; // Edge case
+
   return concData;
 }
