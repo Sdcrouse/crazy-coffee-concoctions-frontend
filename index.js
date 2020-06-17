@@ -206,7 +206,19 @@ function getCoffeeData() {
 
 function getIngredientData() {
   // Get the Ingredient <li>s
-  // For each <li>, get the <input>s
+
+  // <li>
+  //   <input type="hidden" name="category" value="liquid">
+  //   <label for="liquid_amount1">Amount:</label>
+  //   <input name="amount" id="liquid_amount1">
+  //   <label for="liquid_name1">Name:</label>
+  //   <input name="name" id="liquid_name1">
+  // </li>
+
+  // Each <li> will be turned into an object that gets put into the returned array.
+  // Its <input>s will be turned into key/value pairs of ONE object.
+
+  // For each <li>, get the <input>s for one ingredient
   // For each input, get the name and value
   // Put the name and value into an Object
   // Collect all of those Ingredient Objects into an array and return it.
