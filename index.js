@@ -167,7 +167,7 @@ function createConcoction(event) {
 
   fetch(BASE_URL, configObj)
     .then(resp => resp.json())
-    .then(json => console.log(json))
+    .then(concoctionJson => displayConcoction(concoctionJson))
     .catch(error => console.log(`Well, THAT didn't work! Here's the problem: ${error}`));
 }
 
