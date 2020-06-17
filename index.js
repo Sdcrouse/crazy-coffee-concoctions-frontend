@@ -167,7 +167,19 @@ function createConcoction(event) {
 
   fetch(BASE_URL, configObj)
     .then(resp => resp.json())
-    .then(concoctionJson => displayConcoction(concoctionJson))
+    .then(function(concoctionJson) {
+      const concoction = concoctionJson.data;
+      const concoctionsList = document.querySelector('nav select');
+      const concoctionOption = newElementWithText('option', concoction.attributes.name);
+
+      concoctionOption.setAttribute("value", concoction.id);
+      concoctionsList.append(concoctionOption);
+      concoctionsList.addEventListener("change", function(event) { // Display selected concoction
+        if(event.target.value) { getConcoction(event.target.value) } // This "if" won't be needed if I add a "catch" statement in getConcoction.
+      });
+
+      displayConcoction(concoctionJson);
+    })
     .catch(error => console.log(`Well, THAT didn't work! Here's the problem: ${error}`));
 }
 
