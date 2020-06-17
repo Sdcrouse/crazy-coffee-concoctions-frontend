@@ -181,10 +181,7 @@ function getConcoctionData(concForm) {
   if(notes) {concData.notes = notes}; // Edge case
 
   concData.coffees_attributes = getCoffeeData();
-  console.log(concData.coffees_attributes); // Remove this line after I can see Coffees in the returned JSON.
-
   concData.ingredients_attributes = getIngredientData();
-  console.log(concData.ingredients_attributes); // See similar comment above.
 
   return concData;
 }
