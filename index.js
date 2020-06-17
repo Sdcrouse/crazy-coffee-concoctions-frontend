@@ -184,6 +184,7 @@ function getConcoctionData(concForm) {
   console.log(concData.coffees_attributes); // Remove this line after I can see Coffees in the returned JSON.
 
   concData.ingredients_attributes = getIngredientData();
+  console.log(concData.ingredients_attributes); // See similar comment above.
 
   return concData;
 }
@@ -231,4 +232,18 @@ function getIngredientData() {
     {category: 'other', amount: '1/4 tsp', name: 'cinnamon'}
   ] */
 
+  const ingredientLis = document.querySelectorAll('ol.ingredients_list li');
+
+  const ingredientsArray = Array.from(ingredientLis).map(
+    // Create an object for each <li>
+    function(ingredLi) {
+      const ingredInputs = ingredLi.querySelectorAll('input');
+      let ingredObj = {};
+
+      ingredInputs.forEach(input => ingredObj[input.name] = input.value);
+      return ingredObj;
+    }
+  );
+
+  return ingredientsArray;
 }
