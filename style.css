@@ -80,6 +80,13 @@ form > label, form > p {
   padding-inline-start: 40px;
 }
 
+hr {
+  height: 5px;
+  width: 90%;
+  /* background-color:#5596D2; */
+  background-color: #63A7E4;
+}
+
 /* nav {
   background-color: #A65F40;
   color: white;
