@@ -16,16 +16,18 @@ function getConcoctions() {
 function addConcoctionsToList(concoctions) {
   const concoctionsList = document.querySelector('nav select');
 
-  concoctions.forEach(function(concoction) {
-    const concoctionOption = newElementWithText('option', concoction.name);
-
-    concoctionOption.setAttribute("value", concoction.id);
-    concoctionsList.append(concoctionOption);
-  });
+  concoctions.forEach(concoction => addConcoctionToList(concoctionsList, concoction, concoction.name));
 
   concoctionsList.addEventListener("change", function(event) { // Display selected concoction
     if(event.target.value) { getConcoction(event.target.value) }
   });
+}
+
+function addConcoctionToList(concoctionsList, concoctionJson, concoctionName) {
+  const concoctionOption = newElementWithText('option', concoctionName);
+
+  concoctionOption.setAttribute("value", concoctionJson.id);
+  concoctionsList.append(concoctionOption);
 }
 
 function getConcoction(concoctionId) {
@@ -168,13 +170,10 @@ function createConcoction(event) {
   fetch(BASE_URL, configObj)
     .then(resp => resp.json())
     .then(function(concoctionJson) {
-      const concoction = concoctionJson.data;
       const concoctionsList = document.querySelector('nav select');
-      const concoctionOption = newElementWithText('option', concoction.attributes.name);
+      const concoction = concoctionJson.data;
 
-      concoctionOption.setAttribute("value", concoction.id);
-      concoctionsList.append(concoctionOption);
-
+      addConcoctionToList(concoctionsList, concoction, concoction.attributes.name);
       displayConcoction(concoctionJson);
     })
     .catch(error => console.log(`Well, THAT didn't work! Here's the problem: ${error}`));
