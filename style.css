@@ -60,6 +60,10 @@ section {
   margin-inline-start: 2em;
 }
 
+#main-container h4 {
+  margin-inline-start: 2.5em;
+}
+
 #main-container ul {
   padding-inline-start: 0;
   list-style-type: none;
