@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
 function getConcoctions() {
   fetch(BASE_URL)
     .then(resp => resp.json())
-    .then(concoctions => addConcoctionsToList(concoctions));
+    .then(concoctions => addConcoctionsToList(concoctions))
+    .catch(error => console.log(`Oops! Something's not right here: ${error}`));
 }
 
 function addConcoctionsToList(concoctions) {
@@ -33,7 +34,8 @@ function addConcoctionToList(concoctionsList, concoctionJson, concoctionName) {
 function getConcoction(concoctionId) {
   fetch(`${BASE_URL}/${concoctionId}`)
     .then(resp => resp.json())
-    .then(concoctionJson => displayConcoction(concoctionJson));
+    .then(concoctionJson => displayConcoction(concoctionJson))
+    .catch(error => console.log(`Something went wrong here: ${error}`));
 }
 
 function displayConcoction(concoction) {
