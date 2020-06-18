@@ -65,11 +65,19 @@ section {
   list-style-type: none;
 }
 
+#main-container ol {
+  padding-inline-start: 55px;
+}
+
 select {
   background-color: #A65F40;
   color: white;
   font-size: 1.3em;
   width: 100%;
+}
+
+form > label, form > p {
+  padding-inline-start: 40px;
 }
 
 /* nav {
