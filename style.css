@@ -91,6 +91,11 @@ hr {
   background-color: #63A7E4;
 }
 
+hr.ingredient-hr {
+  height: 3px;
+  background-color: #A65F40;
+}
+
 /* nav {
   background-color: #A65F40;
   color: white;
