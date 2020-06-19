@@ -1,10 +1,21 @@
 const BASE_URL = "http://localhost:3000/api/v1/concoctions";
 
 document.addEventListener("DOMContentLoaded", function() {
-  const concoctionForm = document.querySelector('#main-container form');
+  const newConcoctionButton = document.querySelector('nav button');
+  const mainContainer = document.getElementById('main-container');
+  const concoctionForm = mainContainer.querySelector('form');  
+  const newConcoctionHTML = mainContainer.innerHTML;
+  // By default, the main-container has the Concoction form when the page is loaded.
 
   getConcoctions();
   concoctionForm.addEventListener('submit', createConcoction);
+
+  newConcoctionButton.addEventListener('click', function() {
+    mainContainer.innerHTML = newConcoctionHTML;
+
+    mainContainer.querySelector('form').addEventListener('submit', createConcoction);
+    // This fixes a tricky bug: In this case, mainContainer.querySelector('form') !== concoctionForm!
+  });
 });
 
 function getConcoctions() {
