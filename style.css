@@ -11,6 +11,11 @@ body {
   padding: 5%;
 }
 
+#wrapper > div {
+  display: flex;
+  justify-content: center;
+}
+
 header {
   background-color: #A65F40;
   display: flex;
@@ -23,8 +28,8 @@ h1 {
 }
 
 img {
-  width: 249px; /* Half of the original image's width */
-  height: 208px; /* Half of the original image's height */
+  width: 166px; /* 1/3 of the original image's width */
+  height: 139px; /* 1/3 of the original image's height */
   border-radius: 50%;
 }
 
