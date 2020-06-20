@@ -89,6 +89,11 @@ select, nav button {
   width: 100%;
 }
 
+form {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
 form > label, form > p {
   padding-inline-start: 40px;
 }
@@ -103,6 +108,14 @@ hr {
 hr.ingredient-hr {
   height: 3px;
   background-color: #A65F40;
+}
+
+input[name="amount"] {
+  width: 15%;
+}
+
+input[name="brand"], input[name="variety"] {
+  width: 23%;
 }
 
 /* nav {
