@@ -162,9 +162,6 @@ function appendLabeledContent(wrapper, content, contentType, labelText, labelTyp
   wrapper.append(label, contentElement);
 }
 
-function newConcoctionForm() { // This will be needed, once I add a "New Concoction" button.
-}
-
 function createConcoction(event) {
   let formData = {
     concoction: getConcoctionData(event.target)
