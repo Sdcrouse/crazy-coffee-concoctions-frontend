@@ -9,14 +9,17 @@
   </head>
   <body>
     <div id="wrapper">
-      <img src="img/blue_coffee_cup.jpg" alt="Blue Coffee Cup">
-      <!-- Note: This is a modified version of the image at https://www.pexels.com/photo/art-blue-brown-cafe-459489/ -->
+      <div>
+        <img src="img/blue_coffee_cup.jpg" alt="Blue Coffee Cup">
+        <!-- Note: This is a modified version of the image at https://www.pexels.com/photo/art-blue-brown-cafe-459489/ -->
+      </div>
       
       <header>
         <h1>Crazy Coffee Concoctions</h1>
       </header>
   
       <nav>
+        <button>New Concoction</button>
         <select>
           <option value="">Saved Concoctions</option>
         </select>
@@ -24,6 +27,149 @@
   
       <section>
         <div id="main-container">
+          <div>
+            <h2>New Concoction</h2>
+          </div>
+
+          <form>
+            <p>
+              <label for="concoction_name"><strong>Name:</strong></label>
+              <input id="concoction_name" name="name">
+            </p>
+            <hr />
+
+            <h3>Coffees:</h3>
+            <ol id="coffees_list">
+              <li>
+                <label for="coffee_amount1">Amount:</label>
+                <input name="amount" id="coffee_amount1">
+                <label for="coffee_brand1">Brand:</label>
+                <input name="brand" id="coffee_brand1">
+                <label for="coffee_variety1">Variety:</label>
+                <input name="variety" id="coffee_variety1">
+              </li>
+              <br>
+              <li>
+                <label for="coffee_amount2">Amount:</label>
+                <input name="amount" id="coffee_amount2">
+                <label for="coffee_brand2">Brand:</label>
+                <input name="brand" id="coffee_brand2">
+                <label for="coffee_variety2">Variety:</label>
+                <input name="variety" id="coffee_variety2">
+              </li>
+            </ol>
+            <hr />
+
+            <h3>Ingredients:</h3>
+
+            <h4>Liquids:</h4>
+            <ol class="ingredients_list">
+              <li>
+                <input type="hidden" name="category" value="liquid">
+                <label for="liquid_amount1">Amount:</label>
+                <input name="amount" id="liquid_amount1">
+                <label for="liquid_name1">Name:</label>
+                <input name="name" id="liquid_name1">
+              </li>
+              <br>
+              <li>
+                <input type="hidden" name="category" value="liquid">
+                <label for="liquid_amount2">Amount:</label>
+                <input name="amount" id="liquid_amount2">
+                <label for="liquid_name2">Name:</label>
+                <input name="name" id="liquid_name2">
+              </li>
+            </ol>
+            <hr class="ingredient-hr" />
+
+            <h4>Sweeteners:</h4>
+            <ol class="ingredients_list">
+              <li>
+                <input type="hidden" name="category" value="sweetener">
+                <label for="sweet_amount1">Amount:</label>
+                <input name="amount" id="sweet_amount1">
+                <label for="sweet_name1">Name:</label>
+                <input name="name" id="sweet_name1">
+              </li>
+              <br>
+              <li>
+                <input type="hidden" name="category" value="sweetener">
+                <label for="sweet_amount2">Amount:</label>
+                <input name="amount" id="sweet_amount2">
+                <label for="sweet_name2">Name:</label>
+                <input name="name" id="sweet_name2">
+              </li>
+            </ol>
+            <hr class="ingredient-hr" />
+
+            <h4>Creamers:</h4>
+            <ol class="ingredients_list">
+              <li>
+                <input type="hidden" name="category" value="creamer">
+                <label for="creamer_amount1">Amount:</label>
+                <input name="amount" id="creamer_amount1">
+                <label for="creamer_name1">Name:</label>
+                <input name="name" id="creamer_name1">
+              </li>
+              <br>
+              <li>
+                <input type="hidden" name="category" value="creamer">
+                <label for="creamer_amount2">Amount:</label>
+                <input name="amount" id="creamer_amount2">
+                <label for="creamer_name2">Name:</label>
+                <input name="name" id="creamer_name2">
+              </li>
+            </ol>
+            <hr class="ingredient-hr" />
+
+            <h4>Additional Ingredients:</h4>
+            <ol class="ingredients_list">
+              <li>
+                <input type="hidden" name="category" value="other">
+                <label for="other_amount1">Amount:</label>
+                <input name="amount" id="other_amount1">
+                <label for="other_name1">Name:</label>
+                <input name="name" id="other_name1">
+              </li>
+              <br>
+              <li>
+                <input type="hidden" name="category" value="other">
+                <label for="other_amount2">Amount:</label>
+                <input name="amount" id="other_amount2">
+                <label for="other_name2">Name:</label>
+                <input name="name" id="other_name2">
+              </li>
+              <br>
+              <li>
+                <input type="hidden" name="category" value="other">
+                <label for="other_amount3">Amount:</label>
+                <input name="amount" id="other_amount3">
+                <label for="other_name3">Name:</label>
+                <input name="name" id="other_name3">
+              </li>
+              <br>
+              <li>
+                <input type="hidden" name="category" value="other">
+                <label for="other_amount4">Amount:</label>
+                <input name="amount" id="other_amount4">
+                <label for="other_name4">Name:</label>
+                <input name="name" id="other_name4">
+              </li>
+            </ol>
+            <hr />
+
+            <p>
+              <label for="instructions"><strong>Instructions:</strong></label>
+              <textarea id="instructions" name="instructions"></textarea>
+              <br><br>
+              <label for="notes"><strong>Notes:</strong></label>
+              <textarea id="notes" name="notes"></textarea>
+            </p>
+            
+            <p>
+              <button type="submit">Create Concoction</button>
+            </p>
+          </form>
         </div>
       </section>
     </div>

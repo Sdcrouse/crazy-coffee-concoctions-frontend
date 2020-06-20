@@ -32,6 +32,22 @@ So, here's the intended order of operations (subject to change):
 7. Implement stretch goals (especially that "I'm a teapot" HTTP status)
 
 ## Ideas
+What if instead of adding background colors to the "Saved Concoctions List" and the "New Concoction" button,
+I made their wrapper light brown (so it extends to the bottom of the page), 
+and then made the list and button white with light brown text? Would THAT work?
+
+**IMPORTANT!** I may want to undo that `width: 100%;` setting on the `select` CSS rule; it cuts off any `<option>` text that is longer than its container. Also, I need to play with the form styles:
+
+<!-- #main-container form div:last-child {
+  display: flex;
+  justify-content: center;
+}
+
+#main-container button { /* I may not want this. */
+  background-color: #A65F40;
+  color: white;
+} -->
+
 I want to add a "select" list like this, but for saved concoctions:
 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
 
