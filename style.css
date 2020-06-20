@@ -6,9 +6,9 @@ body {
 
 #wrapper {
   display: grid;
-  grid-template-columns: 1fr 5fr;
-  grid-gap: 5%;
-  padding: 5%;
+  grid-template-columns: 1fr 4fr;
+  grid-gap: 3%;
+  padding: 2% 16% 50% 16%;
 }
 
 #wrapper > div {
@@ -38,7 +38,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 7% 10%;
+  padding: 5% 7%;
 }
 
 nav {
@@ -49,9 +49,7 @@ nav {
 
 #main-container{
   background-color: white;
-  width: 95%;
   height: 90%;
-  padding: 3%;
 }
 
 #main-container div:first-child {
