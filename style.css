@@ -61,7 +61,11 @@ nav {
 
 #main-container div:last-child {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
+}
+
+#main-container div:last-child p {
+  margin-inline-end: 2em;
 }
 
 #main-container h3 {
