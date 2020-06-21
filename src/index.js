@@ -21,19 +21,17 @@ document.addEventListener("DOMContentLoaded", function() {
 function getConcoctions() {
   fetch(BASE_URL)
     .then(resp => resp.json())
-    .then(concoctions => addConcoctionsToList(concoctions))
+    .then(concoctionsJson => {
+      const concoctionsList = document.querySelector('nav select');
+
+      concoctionsJson.forEach(concoctionJson => addConcoctionToList(concoctionsList, concoctionJson, concoctionJson.name));
+    
+      concoctionsList.addEventListener("change", function(event) {
+        // Display selected concoction, unless "Saved Concoctions" or a concoction with an invalid id is chosen.
+        if(event.target.value) { getConcoction(event.target.value) }
+      });
+    })
     .catch(error => console.log(`Oops! Something's not right here: ${error}`));
-}
-
-function addConcoctionsToList(concoctions) {
-  const concoctionsList = document.querySelector('nav select');
-
-  concoctions.forEach(concoction => addConcoctionToList(concoctionsList, concoction, concoction.name));
-
-  concoctionsList.addEventListener("change", function(event) {
-    // Display selected concoction, unless "Saved Concoctions" or a concoction with an invalid id is chosen.
-    if(event.target.value) { getConcoction(event.target.value) }
-  });
 }
 
 function addConcoctionToList(concoctionsList, concoctionJson, concoctionName) {
