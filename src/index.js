@@ -53,6 +53,11 @@ function displayConcoction(concoctionJson) {
   // Is there a way to refactor this to be more DRY?
   // Update: Yes, with OOJS! E.g. I could use a Concoction class with a static method that accepts an objType and returns coffees, ingredients, etc.
   // Coffees and Ingredients might need to inherit from another class, since they're fairly similar.
+  
+  // Idea: Maybe I could add a couple of methods to the Concoction class for adding coffees and ingredients.
+  // The Concoction class would have "coffees" and "ingredients" attributes that get set in the constructor by calling said methods.
+  // In that case, the Concoction class constructor needs a third argument: "includedAssociations".
+  
   const concoctionAttributes = concoctionJson.data.attributes; // This, obviously, should be in the constructor of a Concoction class.
   const coffees = concoctionJson.included.filter(associatedObj => associatedObj.type === 'coffee');
   const ingredients = concoctionJson.included.filter(associatedObj => associatedObj.type === 'ingredient');
