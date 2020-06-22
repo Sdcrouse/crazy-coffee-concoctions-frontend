@@ -57,8 +57,8 @@ function displayConcoction(concoctionJson) {
   // Idea: Maybe I could add a couple of methods to the Concoction class for adding coffees and ingredients.
   // The Concoction class would have "coffees" and "ingredients" attributes that get set in the constructor by calling said methods.
   // In that case, the Concoction class constructor needs a third argument: "includedAssociations".
-  
-  const concoctionAttributes = concoctionJson.data.attributes; // This, obviously, should be in the constructor of a Concoction class.
+
+  const concoction = new Concoction(concoctionJson.data.id, concoctionJson.data.attributes);
   const coffees = concoctionJson.included.filter(associatedObj => associatedObj.type === 'coffee');
   const ingredients = concoctionJson.included.filter(associatedObj => associatedObj.type === 'ingredient');
   const mainIngredCategories = ["Liquid", "Sweetener", "Creamer"]; // Maybe an Ingredient property?
@@ -69,7 +69,7 @@ function displayConcoction(concoctionJson) {
 
   // Name of concoction - could be either a Concoction method or a static method of another class (General, maybe?)
   const nameWrapper = document.createElement('div');
-  const name = newElementWithText('h2', `${concoctionAttributes.name}`);
+  const name = newElementWithText('h2', `${concoction.name}`);
   nameWrapper.append(name);
 
   // Wrapper for the concoction attributes other than "name"
@@ -88,11 +88,11 @@ function displayConcoction(concoctionJson) {
   appendLabeledIngredientSubList(attrsWrapper, ingredients, "Other", "Additional Ingredient(s):");
   
   // Concoction instructions
-  appendLabeledContent(attrsWrapper, `${concoctionAttributes.instructions}`, 'p', "Instructions:");
+  appendLabeledContent(attrsWrapper, `${concoction.instructions}`, 'p', "Instructions:");
   
   // Concoction notes
-  if (concoctionAttributes.notes) {
-    appendLabeledContent(attrsWrapper, `${concoctionAttributes.notes}`, 'p', "Notes:");
+  if (concoction.notes) {
+    appendLabeledContent(attrsWrapper, `${concoction.notes}`, 'p', "Notes:");
   }
 
   // Finally, append the two wrappers to the mainContainer.
