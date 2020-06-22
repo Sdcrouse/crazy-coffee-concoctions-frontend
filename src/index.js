@@ -48,14 +48,14 @@ function getConcoction(concoctionId) {
     .catch(error => console.log(`Something went wrong here: ${error}`));
 }
 
-function displayConcoction(concoction) {
+function displayConcoction(concoctionJson) {
   // Concoction attributes and associated coffees and ingredients
   // Is there a way to refactor this to be more DRY?
   // Update: Yes, with OOJS! E.g. I could use a Concoction class with a static method that accepts an objType and returns coffees, ingredients, etc.
   // Coffees and Ingredients might need to inherit from another class, since they're fairly similar.
-  const concoctionAttributes = concoction.data.attributes; // This, obviously, should be in the constructor of a Concoction class.
-  const coffees = concoction.included.filter(associatedObj => associatedObj.type === 'coffee');
-  const ingredients = concoction.included.filter(associatedObj => associatedObj.type === 'ingredient');
+  const concoctionAttributes = concoctionJson.data.attributes; // This, obviously, should be in the constructor of a Concoction class.
+  const coffees = concoctionJson.included.filter(associatedObj => associatedObj.type === 'coffee');
+  const ingredients = concoctionJson.included.filter(associatedObj => associatedObj.type === 'ingredient');
   const mainIngredCategories = ["Liquid", "Sweetener", "Creamer"]; // Maybe an Ingredient property?
 
   // The main container that will display the concoction
