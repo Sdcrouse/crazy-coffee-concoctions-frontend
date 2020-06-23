@@ -35,7 +35,7 @@ function getConcoctions() {
 }
 
 function addConcoctionToList(concoctionsList, concoctionJson, concoctionName) {
-  const concoctionOption = newElementWithText('option', concoctionName);
+  const concoctionOption = App.newElementWithText('option', concoctionName);
 
   concoctionOption.setAttribute("value", concoctionJson.id);
   concoctionsList.append(concoctionOption);
@@ -61,7 +61,7 @@ function displayConcoction(concoctionJson) {
 
   // Name of concoction - could be either a Concoction method or a static method of another class (General, maybe?)
   const nameWrapper = document.createElement('div');
-  const name = newElementWithText('h2', `${concoction.name}`);
+  const name = App.newElementWithText('h2', concoction.name);
   nameWrapper.append(name);
 
   // Wrapper for the concoction attributes other than "name"
@@ -88,16 +88,6 @@ function displayConcoction(concoctionJson) {
 
   // Finally, append the two wrappers to the mainContainer.
   mainContainer.append(nameWrapper, attrsWrapper);
-}
-
-function newElementWithText(elementType, elementText) { // elementType is usually 'p', so that could be the default.
-  // Can this be refactored with something like Ruby's #tap method?
-  // https://stackoverflow.com/questions/21497919/a-function-to-tap-into-any-methods-chain
-
-  // This could be refactored into a static method of a General class, which manages the main app flow.
-  const newElement = document.createElement(elementType);
-  newElement.textContent = elementText;
-  return newElement;
 }
 
 function appendLabeledIngredientSubList(element, ingredients, ingredCategory, label = `${ingredCategory}(s):`) {
@@ -135,7 +125,7 @@ function createListWithItems(listType, items) {
   const list = document.createElement(listType);
 
   items.forEach(function(item) {
-    const listItem = newElementWithText('li', attributeString(item));
+    const listItem = App.newElementWithText('li', attributeString(item));
     list.append(listItem);
   });
 
@@ -144,13 +134,13 @@ function createListWithItems(listType, items) {
 
 function appendLabeledContent(wrapper, content, contentType, labelText, labelType = 'h3') {
   // This gets called a lot; maybe I could make this into an object method, and call it on an array?
-  const label = newElementWithText(labelType, labelText);
+  const label = App.newElementWithText(labelType, labelText);
   let contentElement;
 
   if (Array.isArray(content)) {
     contentElement = createListWithItems(contentType, content);
   } else { // The content is (presumably) a String.
-    contentElement = newElementWithText(contentType, content);
+    contentElement = App.newElementWithText(contentType, content);
   }
 
   wrapper.append(label, contentElement);
