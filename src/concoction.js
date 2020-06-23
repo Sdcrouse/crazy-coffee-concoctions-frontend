@@ -19,13 +19,10 @@ class Concoction {
 
   static appendLabeledAttribute(wrapper, attribute, labelText) {
     // This should probably be a static method of an App class.
-    const label = document.createElement('h3');
-    label.textContent = labelText;
-    // I should refactor the above lines of code with something like App.newElementWithText('h3', labelText);
-
-    const attrElement = document.createElement('p');
-    attrElement.textContent = attribute; // I should refactor this, too, with the same method mentioned above.
-
+    
+    const label = App.newElementWithText('h3', labelText);
+    const attrElement = App.newElementWithText('p', attribute);
+    
     wrapper.append(label, attrElement);
   }
 }
