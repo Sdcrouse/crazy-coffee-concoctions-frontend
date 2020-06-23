@@ -17,13 +17,14 @@ class Concoction {
     return filtered.map(obj => new objClass(obj.id, obj.attributes));
   }
 
-  appendLabeledAttribute(wrapper, attribute, labelText) {
+  static appendLabeledAttribute(wrapper, attribute, labelText) {
+    // This should probably be a static method of an App class.
     const label = document.createElement('h3');
     label.textContent = labelText;
     // I should refactor the above lines of code with something like App.newElementWithText('h3', labelText);
 
     const attrElement = document.createElement('p');
-    attrElement.textContent = attribute; // I should refactor this, too, with the same method mentione above.
+    attrElement.textContent = attribute; // I should refactor this, too, with the same method mentioned above.
 
     wrapper.append(label, attrElement);
   }
