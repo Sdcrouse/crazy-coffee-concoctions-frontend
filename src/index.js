@@ -78,12 +78,12 @@ function displayConcoction(concoctionJson) {
   // Append any additional ingredients.
   appendLabeledIngredientSubList(attrsWrapper, ingredients, "Other", "Additional Ingredient(s):");
   
-  // Concoction instructions
-  appendLabeledContent(attrsWrapper, `${concoction.instructions}`, 'p', "Instructions:");
+  // Concoction instructions (Note: the method below may get put into an App class)
+  Concoction.appendLabeledAttribute(attrsWrapper, concoction.instructions, "Instructions:");
   
-  // Concoction notes
+  // Concoction notes (See note for Concoction instructions)
   if (concoction.notes) {
-    appendLabeledContent(attrsWrapper, `${concoction.notes}`, 'p', "Notes:");
+    Concoction.appendLabeledAttribute(attrsWrapper, concoction.notes, "Notes:");
   }
 
   // Finally, append the two wrappers to the mainContainer.
