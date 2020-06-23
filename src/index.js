@@ -60,7 +60,6 @@ function displayConcoction(concoctionJson) {
 
   const concoction = new Concoction(concoctionJson.data.id, concoctionJson.data.attributes, concoctionJson.included);
   console.log(concoction);
-  const coffees = concoctionJson.included.filter(associatedObj => associatedObj.type === 'coffee');
   const ingredients = concoctionJson.included.filter(associatedObj => associatedObj.type === 'ingredient');
   const mainIngredCategories = ["Liquid", "Sweetener", "Creamer"]; // Maybe an Ingredient property?
 
@@ -78,7 +77,7 @@ function displayConcoction(concoctionJson) {
   const attrsWrapper = document.createElement('div');
 
   // Labeled unordered list of coffees
-  appendLabeledContent(attrsWrapper, coffees, 'ul', "Coffee(s):");
+  Coffee.appendCoffeeList(concoction.coffees, attrsWrapper);
 
   // Append a labeled sublist of each ingredient category except "other".
   mainIngredCategories.forEach(
