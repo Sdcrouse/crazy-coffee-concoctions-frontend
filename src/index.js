@@ -58,7 +58,8 @@ function displayConcoction(concoctionJson) {
   // The Concoction class would have "coffees" and "ingredients" attributes that get set in the constructor by calling said methods.
   // In that case, the Concoction class constructor needs a third argument: "includedAssociations".
 
-  const concoction = new Concoction(concoctionJson.data.id, concoctionJson.data.attributes);
+  const concoction = new Concoction(concoctionJson.data.id, concoctionJson.data.attributes, concoctionJson.included);
+  console.log(concoction);
   const coffees = concoctionJson.included.filter(associatedObj => associatedObj.type === 'coffee');
   const ingredients = concoctionJson.included.filter(associatedObj => associatedObj.type === 'ingredient');
   const mainIngredCategories = ["Liquid", "Sweetener", "Creamer"]; // Maybe an Ingredient property?
