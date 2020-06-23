@@ -16,6 +16,17 @@ class Concoction {
     const filtered = objects.filter(obj => obj.type === objClass.name.toLowerCase());
     return filtered.map(obj => new objClass(obj.id, obj.attributes));
   }
+
+  appendLabeledAttribute(wrapper, attribute, labelText) {
+    const label = document.createElement('h3');
+    label.textContent = labelText;
+    // I should refactor the above lines of code with something like App.newElementWithText('h3', labelText);
+
+    const attrElement = document.createElement('p');
+    attrElement.textContent = attribute; // I should refactor this, too, with the same method mentione above.
+
+    wrapper.append(label, attrElement);
+  }
 }
 
 Concoction.all = [];
