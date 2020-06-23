@@ -8,6 +8,9 @@ class Concoction {
     this.coffees = includedObjects.filter(obj => obj.type === 'coffee')
         .map(coffeeObj => new Coffee(coffeeObj.id, coffeeObj.attributes));
 
+    this.ingredients = includedObjects.filter(obj => obj.type === 'ingredient')
+        .map(ingredObj => new Ingredient(ingredObj.id, ingredObj.attributes));
+
     Concoction.all.push(this);
   }
 }
