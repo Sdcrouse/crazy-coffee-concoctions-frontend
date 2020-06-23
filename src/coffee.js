@@ -7,9 +7,8 @@ class Coffee {
   }
 
   appendCoffeeItemTo(coffeeList) {
-    const coffeeItem = document.createElement('li');
-    coffeeItem.textContent = this.amount; // Be sure to refactor this with something like newElementWithText.
-
+    const coffeeItem = App.newElementWithText('li', this.amount);
+    
     if(this.brand) {
       coffeeItem.textContent += ` ${this.brand}`;
     }
@@ -20,10 +19,9 @@ class Coffee {
 
   static appendCoffeeList(coffeeObjs, wrapper) {
     // Create a list of coffees, and append it to the wrapper element.
-    const coffeeLabel = document.createElement('h3');
+    const coffeeLabel = App.newElementWithText('h3', "Coffee(s):");
     const coffeeList = document.createElement('ul');
 
-    coffeeLabel.textContent = "Coffee(s):";
     coffeeObjs.forEach(coffeeObj => coffeeObj.appendCoffeeItemTo(coffeeList));
     wrapper.append(coffeeLabel, coffeeList);
   }
