@@ -70,11 +70,11 @@ function displayConcoction(concoctionJson) {
   Ingredient.appendIngredients(concoction.ingredients, attrsWrapper);
 
   // Concoction instructions (Note: the method below may get put into an App class)
-  Concoction.appendLabeledAttribute(attrsWrapper, concoction.instructions, "Instructions:");
+  App.appendLabeledAttribute(attrsWrapper, concoction.instructions, "Instructions:");
   
   // Concoction notes (See note for Concoction instructions)
   if (concoction.notes) {
-    Concoction.appendLabeledAttribute(attrsWrapper, concoction.notes, "Notes:");
+    App.appendLabeledAttribute(attrsWrapper, concoction.notes, "Notes:");
   }
 
   // Finally, append the two wrappers to the mainContainer.

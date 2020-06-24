@@ -16,15 +16,6 @@ class Concoction {
     const filtered = objects.filter(obj => obj.type === objClass.name.toLowerCase());
     return filtered.map(obj => new objClass(obj.id, obj.attributes));
   }
-
-  static appendLabeledAttribute(wrapper, attribute, labelText) {
-    // This should probably be a static method of an App class.
-    
-    const label = App.newElementWithText('h3', labelText);
-    const attrElement = App.newElementWithText('p', attribute);
-    
-    wrapper.append(label, attrElement);
-  }
 }
 
 Concoction.all = [];
