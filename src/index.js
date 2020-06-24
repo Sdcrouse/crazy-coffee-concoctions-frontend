@@ -81,62 +81,6 @@ function displayConcoction(concoctionJson) {
   mainContainer.append(nameWrapper, attrsWrapper);
 }
 
-function appendLabeledIngredientSubList(element, ingredients, ingredCategory, label = `${ingredCategory}(s):`) {
-  // This will probably get encapsulated by a method, once I refactor with Object Orientation.
-  // Note: The "element" parameter is really a wrapper: the same wrapper sent to appendLabeledContent; rename it.
-  // See test files for refactoring ideas.
-  
-  const filteredByCategory = ingredients.filter(
-    ingred => ingred.attributes.category === ingredCategory.toLowerCase()
-  );
-
-  if (filteredByCategory.length) {
-    // The filtered array is not empty - i.e. it has at least one ingredient with a certain ingredCategory 
-
-    appendLabeledContent(element, filteredByCategory, 'ul', label);
-  }
-}
-
-function attributeString(obj) {
-  const attrs = obj.attributes;
-  let attrStr = `${attrs.amount} `; // So far, obj is either a Coffee or an Ingredient; both have amounts.
-  
-  if (obj.type === "ingredient") {
-    attrStr += `${attrs.name}`;
-  } else if (attrs.brand) { // Here and below, obj is assumed to be a Coffee.
-    attrStr += `${attrs.brand} ${attrs.variety}`;
-  } else {
-    attrStr += `${attrs.variety}`;
-  }
-
-  return attrStr;
-}
-
-function createListWithItems(listType, items) {
-  const list = document.createElement(listType);
-
-  items.forEach(function(item) {
-    const listItem = App.newElementWithText('li', attributeString(item));
-    list.append(listItem);
-  });
-
-  return list;
-}
-
-function appendLabeledContent(wrapper, content, contentType, labelText, labelType = 'h3') {
-  // This gets called a lot; maybe I could make this into an object method, and call it on an array?
-  const label = App.newElementWithText(labelType, labelText);
-  let contentElement;
-
-  if (Array.isArray(content)) {
-    contentElement = createListWithItems(contentType, content);
-  } else { // The content is (presumably) a String.
-    contentElement = App.newElementWithText(contentType, content);
-  }
-
-  wrapper.append(label, contentElement);
-}
-
 function createConcoction(event) {
   let formData = {
     concoction: getConcoctionData(event.target)
