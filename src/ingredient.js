@@ -10,6 +10,12 @@ class Ingredient {
     list.append( App.newElementWithText('li', `${this.amount} ${this.name}`) )
   }
 
+  static ingredientList(ingredients) {
+    const list = document.createElement('ul');
+    ingredients.forEach(ingredient => ingredient.addToList(list));
+    return list;
+  }
+
   static categoryLabel(category) {
     const label = document.createElement('h3');
 
@@ -27,13 +33,7 @@ class Ingredient {
       const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
       
       if(filteredByCategory.length > 0) {
-        const ingredientList = document.createElement('ul');
-
-        wrapper.append(this.categoryLabel(category));
-        
-        filteredByCategory.forEach(ingredient => ingredient.addToList(ingredientList));
-
-        wrapper.append(ingredientList);
+        wrapper.append(this.categoryLabel(category), this.ingredientList(filteredByCategory));
       }
     });
   }
