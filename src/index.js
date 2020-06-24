@@ -55,10 +55,8 @@ function displayConcoction(concoctionJson) {
   const mainContainer = document.getElementById('main-container');
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
 
-  // Name of concoction - could be either a Concoction method or a static method of the Shared class
-  const nameWrapper = document.createElement('div');
-  const name = Shared.newElementWithText('h2', concoction.name);
-  nameWrapper.append(name);
+  // Wrapper for the concoction's name
+  const nameWrapper = concoction.nameWrapper();
 
   // Wrapper for the concoction attributes other than "name"
   const attrsWrapper = document.createElement('div');
