@@ -51,32 +51,21 @@ function getConcoction(concoctionId) {
 function displayConcoction(concoctionJson) {
   const concoction = new Concoction(concoctionJson.data.id, concoctionJson.data.attributes, concoctionJson.included);
   
-  // The main container that will display the concoction
-  const mainContainer = document.getElementById('main-container');
+  const mainContainer = document.getElementById('main-container'); // The main container that will display the concoction
+  const nameWrapper = concoction.nameWrapper(); // Wrapper for the concoction's name
+  const attrsWrapper = document.createElement('div'); // Wrapper for the concoction attributes other than "name"
+
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
 
-  // Wrapper for the concoction's name
-  const nameWrapper = concoction.nameWrapper();
-
-  // Wrapper for the concoction attributes other than "name"
-  const attrsWrapper = document.createElement('div');
-
-  // Labeled unordered list of coffees
-  Coffee.appendCoffeeList(concoction.coffees, attrsWrapper);
-
-  // Labeled unordered lists of ingredients, sorted by category
-  Ingredient.appendIngredients(concoction.ingredients, attrsWrapper);
-
-  // Concoction instructions
-  Shared.appendLabeledAttribute(attrsWrapper, concoction.instructions, "Instructions:");
+  Coffee.appendCoffeeList(concoction.coffees, attrsWrapper); // Labeled unordered list of coffees
+  Ingredient.appendIngredients(concoction.ingredients, attrsWrapper); // Labeled unordered lists of ingredients, sorted by category
+  Shared.appendLabeledAttribute(attrsWrapper, concoction.instructions, "Instructions:"); // Concoction instructions
   
-  // Concoction notes
-  if (concoction.notes) {
+  if (concoction.notes) { // Concoction notes
     Shared.appendLabeledAttribute(attrsWrapper, concoction.notes, "Notes:");
   }
 
-  // Finally, append the two wrappers to the mainContainer.
-  mainContainer.append(nameWrapper, attrsWrapper);
+  mainContainer.append(nameWrapper, attrsWrapper); // Finally, append the two wrappers to the mainContainer.
 }
 
 function createConcoction(event) {
