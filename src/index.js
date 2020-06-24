@@ -35,7 +35,7 @@ function getConcoctions() {
 }
 
 function addConcoctionToList(concoctionsList, concoctionJson, concoctionName) {
-  const concoctionOption = App.newElementWithText('option', concoctionName);
+  const concoctionOption = Shared.newElementWithText('option', concoctionName);
 
   concoctionOption.setAttribute("value", concoctionJson.id);
   concoctionsList.append(concoctionOption);
@@ -57,7 +57,7 @@ function displayConcoction(concoctionJson) {
 
   // Name of concoction - could be either a Concoction method or a static method of another class (General, maybe?)
   const nameWrapper = document.createElement('div');
-  const name = App.newElementWithText('h2', concoction.name);
+  const name = Shared.newElementWithText('h2', concoction.name);
   nameWrapper.append(name);
 
   // Wrapper for the concoction attributes other than "name"
@@ -70,11 +70,11 @@ function displayConcoction(concoctionJson) {
   Ingredient.appendIngredients(concoction.ingredients, attrsWrapper);
 
   // Concoction instructions (Note: the method below may get put into an App class)
-  App.appendLabeledAttribute(attrsWrapper, concoction.instructions, "Instructions:");
+  Shared.appendLabeledAttribute(attrsWrapper, concoction.instructions, "Instructions:");
   
   // Concoction notes (See note for Concoction instructions)
   if (concoction.notes) {
-    App.appendLabeledAttribute(attrsWrapper, concoction.notes, "Notes:");
+    Shared.appendLabeledAttribute(attrsWrapper, concoction.notes, "Notes:");
   }
 
   // Finally, append the two wrappers to the mainContainer.

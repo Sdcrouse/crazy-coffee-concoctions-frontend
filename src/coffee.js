@@ -7,7 +7,7 @@ class Coffee {
   }
 
   appendCoffeeItemTo(coffeeList) {
-    const coffeeItem = App.newElementWithText('li', this.amount);
+    const coffeeItem = Shared.newElementWithText('li', this.amount);
     
     if(this.brand) {
       coffeeItem.textContent += ` ${this.brand}`;
@@ -19,7 +19,7 @@ class Coffee {
 
   static appendCoffeeList(coffeeObjs, wrapper) {
     // Create a list of coffees, and append it to the wrapper element.
-    const coffeeLabel = App.newElementWithText('h3', "Coffee(s):");
+    const coffeeLabel = Shared.newElementWithText('h3', "Coffee(s):");
     const coffeeList = document.createElement('ul');
 
     coffeeObjs.forEach(coffeeObj => coffeeObj.appendCoffeeItemTo(coffeeList));

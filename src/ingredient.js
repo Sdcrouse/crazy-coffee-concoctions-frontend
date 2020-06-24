@@ -10,7 +10,7 @@ class Ingredient {
     const list = document.createElement('ul');
 
     ingredients.forEach(
-      ingred => list.append( App.newElementWithText('li', `${ingred.amount} ${ingred.name}`) )
+      ingred => list.append( Shared.newElementWithText('li', `${ingred.amount} ${ingred.name}`) )
     );
 
     return list;
