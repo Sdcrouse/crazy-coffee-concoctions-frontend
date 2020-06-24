@@ -49,12 +49,8 @@ function getConcoction(concoctionId) {
 }
 
 function displayConcoction(concoctionJson) {
-  // Concoction attributes and associated coffees and ingredients
-  
   const concoction = new Concoction(concoctionJson.data.id, concoctionJson.data.attributes, concoctionJson.included);
-  const ingredients = concoctionJson.included.filter(associatedObj => associatedObj.type === 'ingredient');
-  const mainIngredCategories = ["Liquid", "Sweetener", "Creamer"]; // Maybe an Ingredient property?
-
+  
   // The main container that will display the concoction
   const mainContainer = document.getElementById('main-container');
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
@@ -70,14 +66,9 @@ function displayConcoction(concoctionJson) {
   // Labeled unordered list of coffees
   Coffee.appendCoffeeList(concoction.coffees, attrsWrapper);
 
-  // Append a labeled sublist of each ingredient category except "other".
-  mainIngredCategories.forEach(
-    ingredCat => appendLabeledIngredientSubList(attrsWrapper, ingredients, ingredCat)
-  );
-  
-  // Append any additional ingredients.
-  appendLabeledIngredientSubList(attrsWrapper, ingredients, "Other", "Additional Ingredient(s):");
-  
+  // Labeled unordered lists of ingredients, sorted by category
+  Ingredient.appendIngredients(concoction.ingredients, attrsWrapper);
+
   // Concoction instructions (Note: the method below may get put into an App class)
   Concoction.appendLabeledAttribute(attrsWrapper, concoction.instructions, "Instructions:");
   
