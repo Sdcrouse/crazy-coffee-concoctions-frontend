@@ -59,11 +59,7 @@ function displayConcoction(concoctionJson) {
 
   Coffee.appendCoffeeList(concoction.coffees, attrsWrapper); // Labeled unordered list of coffees
   Ingredient.appendIngredients(concoction.ingredients, attrsWrapper); // Labeled unordered lists of ingredients, sorted by category
-  Shared.appendLabeledAttribute(attrsWrapper, concoction.instructions, "Instructions:"); // Concoction instructions
-  
-  if (concoction.notes) { // Concoction notes
-    Shared.appendLabeledAttribute(attrsWrapper, concoction.notes, "Notes:");
-  }
+  concoction.appendAttributes(attrsWrapper, "Instructions", "Notes");
 
   mainContainer.append(nameWrapper, attrsWrapper); // Finally, append the two wrappers to the mainContainer.
 }

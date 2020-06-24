@@ -22,6 +22,17 @@ class Concoction {
     wrapper.append(nameHeading);
     return wrapper;
   }
+
+  appendAttributes(wrapper, ...attributes) {
+    // attributes is expected to look like ["Instructions", "Notes", "Etc"]
+    attributes.forEach(attr => {
+      const lowerCasedAttr = attr.toLowerCase();
+
+      if (this[lowerCasedAttr]) {
+        Shared.appendLabeledAttribute(wrapper, this[lowerCasedAttr], `${attr}:`);
+      }
+    });
+  }
 }
 
 Concoction.all = [];
