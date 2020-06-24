@@ -25,14 +25,19 @@ class Concoction {
 
   appendAttributes(wrapper, ...attributes) {
     // attributes is expected to look like ["Instructions", "Notes", "Etc"]
-    attributes.forEach(attr => {
-      const lowerCasedAttr = attr.toLowerCase();
 
-      if (this[lowerCasedAttr]) {
-        Shared.appendLabeledAttribute(wrapper, this[lowerCasedAttr], `${attr}:`);
+    attributes.forEach(attr => {
+      let label, attrElement;
+      const concoctionAttr = this[attr.toLowerCase()];
+
+      if (concoctionAttr) {
+        label = Shared.newElementWithText('h3', `${attr}:`);
+        attrElement = Shared.newElementWithText('p', concoctionAttr);
+        
+        wrapper.append(label, attrElement);
       }
     });
-  }
+  } // End of appendAttributes
 }
 
 Concoction.all = [];
