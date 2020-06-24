@@ -10,10 +10,8 @@ class Concoction {
     Concoction.all.push(this);
   }
 
-  createCollection(objects, objClass) {
-    // This is DRY, but it may be hard to extend later.
-    // It assumes that the object's type is its lowercased class name.
-    const filtered = objects.filter(obj => obj.type === objClass.name.toLowerCase());
+  createCollection(objects, objClass, objType = objClass.name.toLowerCase()) {
+    const filtered = objects.filter(obj => obj.type === objType);
     return filtered.map(obj => new objClass(obj.id, obj.attributes));
   }
 }
