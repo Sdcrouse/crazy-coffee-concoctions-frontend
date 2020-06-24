@@ -6,13 +6,13 @@ class Ingredient {
     this.category = ingredientAttributes.category;
   }
 
-  addToList(list) {
-    list.append( App.newElementWithText('li', `${this.amount} ${this.name}`) )
-  }
-
   static ingredientList(ingredients) {
     const list = document.createElement('ul');
-    ingredients.forEach(ingredient => ingredient.addToList(list));
+
+    ingredients.forEach(
+      ingred => list.append( App.newElementWithText('li', `${ingred.amount} ${ingred.name}`) )
+    );
+
     return list;
   }
 
