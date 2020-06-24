@@ -6,6 +6,10 @@ class Ingredient {
     this.category = ingredientAttributes.category;
   }
 
+  addToList(list) {
+    list.append( App.newElementWithText('li', `${this.amount} ${this.name}`) )
+  }
+
   static appendIngredients(ingredients, wrapper) {
     this.allCategories.forEach(category => {
       const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
@@ -20,10 +24,7 @@ class Ingredient {
           label.textContent = `${category}(s):`
         }
         
-        filteredByCategory.forEach(ingredient => {
-          const ingredientItem = App.newElementWithText('li', `${ingredient.amount} ${ingredient.name}`);
-          ingredientList.append(ingredientItem);
-        });
+        filteredByCategory.forEach(ingredient => ingredient.addToList(ingredientList));
 
         wrapper.append(label, ingredientList);
       }
