@@ -6,3 +6,5 @@ class Ingredient {
     this.category = ingredientAttributes.category;
   }
 }
+
+Ingredient.allCategories = ["Liquid", "Sweetener", "Creamer", "Other"];
