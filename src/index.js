@@ -55,7 +55,7 @@ function displayConcoction(concoctionJson) {
   const mainContainer = document.getElementById('main-container');
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
 
-  // Name of concoction - could be either a Concoction method or a static method of another class (General, maybe?)
+  // Name of concoction - could be either a Concoction method or a static method of the Shared class
   const nameWrapper = document.createElement('div');
   const name = Shared.newElementWithText('h2', concoction.name);
   nameWrapper.append(name);
@@ -69,10 +69,10 @@ function displayConcoction(concoctionJson) {
   // Labeled unordered lists of ingredients, sorted by category
   Ingredient.appendIngredients(concoction.ingredients, attrsWrapper);
 
-  // Concoction instructions (Note: the method below may get put into an App class)
+  // Concoction instructions
   Shared.appendLabeledAttribute(attrsWrapper, concoction.instructions, "Instructions:");
   
-  // Concoction notes (See note for Concoction instructions)
+  // Concoction notes
   if (concoction.notes) {
     Shared.appendLabeledAttribute(attrsWrapper, concoction.notes, "Notes:");
   }
