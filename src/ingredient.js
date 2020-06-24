@@ -6,21 +6,28 @@ class Ingredient {
     this.category = ingredientAttributes.category;
   }
 
-  static appendIngredientList(ingredients, wrapper) {
-    const creamers = ingredients.filter(ingred => ingred.category === "creamer");
-    
-    if(creamers.length > 0) {
-      // This and the Concoction class's appendLabeledAttribute method might be refactored with the App class.
-      const label = App.newElementWithText('h3', `Creamer(s):`);
-      const creamerList = document.createElement('ul');
+  static appendIngredients(ingredients, wrapper) {
+    this.allCategories.forEach(category => {
+      const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
       
-      creamers.forEach(creamer => {
-        const creamerItem = App.newElementWithText('li', `${creamer.amount} ${creamer.name}`);
-        creamerList.append(creamerItem);
-      });
+      if(filteredByCategory.length > 0) {
+        const label = document.createElement('h3');
+        const ingredientList = document.createElement('ul');
 
-      wrapper.append(label, creamerList);
-    }
+        if(category === "Other") {
+          label.textContent = "Additional Ingredient(s):"
+        } else {
+          label.textContent = `${category}(s):`
+        }
+        
+        filteredByCategory.forEach(ingredient => {
+          const ingredientItem = App.newElementWithText('li', `${ingredient.amount} ${ingredient.name}`);
+          ingredientList.append(ingredientItem);
+        });
+
+        wrapper.append(label, ingredientList);
+      }
+    });
   }
 }
 
