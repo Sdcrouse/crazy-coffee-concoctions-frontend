@@ -17,7 +17,7 @@ class Coffee {
     return coffeeItem;
   }
 
-  static appendCoffeeList(coffeeObjs, wrapper) {
+  static labeledCoffeeList(coffeeObjs) {
     // Create a list of coffees, and append it to the wrapper element.
     const coffeeLabel = Shared.newElementWithText('h3', "Coffee(s):");
     const coffeeList = document.createElement('ul');
@@ -26,6 +26,6 @@ class Coffee {
       coffeeObj => coffeeList.append( coffeeObj.coffeeLi() )
     );
 
-    wrapper.append(coffeeLabel, coffeeList);
+    return [coffeeLabel, coffeeList];
   }
 }
