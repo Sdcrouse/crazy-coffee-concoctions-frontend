@@ -57,8 +57,10 @@ function displayConcoction(concoctionJson) {
 
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
 
-  attrsWrapper.append(...Coffee.labeledCoffeeList(concoction.coffees));
-  Ingredient.appendIngredients(concoction.ingredients, attrsWrapper); // Labeled unordered lists of ingredients, sorted by category
+  attrsWrapper.append(
+    ...Coffee.labeledCoffeeList(concoction.coffees),
+    ...Ingredient.labeledIngredientLists(concoction.ingredients)
+  );
   concoction.appendAttributes(attrsWrapper, "Instructions", "Notes");
 
   mainContainer.append(nameWrapper, attrsWrapper); // Finally, append the two wrappers to the mainContainer.

@@ -20,17 +20,21 @@ class Ingredient {
     return (category === "Other" ? "Additional Ingredient(s):" : `${category}(s):`);
   }
 
-  static appendIngredients(ingredients, wrapper) {
-    this.allCategories.forEach(category => {
+  static labeledIngredientLists(ingredients) {
+    // Return an array of labels and ingredient lists
+    
+    // Be careful here! If I use a function expression instead of arrow syntax, the value of "this" is undefined! 
+    // Also, take note: Arrow functions with a block body {} need an explicit return statement.
+    return this.allCategories.flatMap(category => { // Create an array of arrays, then flatten it
       const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
       
-      if(filteredByCategory.length > 0) {
-        wrapper.append(
+      if(filteredByCategory.length > 0) { // I.e. there are ingredients with this category
+        return [
           Shared.newElementWithText('h3', this.categoryLabel(category)),
           this.ingredientList(filteredByCategory)
-        );
+        ];
       }
-    });
+    }).filter(element => !!element); // Filter out any falsy (usually undefined) values
   } // End of appendIngredients
 }
 
