@@ -17,15 +17,7 @@ class Ingredient {
   }
 
   static categoryLabel(category) {
-    const label = document.createElement('h3');
-
-    if(category === "Other") {
-      label.textContent = "Additional Ingredient(s):"
-    } else {
-      label.textContent = `${category}(s):`
-    }
-
-    return label;
+    return (category === "Other" ? "Additional Ingredient(s):" : `${category}(s):`);
   }
 
   static appendIngredients(ingredients, wrapper) {
@@ -33,10 +25,13 @@ class Ingredient {
       const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
       
       if(filteredByCategory.length > 0) {
-        wrapper.append(this.categoryLabel(category), this.ingredientList(filteredByCategory));
+        wrapper.append(
+          Shared.newElementWithText('h3', this.categoryLabel(category)),
+          this.ingredientList(filteredByCategory)
+        );
       }
     });
-  }
+  } // End of appendIngredients
 }
 
 Ingredient.allCategories = ["Liquid", "Sweetener", "Creamer", "Other"];
