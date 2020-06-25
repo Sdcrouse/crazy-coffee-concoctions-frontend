@@ -6,7 +6,7 @@ class Coffee {
     this.variety = coffeeAttributes.variety;
   }
 
-  appendCoffeeItemTo(coffeeList) {
+  coffeeLi() {
     const coffeeItem = Shared.newElementWithText('li', this.amount);
     
     if(this.brand) {
@@ -14,7 +14,7 @@ class Coffee {
     }
 
     coffeeItem.textContent += ` ${this.variety}`;
-    coffeeList.append(coffeeItem);
+    return coffeeItem;
   }
 
   static appendCoffeeList(coffeeObjs, wrapper) {
@@ -22,7 +22,10 @@ class Coffee {
     const coffeeLabel = Shared.newElementWithText('h3', "Coffee(s):");
     const coffeeList = document.createElement('ul');
 
-    coffeeObjs.forEach(coffeeObj => coffeeObj.appendCoffeeItemTo(coffeeList));
+    coffeeObjs.forEach(
+      coffeeObj => coffeeList.append( coffeeObj.coffeeLi() )
+    );
+
     wrapper.append(coffeeLabel, coffeeList);
   }
 }
