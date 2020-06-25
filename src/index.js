@@ -59,9 +59,9 @@ function displayConcoction(concoctionJson) {
 
   attrsWrapper.append(
     ...Coffee.labeledCoffeeList(concoction.coffees),
-    ...Ingredient.labeledIngredientLists(concoction.ingredients)
+    ...Ingredient.labeledIngredientLists(concoction.ingredients),
+    ...concoction.labeledAttributes("Instructions", "Notes")
   );
-  concoction.appendAttributes(attrsWrapper, "Instructions", "Notes");
 
   mainContainer.append(nameWrapper, attrsWrapper); // Finally, append the two wrappers to the mainContainer.
 }

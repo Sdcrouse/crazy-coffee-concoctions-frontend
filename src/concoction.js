@@ -23,10 +23,12 @@ class Concoction {
     return wrapper;
   }
 
-  appendAttributes(wrapper, ...attributes) {
+  labeledAttributes(...attributes) {
     // attributes is expected to look like ["Instructions", "Notes", "Etc"]
+    // This returns something like:
+    // [<h3>Instructions:</h3>, <p>Make the concoction</p>, <h3>Notes:</h3>, <p>Lorem ipsum</p>]
 
-    attributes.forEach(attr => {
+    return attributes.flatMap(attr => {
       let label, attrElement;
       const concoctionAttr = this[attr.toLowerCase()];
 
@@ -34,10 +36,10 @@ class Concoction {
         label = Shared.newElementWithText('h3', `${attr}:`);
         attrElement = Shared.newElementWithText('p', concoctionAttr);
         
-        wrapper.append(label, attrElement);
+        return [label, attrElement];
       }
-    });
-  } // End of appendAttributes
+    }).filter(element => !!element);
+  } // End of labeledAttributes
 }
 
 Concoction.all = [];
