@@ -30,7 +30,7 @@ class Concoction {
 
     return attributeNames.flatMap(attrName => {
       let label, attrElement;
-      const concoctionAttr = this[attrName.toLowerCase()];
+      const concoctionAttr = this[attrName.toLowerCase()]; // Note: "this" is the Concoction instance.
 
       if (concoctionAttr) {
         label = Shared.newElementWithText('h3', `${attrName}:`);
