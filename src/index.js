@@ -61,7 +61,7 @@ function displayConcoction(concoctionJson) {
     ...Coffee.labeledCoffeeList(concoction.coffees),
     ...Ingredient.labeledIngredientLists(concoction.ingredients),
     ...concoction.labeledAttributes("Instructions", "Notes")
-  );
+  ); // Append labeled lists of a concoction's attributes and associated coffees and ingredients.
 
   mainContainer.append(nameWrapper, attrsWrapper); // Finally, append the two wrappers to the mainContainer.
 }
@@ -126,14 +126,6 @@ function getCoffeeData() {
 }
 
 function getIngredientData() {
-  // I want to return something like this:
-  /* [
-    {category: 'liquid', amount: '1 cup', name: 'hot water'},
-    {category: 'creamer', amount: '2 tsp', name: 'hazelnut creamer'},
-    {category: 'sweetener', amount: '1 packet', 'Sweet and Low'},
-    {category: 'other', amount: '1/4 tsp', name: 'cinnamon'}
-  ] */
-
   const ingredientLis = document.querySelectorAll('ol.ingredients_list li');
 
   const ingredientsArray = Array.from(ingredientLis).map(

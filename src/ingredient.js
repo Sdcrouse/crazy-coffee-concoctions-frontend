@@ -35,7 +35,7 @@ class Ingredient {
         ];
       }
     }).filter(element => !!element); // Filter out any falsy (usually undefined) values
-  } // End of appendIngredients
+  } // End of labeledIngredientLists
 }
 
 Ingredient.allCategories = ["Liquid", "Sweetener", "Creamer", "Other"];
