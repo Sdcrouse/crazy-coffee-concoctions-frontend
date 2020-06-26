@@ -23,17 +23,17 @@ class Concoction {
     return wrapper;
   }
 
-  labeledAttributes(...attributes) {
-    // attributes is expected to look like ["Instructions", "Notes", "Etc"]
+  labeledAttributes(...attributeNames) {
+    // attributeNames is expected to look like ["Instructions", "Notes", "Etc"]
     // This returns something like:
     // [<h3>Instructions:</h3>, <p>Make the concoction</p>, <h3>Notes:</h3>, <p>Lorem ipsum</p>]
 
-    return attributes.flatMap(attr => {
+    return attributeNames.flatMap(attrName => {
       let label, attrElement;
-      const concoctionAttr = this[attr.toLowerCase()];
+      const concoctionAttr = this[attrName.toLowerCase()];
 
       if (concoctionAttr) {
-        label = Shared.newElementWithText('h3', `${attr}:`);
+        label = Shared.newElementWithText('h3', `${attrName}:`);
         attrElement = Shared.newElementWithText('p', concoctionAttr);
         
         return [label, attrElement];
