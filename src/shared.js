@@ -19,4 +19,10 @@ class Shared {
 
     return [label, list];
   }
+
+  static mapFlattenAndFilter(objCollection, callback) {
+    // Create an array of arrays, flatten it, and filter out any falsy (usually undefined) elements.
+
+    return objCollection.flatMap(obj => callback(obj)).filter(element => !!element);
+  }
 }
