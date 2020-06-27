@@ -31,7 +31,7 @@ function getConcoctions() {
         if(event.target.value) { getConcoction(event.target.value) }
       });
     })
-    .catch(error => console.log(`Oops! Something's not right here: ${error}`));
+    .catch(error => console.log("Oops! Something's not right here: ", error));
 }
 
 function addConcoctionToList(concoctionsList, concoctionJson, concoctionName) {
@@ -45,7 +45,7 @@ function getConcoction(concoctionId) {
   fetch(`${BASE_URL}/${concoctionId}`)
     .then(resp => resp.json())
     .then(concoctionJson => displayConcoction(concoctionJson))
-    .catch(error => console.log(`Something went wrong here: ${error}`));
+    .catch(error => console.log("Something went wrong here: ", error));
 }
 
 function displayConcoction(concoctionJson) {
@@ -91,7 +91,7 @@ function createConcoction(event) {
       addConcoctionToList(concoctionsList, concoction, concoction.attributes.name);
       displayConcoction(concoctionJson);
     })
-    .catch(error => console.log(`Well, THAT didn't work! Here's the problem: ${error}`));
+    .catch(error => console.log("Well, THAT didn't work! Here's the problem: ", error));
 }
 
 function getConcoctionData(concForm) {
