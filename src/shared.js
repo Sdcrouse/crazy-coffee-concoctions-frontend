@@ -5,4 +5,18 @@ class Shared {
     newElement.textContent = elementText;
     return newElement;
   }
+
+  static labeledCollectionList(labelText, objCollection, callback) {
+    // I can later refactor this with default arguments (labelType, listType, and/or listItemType) if need be.
+    // Note: I may want to undo this later, if it makes my code convoluted, hard to debug, and/or inextensible.
+
+    const label = this.newElementWithText('h3', labelText);
+    const list = document.createElement('ul');
+
+    objCollection.forEach(obj => {
+      list.append( this.newElementWithText('li', callback(obj)) )
+    });
+
+    return [label, list];
+  }
 }
