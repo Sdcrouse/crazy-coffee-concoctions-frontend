@@ -57,11 +57,13 @@ function displayConcoction(concoctionJson) {
 
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
 
+  // Append labeled lists of a concoction's attributes and associated coffees and ingredients.
+  // Edit: There's probably a better way to do this.
   attrsWrapper.append(
-    ...Coffee.labeledCoffeeList(concoction.coffees),
+    ...Shared.labeledCollectionList("Coffee(s):", concoction.coffees, (coffee) => coffee.attrString()),
     ...Ingredient.labeledIngredientLists(concoction.ingredients),
     ...concoction.labeledAttributes("Instructions", "Notes")
-  ); // Append labeled lists of a concoction's attributes and associated coffees and ingredients.
+  );
 
   mainContainer.append(nameWrapper, attrsWrapper); // Finally, append the two wrappers to the mainContainer.
 }
