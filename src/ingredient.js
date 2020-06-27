@@ -15,7 +15,7 @@ class Ingredient {
     
     // Be careful here! If I use a function expression instead of arrow syntax, the value of "this" is undefined! 
     // Also, take note: Arrow functions with a block body {} need an explicit return statement.
-    return Shared.mapFlattenAndFilter(this.allCategories, category => {
+    return Shared.flatMapAndFilter(this.allCategories, category => {
       const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
       
       if(filteredByCategory.length > 0) { // I.e. there are ingredients with this category
