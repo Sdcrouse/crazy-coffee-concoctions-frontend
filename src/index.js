@@ -143,3 +143,19 @@ function getIngredientData() {
 
   return ingredientsArray;
 }
+
+function getCollectionData(queryString) {
+  const collectionListItems = document.querySelectorAll(queryString);
+
+  const collectionArray = Array.from(collectionListItems).map(
+    function(listItem) {
+      const dataObj = {};
+      const inputs = listItem.querySelectorAll('input');
+
+      inputs.forEach(input => dataObj[input.name] = input.value);
+      return dataObj;
+    }
+  );
+
+  return collectionArray;  
+}
