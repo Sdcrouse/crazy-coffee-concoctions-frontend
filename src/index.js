@@ -105,43 +105,10 @@ function getConcoctionData(concForm) {
   let notes = concForm.querySelector('#notes').value;
   if(notes) {concData.notes = notes}; // Edge case
 
-  concData.coffees_attributes = getCoffeeData();
-  concData.ingredients_attributes = getIngredientData();
+  concData.coffees_attributes = getCollectionData('#coffees_list li');
+  concData.ingredients_attributes = getCollectionData('ol.ingredients_list li');
 
   return concData;
-}
-
-function getCoffeeData() {
-  const coffeeLis = document.querySelectorAll('#coffees_list li');
-
-  const coffeesArray = Array.from(coffeeLis).map(
-    function(coffeeLi) { 
-      // Use ES6 syntax to return a hash of a Coffee's amount, brand, and variety inputs.
-      const coffeeInputs = coffeeLi.querySelectorAll('input');
-      const [amount, brand, variety] = Array.from(coffeeInputs).map(input => input.value);
-
-      return {amount, brand, variety};
-    }
-  );
-
-  return coffeesArray;
-}
-
-function getIngredientData() {
-  const ingredientLis = document.querySelectorAll('ol.ingredients_list li');
-
-  const ingredientsArray = Array.from(ingredientLis).map(
-    // Create an object for each <li>
-    function(ingredLi) {
-      const ingredInputs = ingredLi.querySelectorAll('input');
-      let ingredObj = {};
-
-      ingredInputs.forEach(input => ingredObj[input.name] = input.value);
-      return ingredObj;
-    }
-  );
-
-  return ingredientsArray;
 }
 
 function getCollectionData(queryString) {
