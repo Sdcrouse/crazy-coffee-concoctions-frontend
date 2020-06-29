@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-gap: 3%;
-  padding: 2% 16% 50% 16%;
+  padding: 2% 16% 5% 16%;
 }
 
 #wrapper > div {
@@ -29,7 +29,6 @@ img {
 
 section {
   background-color: #A65F40;
-  display: flex;
   padding: 5% 7%;
 }
 
@@ -39,9 +38,9 @@ nav {
   grid-gap: 2.5%;
 }
 
-#main-container{
+#main-container {
   background-color: white;
-  height: 90%;
+  height: 100%;
 }
 
 #main-container div:first-child {
@@ -92,6 +91,13 @@ form {
 
 form > label, form > p {
   padding-inline-start: 40px;
+}
+
+#submit-button-container {
+  padding-bottom: 3%;
+  padding-inline-start: 0;
+  display: flex;
+  justify-content: center;
 }
 
 hr {
