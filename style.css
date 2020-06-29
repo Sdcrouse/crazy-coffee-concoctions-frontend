@@ -138,6 +138,10 @@ input[name="name"] {
   height: 6em;
 }
 
+.red-text {
+  color: red;
+}
+
 /* nav {
   background-color: #A65F40;
   color: white;

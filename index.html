@@ -37,8 +37,9 @@
           </div>
 
           <form>
+            <p class="red-text">Red text indicates a required field.</p>
             <p>
-              <label for="concoction_name"><strong>Name:</strong></label>
+              <label for="concoction_name"><strong class="red-text">Name:</strong></label>
               <input id="concoction_name" name="name" required>
             </p>
             <hr />
@@ -46,11 +47,11 @@
             <h3>Coffees:</h3>
             <ol id="coffees_list">
               <li>
-                <label for="coffee_amount1">Amount:</label>
+                <label for="coffee_amount1" class="red-text">Amount:</label>
                 <input name="amount" id="coffee_amount1" required>
                 <label for="coffee_brand1">Brand:</label>
                 <input name="brand" id="coffee_brand1">
-                <label for="coffee_variety1">Variety:</label>
+                <label for="coffee_variety1" class="red-text">Variety:</label>
                 <input name="variety" id="coffee_variety1" required>
               </li>
               <br>
@@ -71,9 +72,9 @@
             <ol class="ingredients_list">
               <li>
                 <input type="hidden" name="category" value="liquid">
-                <label for="liquid_amount1">Amount:</label>
+                <label for="liquid_amount1" class="red-text">Amount:</label>
                 <input name="amount" id="liquid_amount1" required>
-                <label for="liquid_name1">Name:</label>
+                <label for="liquid_name1" class="red-text">Name:</label>
                 <input name="name" id="liquid_name1" required>
               </li>
               <br>
@@ -164,7 +165,7 @@
             <hr />
 
             <p>
-              <label for="instructions"><strong>Instructions:</strong></label>
+              <label for="instructions"><strong class="red-text">Instructions:</strong></label>
               <textarea id="instructions" name="instructions" required></textarea>
               <br><br>
               <label for="notes"><strong>Notes:</strong></label>
