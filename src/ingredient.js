@@ -20,7 +20,7 @@ class Ingredient {
       
       if(filteredByCategory.length > 0) { // I.e. there are ingredients with this category
         return Shared.labeledCollectionList(
-          this.categoryLabel(category), filteredByCategory, (ingredient) => `${ingredient.amount} ${ingredient.name}`
+          this.categoryLabel(category), filteredByCategory, (ingredient) => `${ingredient.amount} of ${ingredient.name}`
         );
       }
     });

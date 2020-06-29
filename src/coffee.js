@@ -7,7 +7,7 @@ class Coffee {
   }
 
   attrString() {
-    let str = this.amount;
+    let str = `${this.amount} of`;
     
     if (this.brand) {
       str += ` ${this.brand}`;
