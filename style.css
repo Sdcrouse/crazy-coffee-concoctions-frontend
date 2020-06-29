@@ -114,12 +114,30 @@ hr.ingredient-hr {
   background-color: #A65F40;
 }
 
+#concoction_name {
+  width: 38%;
+}
+
 input[name="amount"] {
   width: 15%;
 }
 
 input[name="brand"], input[name="variety"] {
   width: 23%;
+}
+
+input[name="name"] {
+  width: 34%;
+}
+
+#instructions {
+  width: 76.5%;
+  height: 6em;
+}
+
+#notes {
+  width: 84%;
+  height: 6em;
 }
 
 /* nav {
