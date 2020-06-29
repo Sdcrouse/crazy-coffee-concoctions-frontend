@@ -1,3 +1,8 @@
+#wrapper > div, header, #main-container div:first-child, #submit-button-container {
+  display: flex;
+  justify-content: center;
+}
+
 #wrapper {
   display: grid;
   grid-template-columns: 1fr 4fr;
@@ -5,21 +10,11 @@
   padding: 2% 16% 5% 16%;
 }
 
-#wrapper > div {
-  display: flex;
-  justify-content: center;
-}
-
-header {
+header, section, select, nav button, hr.ingredient-hr {
   background-color: #A65F40;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-h1 {
-  color: white;
-}
+header { align-items: center; }
 
 img {
   width: 166px; /* 1/3 of the original image's width */
@@ -27,10 +22,7 @@ img {
   border-radius: 50%;
 }
 
-section {
-  background-color: #A65F40;
-  padding: 5% 7%;
-}
+section { padding: 5% 7%; }
 
 nav {
   display: grid;
@@ -46,8 +38,6 @@ nav {
 #main-container div:first-child {
   color: #A65F40;
   text-decoration: underline;
-  display: flex;
-  justify-content: center;
 }
 
 #main-container div:last-child {
@@ -55,31 +45,25 @@ nav {
   grid-template-columns: 1fr 2fr;
 }
 
-#main-container div:last-child p {
-  margin-inline-end: 2em;
-}
+#main-container div:last-child p { margin-inline-end: 2em; }
 
 #main-container h3 {
   color: #A65F40;
   margin-inline-start: 2em;
 }
 
-#main-container h4 {
-  margin-inline-start: 2.5em;
-}
+#main-container h4 { margin-inline-start: 2.5em; }
 
 #main-container ul {
   padding-inline-start: 0;
   list-style-type: none;
 }
 
-#main-container ol {
-  padding-inline-start: 55px;
-}
+#main-container ol { padding-inline-start: 55px; }
+
+select, nav button, h1 { color: white; }
 
 select, nav button {
-  background-color: #A65F40;
-  color: white;
   font-size: 1.3em;
   width: 100%;
 }
@@ -89,15 +73,11 @@ form {
   padding-right: 5%;
 }
 
-form > label, form > p {
-  padding-inline-start: 40px;
-}
+form > label, form > p { padding-inline-start: 40px; }
 
 #submit-button-container {
   padding-bottom: 3%;
   padding-inline-start: 0;
-  display: flex;
-  justify-content: center;
 }
 
 hr {
@@ -107,26 +87,15 @@ hr {
   background-color: #63A7E4;
 }
 
-hr.ingredient-hr {
-  height: 3px;
-  background-color: #A65F40;
-}
+hr.ingredient-hr { height: 3px; }
 
-#concoction_name {
-  width: 38%;
-}
+#concoction_name { width: 38%; }
 
-input[name="amount"] {
-  width: 15%;
-}
+input[name="amount"] { width: 15%; }
 
-input[name="brand"], input[name="variety"] {
-  width: 23%;
-}
+input[name="brand"], input[name="variety"] { width: 23%; }
 
-input[name="name"] {
-  width: 34%;
-}
+input[name="name"] { width: 34%; }
 
 #instructions {
   width: 76.5%;
@@ -138,9 +107,7 @@ input[name="name"] {
   height: 6em;
 }
 
-.red-text {
-  color: red;
-}
+.red-text { color: red; }
 
 /* nav {
   background-color: #A65F40;
