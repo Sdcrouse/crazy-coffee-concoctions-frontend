@@ -39,7 +39,7 @@
           <form>
             <p>
               <label for="concoction_name"><strong>Name:</strong></label>
-              <input id="concoction_name" name="name">
+              <input id="concoction_name" name="name" required>
             </p>
             <hr />
 
@@ -47,11 +47,11 @@
             <ol id="coffees_list">
               <li>
                 <label for="coffee_amount1">Amount:</label>
-                <input name="amount" id="coffee_amount1">
+                <input name="amount" id="coffee_amount1" required>
                 <label for="coffee_brand1">Brand:</label>
                 <input name="brand" id="coffee_brand1">
                 <label for="coffee_variety1">Variety:</label>
-                <input name="variety" id="coffee_variety1">
+                <input name="variety" id="coffee_variety1" required>
               </li>
               <br>
               <li>
@@ -72,9 +72,9 @@
               <li>
                 <input type="hidden" name="category" value="liquid">
                 <label for="liquid_amount1">Amount:</label>
-                <input name="amount" id="liquid_amount1">
+                <input name="amount" id="liquid_amount1" required>
                 <label for="liquid_name1">Name:</label>
-                <input name="name" id="liquid_name1">
+                <input name="name" id="liquid_name1" required>
               </li>
               <br>
               <li>
@@ -165,7 +165,7 @@
 
             <p>
               <label for="instructions"><strong>Instructions:</strong></label>
-              <textarea id="instructions" name="instructions"></textarea>
+              <textarea id="instructions" name="instructions" required></textarea>
               <br><br>
               <label for="notes"><strong>Notes:</strong></label>
               <textarea id="notes" name="notes"></textarea>
