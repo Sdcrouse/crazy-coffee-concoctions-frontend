@@ -85,7 +85,13 @@ function createConcoction(event) {
   event.preventDefault();
 
   fetch(BASE_URL, configObj)
-    .then(resp => resp.json())
+    .then(resp => {
+      if (resp.status === 418) {
+        document.querySelector("body").innerHTML = '<img src="img/418-im-a-teapot.png" alt="I am a teapot">'
+      }
+
+      return resp.json();
+    })
     .then(function(concoctionJson) {
       const concoctionsList = document.querySelector('nav select');
       const concoction = concoctionJson.data;
