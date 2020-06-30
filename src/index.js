@@ -31,7 +31,7 @@ function getConcoctions() {
         if(event.target.value) { getConcoction(event.target.value) }
       });
     })
-    .catch(error => console.log(`Oops! Something's not right here: ${error}`));
+    .catch(error => console.log("Oops! Something's not right here: ", error));
 }
 
 function addConcoctionToList(concoctionsList, concoctionJson, concoctionName) {
@@ -43,9 +43,36 @@ function addConcoctionToList(concoctionsList, concoctionJson, concoctionName) {
 
 function getConcoction(concoctionId) {
   fetch(`${BASE_URL}/${concoctionId}`)
-    .then(resp => resp.json())
+    .then(resp => {
+      if (resp.status === 404) {
+        displayErrorImage("404 Not Found");
+      }
+      return resp.json();
+    })
     .then(concoctionJson => displayConcoction(concoctionJson))
-    .catch(error => console.log(`Something went wrong here: ${error}`));
+    .catch(error => console.log("Something went wrong here: ", error));
+}
+
+function displayErrorImage(httpStatus) {
+  const docBody = document.querySelector("body");
+  let imgName, errorMessage;
+
+  if (httpStatus === "404 Not Found") {
+    imgName = "404-not-found";
+    errorMessage = "I could not find this Crazy Coffee Concoction"
+  } else if (httpStatus = "418 I'm a Teapot") {
+    imgName = "418-im-a-teapot";
+    errorMessage = "Sorry! The server is now a teapot, and you obviously can't brew coffee with a teapot"
+  }
+
+  docBody.innerHTML = `
+    <img src="img/${imgName}.png" alt="${httpStatus}">
+    <p>
+      &copy; 2020 "${httpStatus}" image courtesy of <a href="https://www.drlinkcheck.com/blog/free-http-error-images">Dr. Link Check</a><br>
+      It is available for download free of charge under the <a href="https://creativecommons.org/licenses/by/4.0/legalcode">Creative Commons CC BY 4.0 license</a>
+    </p>
+    <h2>${errorMessage}. Please refresh the page and try again.</h2>
+  `;
 }
 
 function displayConcoction(concoctionJson) {
@@ -57,11 +84,13 @@ function displayConcoction(concoctionJson) {
 
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
 
+  // Append labeled lists of a concoction's attributes and associated coffees and ingredients.
+  // Edit: There's probably a better way to do this.
   attrsWrapper.append(
-    ...Coffee.labeledCoffeeList(concoction.coffees),
+    ...Shared.labeledCollectionList("Coffee(s):", concoction.coffees, (coffee) => coffee.attrString()),
     ...Ingredient.labeledIngredientLists(concoction.ingredients),
     ...concoction.labeledAttributes("Instructions", "Notes")
-  ); // Append labeled lists of a concoction's attributes and associated coffees and ingredients.
+  );
 
   mainContainer.append(nameWrapper, attrsWrapper); // Finally, append the two wrappers to the mainContainer.
 }
@@ -83,7 +112,12 @@ function createConcoction(event) {
   event.preventDefault();
 
   fetch(BASE_URL, configObj)
-    .then(resp => resp.json())
+    .then(resp => {
+      if (resp.status === 418) {
+        displayErrorImage("418 I'm a Teapot");
+      }
+      return resp.json();
+    })
     .then(function(concoctionJson) {
       const concoctionsList = document.querySelector('nav select');
       const concoction = concoctionJson.data;
@@ -91,7 +125,7 @@ function createConcoction(event) {
       addConcoctionToList(concoctionsList, concoction, concoction.attributes.name);
       displayConcoction(concoctionJson);
     })
-    .catch(error => console.log(`Well, THAT didn't work! Here's the problem: ${error}`));
+    .catch(error => console.log("Well, THAT didn't work! Here's the problem: ", error));
 }
 
 function getConcoctionData(concForm) {
@@ -103,41 +137,24 @@ function getConcoctionData(concForm) {
   let notes = concForm.querySelector('#notes').value;
   if(notes) {concData.notes = notes}; // Edge case
 
-  concData.coffees_attributes = getCoffeeData();
-  concData.ingredients_attributes = getIngredientData();
+  concData.coffees_attributes = getCollectionData('#coffees_list li');
+  concData.ingredients_attributes = getCollectionData('ol.ingredients_list li');
 
   return concData;
 }
 
-function getCoffeeData() {
-  const coffeeLis = document.querySelectorAll('#coffees_list li');
+function getCollectionData(queryString) {
+  const collectionListItems = document.querySelectorAll(queryString);
 
-  const coffeesArray = Array.from(coffeeLis).map(
-    function(coffeeLi) { 
-      // Use ES6 syntax to return a hash of a Coffee's amount, brand, and variety inputs.
-      const coffeeInputs = coffeeLi.querySelectorAll('input');
-      const [amount, brand, variety] = Array.from(coffeeInputs).map(input => input.value);
+  const collectionArray = Array.from(collectionListItems).map(
+    function(listItem) {
+      const dataObj = {};
+      const inputs = listItem.querySelectorAll('input');
 
-      return {amount, brand, variety};
+      inputs.forEach(input => dataObj[input.name] = input.value);
+      return dataObj;
     }
   );
 
-  return coffeesArray;
-}
-
-function getIngredientData() {
-  const ingredientLis = document.querySelectorAll('ol.ingredients_list li');
-
-  const ingredientsArray = Array.from(ingredientLis).map(
-    // Create an object for each <li>
-    function(ingredLi) {
-      const ingredInputs = ingredLi.querySelectorAll('input');
-      let ingredObj = {};
-
-      ingredInputs.forEach(input => ingredObj[input.name] = input.value);
-      return ingredObj;
-    }
-  );
-
-  return ingredientsArray;
+  return collectionArray;  
 }

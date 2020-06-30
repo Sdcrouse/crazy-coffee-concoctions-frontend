@@ -6,26 +6,14 @@ class Coffee {
     this.variety = coffeeAttributes.variety;
   }
 
-  coffeeLi() {
-    const coffeeItem = Shared.newElementWithText('li', this.amount);
+  attrString() {
+    let str = `${this.amount} of`;
     
-    if(this.brand) {
-      coffeeItem.textContent += ` ${this.brand}`;
+    if (this.brand) {
+      str += ` ${this.brand}`;
     }
 
-    coffeeItem.textContent += ` ${this.variety}`;
-    return coffeeItem;
-  }
-
-  static labeledCoffeeList(coffeeObjs) {
-    // Create a list of coffees, and append it to the wrapper element.
-    const coffeeLabel = Shared.newElementWithText('h3', "Coffee(s):");
-    const coffeeList = document.createElement('ul');
-
-    coffeeObjs.forEach(
-      coffeeObj => coffeeList.append( coffeeObj.coffeeLi() )
-    );
-
-    return [coffeeLabel, coffeeList];
+    str += ` ${this.variety}`;
+    return str;
   }
 }

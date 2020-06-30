@@ -15,7 +15,7 @@
   <body>
     <div id="wrapper">
       <div>
-        <img src="img/blue_coffee_cup.jpg" alt="Blue Coffee Cup">
+        <img id="blue-coffee-cup" src="img/blue_coffee_cup.jpg" alt="Blue Coffee Cup">
         <!-- Note: This is a modified version of the image at https://www.pexels.com/photo/art-blue-brown-cafe-459489/ -->
       </div>
       
@@ -37,21 +37,22 @@
           </div>
 
           <form>
+            <p class="red-text">Red text indicates a required field.</p>
             <p>
-              <label for="concoction_name"><strong>Name:</strong></label>
-              <input id="concoction_name" name="name">
+              <label for="concoction_name"><strong class="red-text">Name:</strong></label>
+              <input id="concoction_name" name="name" required>
             </p>
             <hr />
 
             <h3>Coffees:</h3>
             <ol id="coffees_list">
               <li>
-                <label for="coffee_amount1">Amount:</label>
-                <input name="amount" id="coffee_amount1">
+                <label for="coffee_amount1" class="red-text">Amount:</label>
+                <input name="amount" id="coffee_amount1" required>
                 <label for="coffee_brand1">Brand:</label>
                 <input name="brand" id="coffee_brand1">
-                <label for="coffee_variety1">Variety:</label>
-                <input name="variety" id="coffee_variety1">
+                <label for="coffee_variety1" class="red-text">Variety:</label>
+                <input name="variety" id="coffee_variety1" required>
               </li>
               <br>
               <li>
@@ -71,10 +72,10 @@
             <ol class="ingredients_list">
               <li>
                 <input type="hidden" name="category" value="liquid">
-                <label for="liquid_amount1">Amount:</label>
-                <input name="amount" id="liquid_amount1">
-                <label for="liquid_name1">Name:</label>
-                <input name="name" id="liquid_name1">
+                <label for="liquid_amount1" class="red-text">Amount:</label>
+                <input name="amount" id="liquid_amount1" required>
+                <label for="liquid_name1" class="red-text">Name:</label>
+                <input name="name" id="liquid_name1" required>
               </li>
               <br>
               <li>
@@ -164,14 +165,14 @@
             <hr />
 
             <p>
-              <label for="instructions"><strong>Instructions:</strong></label>
-              <textarea id="instructions" name="instructions"></textarea>
+              <label for="instructions"><strong class="red-text">Instructions:</strong></label>
+              <textarea id="instructions" name="instructions" required></textarea>
               <br><br>
               <label for="notes"><strong>Notes:</strong></label>
               <textarea id="notes" name="notes"></textarea>
             </p>
             
-            <p>
+            <p id="submit-button-container">
               <button type="submit">Create Concoction</button>
             </p>
           </form>

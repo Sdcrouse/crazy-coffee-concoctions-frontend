@@ -28,17 +28,18 @@ class Concoction {
     // This returns something like:
     // [<h3>Instructions:</h3>, <p>Make the concoction</p>, <h3>Notes:</h3>, <p>Lorem ipsum</p>]
 
-    return attributeNames.flatMap(attrName => {
-      let label, attrElement;
-      const concoctionAttr = this[attrName.toLowerCase()]; // Note: "this" is the Concoction instance.
-
+    return Shared.flatMapAndFilter(attributeNames, attrName => {
+      const concoctionAttr = this[attrName.toLowerCase()];
+      // Note: "this" is the Concoction instance.
+      // Be careful here; "this" changes if I use a function expression instead!
+      
       if (concoctionAttr) {
-        label = Shared.newElementWithText('h3', `${attrName}:`);
-        attrElement = Shared.newElementWithText('p', concoctionAttr);
+        const label = Shared.newElementWithText('h3', `${attrName}:`);
+        const attrElement = Shared.newElementWithText('p', concoctionAttr);
         
         return [label, attrElement];
       }
-    }).filter(element => !!element);
+    });
   } // End of labeledAttributes
 }
 
