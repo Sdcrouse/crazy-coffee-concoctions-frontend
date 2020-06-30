@@ -43,7 +43,20 @@ function addConcoctionToList(concoctionsList, concoctionJson, concoctionName) {
 
 function getConcoction(concoctionId) {
   fetch(`${BASE_URL}/${concoctionId}`)
-    .then(resp => resp.json())
+    .then(resp => {
+      if (resp.status === 404) {
+        document.querySelector("body").innerHTML = `
+          <img src="img/404-not-found.png" alt="404 Not Found">
+          <p>
+            &copy; 2019 "404 Not Found" image courtesy of <a href="https://www.drlinkcheck.com/blog/free-http-error-images">Dr. Link Check</a><br>
+            It is available for download free of charge under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC BY 4.0 license</a>
+          </p>
+          <h2>I could not find this Crazy Coffee Concoction. Please refresh the page and try again.</h2>
+        `
+      }
+
+      return resp.json();
+    })
     .then(concoctionJson => displayConcoction(concoctionJson))
     .catch(error => console.log("Something went wrong here: ", error));
 }
