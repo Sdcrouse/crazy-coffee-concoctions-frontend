@@ -87,7 +87,14 @@ function createConcoction(event) {
   fetch(BASE_URL, configObj)
     .then(resp => {
       if (resp.status === 418) {
-        document.querySelector("body").innerHTML = '<img src="img/418-im-a-teapot.png" alt="I am a teapot">'
+        document.querySelector("body").innerHTML = `
+          <img src="img/418-im-a-teapot.png" alt="I am a teapot">
+          <p>
+            &copy; 2019 "418 I'm a Teapot" image courtesy of <a href="https://www.drlinkcheck.com/blog/free-http-error-images">Dr. Link Check</a><br>
+            It is available for download free of charge under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC BY 4.0 license</a>
+          </p>
+          <h2>Sorry! The server is now a teapot, and you obviously can't brew coffee with a teapot. Please refresh the page and try again.</h2>
+        `
       }
 
       return resp.json();
