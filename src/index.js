@@ -69,7 +69,7 @@ function displayErrorImage(httpStatus) {
     <img src="img/${imgName}.png" alt="${httpStatus}">
     <p>
       &copy; 2020 "${httpStatus}" image courtesy of <a href="https://www.drlinkcheck.com/blog/free-http-error-images">Dr. Link Check</a><br>
-      It is available for download free of charge under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC BY 4.0 license</a>
+      It is available for download free of charge under the <a href="https://creativecommons.org/licenses/by/4.0/legalcode">Creative Commons CC BY 4.0 license</a>
     </p>
     <h2>${errorMessage}. Please refresh the page and try again.</h2>
   `;
