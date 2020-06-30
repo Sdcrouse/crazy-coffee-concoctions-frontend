@@ -45,20 +45,34 @@ function getConcoction(concoctionId) {
   fetch(`${BASE_URL}/${concoctionId}`)
     .then(resp => {
       if (resp.status === 404) {
-        document.querySelector("body").innerHTML = `
-          <img src="img/404-not-found.png" alt="404 Not Found">
-          <p>
-            &copy; 2019 "404 Not Found" image courtesy of <a href="https://www.drlinkcheck.com/blog/free-http-error-images">Dr. Link Check</a><br>
-            It is available for download free of charge under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC BY 4.0 license</a>
-          </p>
-          <h2>I could not find this Crazy Coffee Concoction. Please refresh the page and try again.</h2>
-        `
+        displayErrorImage("404 Not Found");
       }
-
       return resp.json();
     })
     .then(concoctionJson => displayConcoction(concoctionJson))
     .catch(error => console.log("Something went wrong here: ", error));
+}
+
+function displayErrorImage(httpStatus) {
+  const docBody = document.querySelector("body");
+  let imgName, errorMessage;
+
+  if (httpStatus === "404 Not Found") {
+    imgName = "404-not-found";
+    errorMessage = "I could not find this Crazy Coffee Concoction"
+  } else if (httpStatus = "418 I'm a Teapot") {
+    imgName = "418-im-a-teapot";
+    errorMessage = "Sorry! The server is now a teapot, and you obviously can't brew coffee with a teapot"
+  }
+
+  docBody.innerHTML = `
+    <img src="img/${imgName}.png" alt="${httpStatus}">
+    <p>
+      &copy; 2020 "${httpStatus}" image courtesy of <a href="https://www.drlinkcheck.com/blog/free-http-error-images">Dr. Link Check</a><br>
+      It is available for download free of charge under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC BY 4.0 license</a>
+    </p>
+    <h2>${errorMessage}. Please refresh the page and try again.</h2>
+  `;
 }
 
 function displayConcoction(concoctionJson) {
@@ -100,16 +114,8 @@ function createConcoction(event) {
   fetch(BASE_URL, configObj)
     .then(resp => {
       if (resp.status === 418) {
-        document.querySelector("body").innerHTML = `
-          <img src="img/418-im-a-teapot.png" alt="I am a teapot">
-          <p>
-            &copy; 2019 "418 I'm a Teapot" image courtesy of <a href="https://www.drlinkcheck.com/blog/free-http-error-images">Dr. Link Check</a><br>
-            It is available for download free of charge under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC BY 4.0 license</a>
-          </p>
-          <h2>Sorry! The server is now a teapot, and you obviously can't brew coffee with a teapot. Please refresh the page and try again.</h2>
-        `
+        displayErrorImage("418 I'm a Teapot");
       }
-
       return resp.json();
     })
     .then(function(concoctionJson) {
