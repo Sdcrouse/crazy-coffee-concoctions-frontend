@@ -16,7 +16,7 @@ header, section, select, nav button, hr.ingredient-hr {
 
 header { align-items: center; }
 
-img {
+#blue-coffee-cup {
   width: 166px; /* 1/3 of the original image's width */
   height: 139px; /* 1/3 of the original image's height */
   border-radius: 50%;
