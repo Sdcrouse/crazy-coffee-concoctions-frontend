@@ -27,6 +27,12 @@ From there, you can do any of the following:
 * [Click here](https://www.loom.com/share/06f6004de5104f27b8aee9cb00c057cb) to watch how I coded part of my app.
 * [Click here](https://stevendcrouse.com/crazy_coffee_concoctions_my_rails_js_project_and_process) to see the blog post I wrote for this project.
 
+## Development Notes
+
+The frontend portion of the Crazy Coffee Concoctions SPA is written in HTML, CSS, and JavaScript.
+
+If you would like to see how I wireframed this app, check out my Figma designs here: https://www.figma.com/file/odK1rO040HWJ1k5u4Ck4Is/Single-Page-Application?node-id=0%3A1
+
 ## Contributing
 
 Please feel free to raise a new Issue on my repository if you have any problems with my app (installation, usage, bugs, etc), or you have suggestions for a new feature. Pull requests are also welcome.
