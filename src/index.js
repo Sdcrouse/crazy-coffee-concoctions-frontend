@@ -3,19 +3,14 @@ const BASE_URL = "http://localhost:3000/api/v1/concoctions";
 document.addEventListener("DOMContentLoaded", function() {
   const newConcoctionButton = document.querySelector('nav button');
   const mainContainer = document.getElementById('main-container');
-  const concoctionForm = mainContainer.querySelector('form');  
   const newConcoctionHTML = mainContainer.innerHTML;
   // By default, the main-container has the Concoction form when the page is loaded.
 
   getConcoctions();
-  concoctionForm.addEventListener('submit', createConcoction);
+  mainContainer.addEventListener('submit', createConcoction);
+  // This works for right now because only ONE child element (the form) triggers the "submit" event. 
 
-  newConcoctionButton.addEventListener('click', function() {
-    mainContainer.innerHTML = newConcoctionHTML;
-
-    mainContainer.querySelector('form').addEventListener('submit', createConcoction);
-    // This fixes a tricky bug: In this case, mainContainer.querySelector('form') !== concoctionForm!
-  });
+  newConcoctionButton.addEventListener('click', () => mainContainer.innerHTML = newConcoctionHTML);
 });
 
 function getConcoctions() {
