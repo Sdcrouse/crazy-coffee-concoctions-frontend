@@ -16,8 +16,8 @@ So, here's the intended order of operations (subject to change):
 3. Build out the api/v1/concoctions/:id route, and figure out how/when to display the data
   * Initially, I want to show the last Concoction when the user loads the page (Update: DONE!)
   * I will later replace the default view with the "New Concoction" form (Update: DONE!)
-  * From the ConcoctionsController: render status: :not_found (Make sure to incorporate this into the JS file!)
-  * I might use this image: https://pixabay.com/vectors/monitor-404-error-problem-page-1350918/
+  * From the ConcoctionsController: render status: :not_found (Make sure to incorporate this into the JS file!) (Update: DONE!)
+  * I might use this image: https://pixabay.com/vectors/monitor-404-error-problem-page-1350918/ (Update: I used a different image instead.)
   * Also, here's how to merge a branch with a commit message: https://stackoverflow.com/questions/15006554/git-merge-branch-and-use-meaningful-merge-commit-message
     * Update: That won't work, due to fast-forwarding. This explains it: https://git-scm.com/docs/git-merge#Documentation/git-merge.txt---ff
 
@@ -29,12 +29,12 @@ So, here's the intended order of operations (subject to change):
 
 6. Refactor with OOJS, DRY, CSS frameworks, etc (Update: Done, but the CSS framework is now a stretch goal for a future version.)
 
-7. Implement stretch goals (especially that "I'm a teapot" HTTP status)
+7. Implement stretch goals (especially that "I'm a teapot" HTTP status) (Update: Partially done!)
 
 ## Ideas
-What if instead of adding background colors to the "Saved Concoctions List" and the "New Concoction" button,
-I made their wrapper light brown (so it extends to the bottom of the page), 
-and then made the list and button white with light brown text? Would THAT work?
+* What if instead of adding background colors to the "Saved Concoctions List" and the "New Concoction" button, I made their wrapper light brown (so it extends to the bottom of the page), and then made the list and button white with light brown text? Would THAT work?
+* If the user decides to click on a Saved Concoction while filling out the New Concoction form, maybe they should be given a warning message that asks them if they're sure they want to do this.
+* See the NOTES.md file in the Rails backend API for more ideas and stretch goals.
 
 **IMPORTANT!** I may want to undo that `width: 100%;` setting on the `select` CSS rule; it cuts off any `<option>` text that is longer than its container. Also, I need to play with the form styles:
 
