@@ -19,7 +19,20 @@ function getConcoctions() {
     .then(concoctionsJson => {
       const concoctionsList = document.querySelector('nav select');
 
-      concoctionsJson.forEach(concoctionJson => addConcoctionToList(concoctionsList, concoctionJson, concoctionJson.name));
+      const sortedConcoctions = concoctionsJson.sort(function(concoctionA, concoctionB) {
+        const concAName = concoctionA.name.toLowerCase();
+        const concBName = concoctionB.name.toLowerCase();
+    
+        if (concAName < concBName) {
+          return -1;
+        } else if (concAName === concBName) {
+           return 0;
+        } else { 
+          return 1; 
+        }
+      });
+
+      sortedConcoctions.forEach(concoctionJson => addConcoctionToList(concoctionsList, concoctionJson, concoctionJson.name));
     
       concoctionsList.addEventListener("change", function(event) {
         // Display selected concoction, unless "Saved Concoctions" or a concoction with an invalid id is chosen.
