@@ -18,19 +18,7 @@ function getConcoctions() {
     .then(resp => resp.json())
     .then(concoctionsJson => {
       const concoctionsList = document.querySelector('nav select');
-
-      const sortedConcoctions = concoctionsJson.sort(function(concoctionA, concoctionB) {
-        const concAName = concoctionA.name.toLowerCase();
-        const concBName = concoctionB.name.toLowerCase();
-    
-        if (concAName < concBName) {
-          return -1;
-        } else if (concAName === concBName) {
-           return 0;
-        } else { 
-          return 1; 
-        }
-      });
+      const sortedConcoctions = Concoction.sortByName(concoctionsJson);
 
       sortedConcoctions.forEach(concoctionJson => addConcoctionToList(concoctionsList, concoctionJson, concoctionJson.name));
     

@@ -41,6 +41,21 @@ class Concoction {
       }
     });
   } // End of labeledAttributes
-}
+
+  static sortByName(concoctionsJson) {
+    return concoctionsJson.sort(function(concoctionA, concoctionB) {
+      const concAName = concoctionA.name.toLowerCase();
+      const concBName = concoctionB.name.toLowerCase();
+  
+      if (concAName < concBName) {
+        return -1;
+      } else if (concAName === concBName) {
+         return 0;
+      } else { 
+        return 1;
+      }
+    });
+  } // End of sortByName
+} // End of Concoction class
 
 Concoction.all = [];
