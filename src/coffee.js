@@ -16,4 +16,8 @@ class Coffee {
     str += ` ${this.variety}`;
     return str;
   }
+
+  static createCollection(coffeeObjs) {
+    return coffeeObjs.map(obj => new Coffee(obj.id, obj.attributes));
+  }
 }
