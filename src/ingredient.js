@@ -6,6 +6,10 @@ class Ingredient {
     this.category = ingredientAttributes.category;
   }
 
+  static createCollection(ingredientObjs) {
+    return ingredientObjs.map(obj => new Ingredient(obj.id, obj.attributes));
+  }
+
   static categoryLabel(category) {
     return (category === "Other" ? "Additional Ingredient(s):" : `${category}(s):`);
   }

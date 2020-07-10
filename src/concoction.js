@@ -5,7 +5,7 @@ class Concoction {
     this.instructions = concoctionAttributes.instructions;
     this.notes = concoctionAttributes.notes;
     this.coffees = Coffee.createCollection(includedObjects.filter(obj => obj.type === "coffee"));
-    this.ingredients = this.createCollection(includedObjects, Ingredient);
+    this.ingredients = Ingredient.createCollection(includedObjects.filter(obj => obj.type === "ingredient"));
 
     Concoction.all.push(this);
   }
