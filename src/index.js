@@ -73,13 +73,11 @@ function displayErrorImage(httpStatus) {
 
 function displayConcoction(concoctionJson) {
   const concoction = new Concoction(concoctionJson.data.id, concoctionJson.data.attributes, concoctionJson.included);
-  
   const mainContainer = document.getElementById('main-container'); // The main container that will display the concoction
-
   const concoctionNameWrapper = document.createElement('div');
-  concoctionNameWrapper.append(Shared.newElementWithText('h2', concoction.name));
-  
   const attributesWrapper = document.createElement('div'); // Wrapper for the concoction attributes other than "name"
+
+  concoctionNameWrapper.append(Shared.newElementWithText('h2', concoction.name));
 
   // Append labeled lists of a concoction's attributes and associated coffees and ingredients.
   // Edit: There's probably a better way to do this.
@@ -128,11 +126,11 @@ function createConcoction(event) {
 
 function getConcoctionData(concForm) {
   let concData = {};
+  let notes = concForm.querySelector('#notes').value;
 
   concData.name = concForm.querySelector('#concoction_name').value;
   concData.instructions = concForm.querySelector('#instructions').value;
 
-  let notes = concForm.querySelector('#notes').value;
   if(notes) {concData.notes = notes}; // Edge case
 
   concData.coffees_attributes = getCollectionData('#coffees_list li');
