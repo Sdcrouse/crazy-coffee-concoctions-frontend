@@ -84,7 +84,7 @@ function displayConcoction(concoctionJson) {
   // Append labeled lists of a concoction's attributes and associated coffees and ingredients.
   // Edit: There's probably a better way to do this.
   attrsWrapper.append(
-    ...Shared.labeledCollectionList("Coffee(s):", concoction.coffees, (coffee) => coffee.attrString()),
+    ...Shared.labeledCollectionList("Coffee(s):", concoction.coffees, (coffee) => coffee.description()),
     ...Ingredient.labeledIngredientLists(concoction.ingredients),
     ...concoction.labeledAttributes("Instructions", "Notes")
   );

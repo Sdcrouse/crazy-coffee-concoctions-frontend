@@ -6,7 +6,7 @@ class Coffee {
     this.variety = coffeeAttributes.variety;
   }
 
-  attrString() {
+  description() {
     let str = `${this.amount} of`;
     
     if (this.brand) {
