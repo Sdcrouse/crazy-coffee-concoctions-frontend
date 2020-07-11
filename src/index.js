@@ -75,7 +75,10 @@ function displayConcoction(concoctionJson) {
   const concoction = new Concoction(concoctionJson.data.id, concoctionJson.data.attributes, concoctionJson.included);
   
   const mainContainer = document.getElementById('main-container'); // The main container that will display the concoction
-  const nameWrapper = concoction.nameWrapper(); // Wrapper for the concoction's name
+
+  const concoctionNameWrapper = document.createElement('div');
+  concoctionNameWrapper.append(Shared.newElementWithText('h2', concoction.name));
+  
   const attrsWrapper = document.createElement('div'); // Wrapper for the concoction attributes other than "name"
 
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
@@ -88,7 +91,7 @@ function displayConcoction(concoctionJson) {
     ...concoction.labeledAttributes("Instructions", "Notes")
   );
 
-  mainContainer.append(nameWrapper, attrsWrapper); // Finally, append the two wrappers to the mainContainer.
+  mainContainer.append(concoctionNameWrapper, attrsWrapper); // Finally, append the two wrappers to the mainContainer.
 }
 
 function createConcoction(event) {

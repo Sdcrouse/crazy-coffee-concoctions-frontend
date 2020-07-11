@@ -10,14 +10,6 @@ class Concoction {
     Concoction.all.push(this);
   }
 
-  nameWrapper() {
-    const wrapper = document.createElement('div');
-    const nameHeading = Shared.newElementWithText('h2', this.name);
-    
-    wrapper.append(nameHeading);
-    return wrapper;
-  }
-
   labeledAttributes(...attributeNames) {
     // attributeNames is expected to look like ["Instructions", "Notes", "Etc"]
     // This returns something like:
