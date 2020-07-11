@@ -81,8 +81,6 @@ function displayConcoction(concoctionJson) {
   
   const attrsWrapper = document.createElement('div'); // Wrapper for the concoction attributes other than "name"
 
-  mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
-
   // Append labeled lists of a concoction's attributes and associated coffees and ingredients.
   // Edit: There's probably a better way to do this.
   attrsWrapper.append(
@@ -90,7 +88,8 @@ function displayConcoction(concoctionJson) {
     ...Ingredient.labeledIngredientLists(concoction.ingredients),
     ...concoction.labeledAttributes("Instructions", "Notes")
   );
-
+    
+  mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
   mainContainer.append(concoctionNameWrapper, attrsWrapper); // Finally, append the two wrappers to the mainContainer.
 }
 
