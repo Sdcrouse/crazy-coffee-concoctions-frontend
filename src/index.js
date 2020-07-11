@@ -56,7 +56,7 @@ function displayErrorImage(httpStatus) {
   if (httpStatus === "404 Not Found") {
     imgName = "404-not-found";
     errorMessage = "I could not find this Crazy Coffee Concoction"
-  } else if (httpStatus = "418 I'm a Teapot") {
+  } else if (httpStatus === "418 I'm a Teapot") {
     imgName = "418-im-a-teapot";
     errorMessage = "Sorry! The server is now a teapot, and you obviously can't brew coffee with a teapot"
   }
