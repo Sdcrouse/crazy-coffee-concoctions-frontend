@@ -84,7 +84,7 @@ function displayConcoction(concoctionJson) {
   attributesWrapper.append(
     ...Coffee.createLabeledCoffeeList(concoction.coffees),
     ...Ingredient.createCategorizedIngredientLists(concoction.ingredients),
-    ...concoction.labeledAttributes("Instructions", "Notes")
+    ...concoction.createLabeledAttributes("Instructions", "Notes")
   );
     
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
