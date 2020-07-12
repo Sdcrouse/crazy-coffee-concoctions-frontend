@@ -14,7 +14,7 @@ class Ingredient {
     return (category === "Other" ? "Additional Ingredient(s):" : `${category}(s):`);
   }
 
-  static labeledIngredientLists(ingredients) {
+  static createLabeledIngredientLists(ingredients) {
     // Return an array of labels and ingredient lists
     
     // Be careful here! If I use a function expression instead of arrow syntax, the value of "this" is undefined! 
