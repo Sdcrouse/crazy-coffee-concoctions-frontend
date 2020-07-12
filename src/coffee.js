@@ -20,4 +20,15 @@ class Coffee {
   static createCollection(coffeeObjs) {
     return coffeeObjs.map(obj => new Coffee(obj.id, obj.attributes));
   }
+
+  static createLabeledCoffeeList(coffees) {
+    const coffeeLabel = Shared.newElementWithText('h3', 'Coffee(s)');
+    const coffeeList = document.createElement('ul');
+
+    coffees.forEach(coffee => {
+      coffeeList.append( Shared.newElementWithText('li', coffee.description()) );
+    });
+
+    return [coffeeLabel, coffeeList];
+  }
 }
