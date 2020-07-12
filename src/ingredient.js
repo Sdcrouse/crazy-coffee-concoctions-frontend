@@ -14,21 +14,26 @@ class Ingredient {
     return (category === "Other" ? "Additional Ingredient(s):" : `${category}(s):`);
   }
 
+  static createLabeledList(ingredients, ingredCategory) {
+    const ingredientLabel = Shared.newElementWithText('h3', ingredCategory);
+    const ingredientList = document.createElement('ul');
+
+    ingredients.forEach(ingredient => {
+      ingredientList.append(Shared.newElementWithText('li', `${ingredient.amount} of ${ingredient.name}`))
+    });
+
+    return [ingredientLabel, ingredientList];
+  }
+
   static createLabeledIngredientLists(ingredients) {
-    // Return an array of labels and ingredient lists
-    
-    // Be careful here! If I use a function expression instead of arrow syntax, the value of "this" is undefined! 
-    // Also, take note: Arrow functions with a block body {} need an explicit return statement.
     return Shared.flatMapAndFilter(this.allCategories, category => {
       const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
       
-      if(filteredByCategory.length > 0) { // I.e. there are ingredients with this category
-        return Shared.labeledCollectionList(
-          this.categoryLabel(category), filteredByCategory, (ingredient) => `${ingredient.amount} of ${ingredient.name}`
-        );
+      if (filteredByCategory.length > 0) { // I.e. there are ingredients with this category
+        return this.createLabeledList(filteredByCategory, this.categoryLabel(category));
       }
     });
-  } // End of labeledIngredientLists
+  } // End of createLabeledIngredientLists
 }
 
 Ingredient.allCategories = ["Liquid", "Sweetener", "Creamer", "Other"];
