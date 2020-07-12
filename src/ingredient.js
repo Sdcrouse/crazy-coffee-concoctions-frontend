@@ -26,14 +26,19 @@ class Ingredient {
   }
 
   static createLabeledIngredientLists(ingredients) {
-    return Shared.flatMapAndFilter(this.allCategories, category => {
-      const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
-      
-      if (filteredByCategory.length > 0) { // I.e. there are ingredients with this category
-        return this.createLabeledList(filteredByCategory, this.categoryLabel(category));
+    const arrayOfLabeledIngredLists = this.allCategories.flatMap(
+      (category) => {
+        const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
+        
+        if (filteredByCategory.length > 0) { // I.e. there are ingredients with this category
+          return this.createLabeledList(filteredByCategory, this.categoryLabel(category));
+        }
       }
-    });
-  } // End of createLabeledIngredientLists
+    );
+    
+    // Some array elements may be undefined, so they need to be filtered out
+    return arrayOfLabeledIngredLists.filter(arrayElement => !!arrayElement);
+  }
 }
 
 Ingredient.allCategories = ["Liquid", "Sweetener", "Creamer", "Other"];
