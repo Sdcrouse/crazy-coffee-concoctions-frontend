@@ -22,7 +22,7 @@ class Coffee {
   }
 
   static createLabeledCoffeeList(coffees) {
-    const coffeeLabel = Shared.newElementWithText('h3', 'Coffee(s)');
+    const coffeeLabel = Shared.newElementWithText('h3', 'Coffee(s):');
     const coffeeList = document.createElement('ul');
 
     coffees.forEach(coffee => {
