@@ -25,8 +25,8 @@ class Ingredient {
     return [ingredientLabel, ingredientList];
   }
 
-  static createLabeledIngredientLists(ingredients) {
-    const arrayOfLabeledIngredLists = this.allCategories.flatMap(
+  static createCategorizedIngredientLists(ingredients) {
+    const arrayOfCategorizedIngredLists = this.allCategories.flatMap(
       (category) => {
         const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
         
@@ -37,7 +37,7 @@ class Ingredient {
     );
     
     // Some array elements may be undefined, so they need to be filtered out
-    return arrayOfLabeledIngredLists.filter(arrayElement => !!arrayElement);
+    return arrayOfCategorizedIngredLists.filter(arrayElement => !!arrayElement);
   }
 }
 

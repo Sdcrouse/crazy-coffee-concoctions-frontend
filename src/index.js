@@ -83,7 +83,7 @@ function displayConcoction(concoctionJson) {
   // Edit: There's probably a better way to do this.
   attributesWrapper.append(
     ...Coffee.createLabeledCoffeeList(concoction.coffees),
-    ...Ingredient.createLabeledIngredientLists(concoction.ingredients),
+    ...Ingredient.createCategorizedIngredientLists(concoction.ingredients),
     ...concoction.labeledAttributes("Instructions", "Notes")
   );
     
