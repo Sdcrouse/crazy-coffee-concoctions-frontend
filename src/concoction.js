@@ -10,25 +10,6 @@ class Concoction {
     Concoction.all.push(this);
   }
 
-  createLabeledAttributes(...attributeNames) {
-    // attributeNames is expected to look like ["Instructions", "Notes", "Etc"]
-    // This returns something like:
-    // [<h3>Instructions:</h3>, <p>Make the concoction</p>, <h3>Notes:</h3>, <p>Lorem ipsum</p>]
-
-    return Shared.flatMapAndFilter(attributeNames, attrName => {
-      const concoctionAttr = this[attrName.toLowerCase()];
-      // Note: "this" is the Concoction instance.
-      // Be careful here; "this" changes if I use a function expression instead!
-      
-      if (concoctionAttr) {
-        const label = Shared.newElementWithText('h3', `${attrName}:`);
-        const attrElement = Shared.newElementWithText('p', concoctionAttr);
-        
-        return [label, attrElement];
-      }
-    });
-  } // End of createLabeledAttributes
-
   static sortByName(concoctionsJson) {
     return concoctionsJson.sort(function(concoctionA, concoctionB) {
       const concAName = concoctionA.name.toLowerCase();

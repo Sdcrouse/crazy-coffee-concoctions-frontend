@@ -30,8 +30,15 @@ function getConcoctions() {
     .catch(error => console.log("Oops! Something's not right here: ", error));
 }
 
+function createNewElementWithText(elementTagName, elementText) {
+  const newElement = document.createElement(elementTagName);
+
+  newElement.textContent = elementText;
+  return newElement;
+}
+
 function addConcoctionToList(concoctionsList, concoctionJson, concoctionName) {
-  const concoctionOption = Shared.newElementWithText('option', concoctionName);
+  const concoctionOption = createNewElementWithText('option', concoctionName);
 
   concoctionOption.setAttribute("value", concoctionJson.id);
   concoctionsList.append(concoctionOption);
@@ -75,20 +82,59 @@ function displayConcoction(concoctionJson) {
   const concoction = new Concoction(concoctionJson.data.id, concoctionJson.data.attributes, concoctionJson.included);
   const mainContainer = document.getElementById('main-container'); // The main container that will display the concoction
   const concoctionNameWrapper = document.createElement('div');
-  const attributesWrapper = document.createElement('div'); // Wrapper for the concoction attributes other than "name"
+  const concoctionAttributesWrapper = document.createElement('div'); // Wrapper for the concoction attributes other than "name"
 
-  concoctionNameWrapper.append(Shared.newElementWithText('h2', concoction.name));
+  concoctionNameWrapper.append( createNewElementWithText('h2', concoction.name) );
 
-  // Append labeled lists of a concoction's attributes and associated coffees and ingredients.
-  // Edit: There's probably a better way to do this.
-  attributesWrapper.append(
-    ...Coffee.createLabeledCoffeeList(concoction.coffees),
-    ...Ingredient.createCategorizedIngredientLists(concoction.ingredients),
-    ...concoction.createLabeledAttributes("Instructions", "Notes")
-  );
+  appendLabeledCoffeeListToWrapper(concoction.coffees, concoctionAttributesWrapper);
+
+  Ingredient.allCategories.forEach(category => {
+    appendCategorizedIngredientListToWrapper(category, concoction.ingredients, concoctionAttributesWrapper);
+  });
+
+  appendLabeledConcoctionAttributesToWrapper(concoctionAttributesWrapper, concoction, "Instructions", "Notes");
     
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
-  mainContainer.append(concoctionNameWrapper, attributesWrapper); // Finally, append the two wrappers to the mainContainer.
+  mainContainer.append(concoctionNameWrapper, concoctionAttributesWrapper);
+}
+
+function appendLabeledCoffeeListToWrapper(coffees, wrapper) {
+  const coffeeLabel = createNewElementWithText('h3', 'Coffee(s):');
+  const coffeeList = document.createElement('ul');
+
+  coffees.forEach(coffee => {
+    coffeeList.append( createNewElementWithText('li', coffee.description()) );
+  });
+
+  wrapper.append(coffeeLabel, coffeeList);
+}
+
+function appendCategorizedIngredientListToWrapper(category, ingredients, wrapper) {
+  const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
+  
+  if (filteredByCategory.length > 0) { // I.e. there are ingredients with this category
+    const ingredientLabel = createNewElementWithText('h3', Ingredient.categoryLabel(category));
+    const ingredientList = document.createElement('ul');
+
+    filteredByCategory.forEach(ingredient => {
+      ingredientList.append( createNewElementWithText('li', ingredient.description()) );
+    });
+
+    wrapper.append(ingredientLabel, ingredientList);
+  }
+}
+
+function appendLabeledConcoctionAttributesToWrapper(wrapper, concoction, ...concoctionAttributeNames) {
+  concoctionAttributeNames.forEach(attrName => {
+    const attrValue = concoction[attrName.toLowerCase()];
+
+    if (attrValue) {
+      const attrLabel = createNewElementWithText('h3', `${attrName}:`);
+      const attrElement = createNewElementWithText('p', attrValue);
+
+      wrapper.append(attrLabel, attrElement);
+    }
+  });
 }
 
 function createConcoction(event) {
@@ -131,7 +177,7 @@ function getConcoctionData(concForm) {
   concData.name = concForm.querySelector('#concoction_name').value;
   concData.instructions = concForm.querySelector('#instructions').value;
 
-  if(notes) {concData.notes = notes}; // Edge case
+  if(notes) {concData.notes = notes}; // Not all Crazy Coffee Concoctions will have notes.
 
   concData.coffees_attributes = getCollectionData('#coffees_list li');
   concData.ingredients_attributes = getCollectionData('ol.ingredients_list li');
