@@ -84,7 +84,7 @@ function displayConcoction(concoctionJson) {
   const concoctionNameWrapper = document.createElement('div');
   const concoctionAttributesWrapper = document.createElement('div'); // Wrapper for the concoction attributes other than "name"
 
-  concoctionNameWrapper.append(Shared.newElementWithText('h2', concoction.name));
+  concoctionNameWrapper.append( createNewElementWithText('h2', concoction.name) );
 
   appendLabeledCoffeeListToWrapper(concoction.coffees, concoctionAttributesWrapper);
 
@@ -99,11 +99,11 @@ function displayConcoction(concoctionJson) {
 }
 
 function appendLabeledCoffeeListToWrapper(coffees, wrapper) {
-  const coffeeLabel = Shared.newElementWithText('h3', 'Coffee(s):');
+  const coffeeLabel = createNewElementWithText('h3', 'Coffee(s):');
   const coffeeList = document.createElement('ul');
 
   coffees.forEach(coffee => {
-    coffeeList.append( Shared.newElementWithText('li', coffee.description()) );
+    coffeeList.append( createNewElementWithText('li', coffee.description()) );
   });
 
   wrapper.append(coffeeLabel, coffeeList);
@@ -113,11 +113,11 @@ function appendCategorizedIngredientListToWrapper(category, ingredients, wrapper
   const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
   
   if (filteredByCategory.length > 0) { // I.e. there are ingredients with this category
-    const ingredientLabel = Shared.newElementWithText('h3', Ingredient.categoryLabel(category));
+    const ingredientLabel = createNewElementWithText('h3', Ingredient.categoryLabel(category));
     const ingredientList = document.createElement('ul');
 
     filteredByCategory.forEach(ingredient => {
-      ingredientList.append(Shared.newElementWithText('li', ingredient.description()));
+      ingredientList.append( createNewElementWithText('li', ingredient.description()) );
     });
 
     wrapper.append(ingredientLabel, ingredientList);
@@ -129,8 +129,8 @@ function appendLabeledConcoctionAttributesToWrapper(wrapper, concoction, ...conc
     const attrValue = concoction[attrName.toLowerCase()];
 
     if (attrValue) {
-      const attrLabel = Shared.newElementWithText('h3', `${attrName}:`);
-      const attrElement = Shared.newElementWithText('p', attrValue);
+      const attrLabel = createNewElementWithText('h3', `${attrName}:`);
+      const attrElement = createNewElementWithText('p', attrValue);
 
       wrapper.append(attrLabel, attrElement);
     }
