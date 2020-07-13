@@ -75,20 +75,20 @@ function displayConcoction(concoctionJson) {
   const concoction = new Concoction(concoctionJson.data.id, concoctionJson.data.attributes, concoctionJson.included);
   const mainContainer = document.getElementById('main-container'); // The main container that will display the concoction
   const concoctionNameWrapper = document.createElement('div');
-  const attributesWrapper = document.createElement('div'); // Wrapper for the concoction attributes other than "name"
+  const concoctionAttributesWrapper = document.createElement('div'); // Wrapper for the concoction attributes other than "name"
 
   concoctionNameWrapper.append(Shared.newElementWithText('h2', concoction.name));
 
-  appendLabeledCoffeeListToWrapper(concoction.coffees, attributesWrapper);
+  appendLabeledCoffeeListToWrapper(concoction.coffees, concoctionAttributesWrapper);
 
   Ingredient.allCategories.forEach(category => {
-    appendCategorizedIngredientListToWrapper(category, concoction.ingredients, attributesWrapper);
+    appendCategorizedIngredientListToWrapper(category, concoction.ingredients, concoctionAttributesWrapper);
   });
 
-  appendLabeledConcoctionAttributesToWrapper(attributesWrapper, concoction, "Instructions", "Notes");
+  appendLabeledConcoctionAttributesToWrapper(concoctionAttributesWrapper, concoction, "Instructions", "Notes");
     
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
-  mainContainer.append(concoctionNameWrapper, attributesWrapper); // Finally, append the two wrappers to the mainContainer.
+  mainContainer.append(concoctionNameWrapper, concoctionAttributesWrapper); // Finally, append the two wrappers to the mainContainer.
 }
 
 function appendLabeledCoffeeListToWrapper(coffees, wrapper) {
