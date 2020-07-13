@@ -179,10 +179,26 @@ function getConcoctionData(concForm) {
 
   if(notes) {concData.notes = notes}; // Not all Crazy Coffee Concoctions will have notes.
 
-  concData.coffees_attributes = getCollectionData('#coffees_list li');
+  concData.coffees_attributes = getCoffeeInputs();
   concData.ingredients_attributes = getCollectionData('ol.ingredients_list li');
 
   return concData;
+}
+
+function getCoffeeInputs() {
+  const coffeeListItems = document.querySelectorAll('#coffees_list li');
+
+  const coffeeInputsArray = Array.from(coffeeListItems).map(
+    function(coffeeLi) {
+      const coffeeObject = {};
+      const coffeeInputs = coffeeLi.querySelectorAll('input');
+
+      coffeeInputs.forEach(input => coffeeObject[input.name] = input.value);
+      return coffeeObject;
+    }
+  );
+
+  return coffeeInputsArray;
 }
 
 function getCollectionData(queryString) {
