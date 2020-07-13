@@ -88,7 +88,7 @@ function displayConcoction(concoctionJson) {
   appendLabeledConcoctionAttributesToWrapper(concoctionAttributesWrapper, concoction, "Instructions", "Notes");
     
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
-  mainContainer.append(concoctionNameWrapper, concoctionAttributesWrapper); // Finally, append the two wrappers to the mainContainer.
+  mainContainer.append(concoctionNameWrapper, concoctionAttributesWrapper);
 }
 
 function appendLabeledCoffeeListToWrapper(coffees, wrapper) {
@@ -170,7 +170,7 @@ function getConcoctionData(concForm) {
   concData.name = concForm.querySelector('#concoction_name').value;
   concData.instructions = concForm.querySelector('#instructions').value;
 
-  if(notes) {concData.notes = notes}; // Edge case
+  if(notes) {concData.notes = notes}; // Not all Crazy Coffee Concoctions will have notes.
 
   concData.coffees_attributes = getCollectionData('#coffees_list li');
   concData.ingredients_attributes = getCollectionData('ol.ingredients_list li');
