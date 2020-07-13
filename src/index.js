@@ -30,8 +30,15 @@ function getConcoctions() {
     .catch(error => console.log("Oops! Something's not right here: ", error));
 }
 
+function createNewElementWithText(elementTagName, elementText) {
+  const newElement = document.createElement(elementTagName);
+
+  newElement.textContent = elementText;
+  return newElement;
+}
+
 function addConcoctionToList(concoctionsList, concoctionJson, concoctionName) {
-  const concoctionOption = Shared.newElementWithText('option', concoctionName);
+  const concoctionOption = createNewElementWithText('option', concoctionName);
 
   concoctionOption.setAttribute("value", concoctionJson.id);
   concoctionsList.append(concoctionOption);
