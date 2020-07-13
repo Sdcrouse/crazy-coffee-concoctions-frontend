@@ -6,6 +6,10 @@ class Ingredient {
     this.category = ingredientAttributes.category;
   }
 
+  description() {
+    return `${this.amount} of ${this.name}`;
+  }
+
   static createCollection(ingredientObjs) {
     return ingredientObjs.map(obj => new Ingredient(obj.id, obj.attributes));
   }

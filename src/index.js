@@ -109,8 +109,8 @@ function appendCategorizedIngredientListToWrapper(category, ingredients, wrapper
     const ingredientLabel = Shared.newElementWithText('h3', Ingredient.categoryLabel(category));
     const ingredientList = document.createElement('ul');
 
-    filteredByCategory.forEach(ingredient => { // Move that interpolated string to the Ingredient class.
-      ingredientList.append(Shared.newElementWithText('li', `${ingredient.amount} of ${ingredient.name}`))
+    filteredByCategory.forEach(ingredient => {
+      ingredientList.append(Shared.newElementWithText('li', ingredient.description()));
     });
 
     wrapper.append(ingredientLabel, ingredientList);
