@@ -94,3 +94,6 @@ I may want to style this as a table or with CSS Grid instead - I need to separat
   <p>Notes: My notes about this coffee concoction</p>
 </div>
 ```
+
+## Bug Notes
+* When I create a new Concoction, its name gets added to the bottom of the Saved Concoctions list. However, the list does not get re-sorted until I refresh the page.
