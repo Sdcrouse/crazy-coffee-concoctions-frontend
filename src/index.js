@@ -180,7 +180,7 @@ function getConcoctionData(concForm) {
   if(notes) {concData.notes = notes}; // Not all Crazy Coffee Concoctions will have notes.
 
   concData.coffees_attributes = getCoffeeInputs();
-  concData.ingredients_attributes = getCollectionData('ol.ingredients_list li');
+  concData.ingredients_attributes = getIngredientInputs();
 
   return concData;
 }
@@ -199,6 +199,22 @@ function getCoffeeInputs() {
   );
 
   return coffeeInputsArray;
+}
+
+function getIngredientInputs() {
+  const ingredientListItems = document.querySelectorAll('ol.ingredients_list li');
+
+  const ingredientInputsArray = Array.from(ingredientListItems).map(
+    function(ingredientLi) {
+      const ingredientObject = {};
+      const ingredientInputs = ingredientLi.querySelectorAll('input');
+
+      ingredientInputs.forEach(input => ingredientObject[input.name] = input.value);
+      return ingredientObject;
+    }
+  );
+
+  return ingredientInputsArray;
 }
 
 function getCollectionData(queryString) {
