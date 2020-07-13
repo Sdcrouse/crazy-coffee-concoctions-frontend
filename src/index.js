@@ -80,13 +80,7 @@ function displayConcoction(concoctionJson) {
   concoctionNameWrapper.append(Shared.newElementWithText('h2', concoction.name));
 
   appendLabeledCoffeeListToWrapper(concoction.coffees, attributesWrapper);
-
-  // Append labeled lists of a concoction's attributes and associated coffees and ingredients.
-  // Edit: There's probably a better way to do this.
-  attributesWrapper.append(
-    ...Ingredient.createCategorizedIngredientLists(concoction.ingredients)
-  );
-
+  appendCategorizedIngredientListsToWrapper(concoction.ingredients, attributesWrapper);
   appendLabeledConcoctionAttributesToWrapper(attributesWrapper, concoction, "Instructions", "Notes");
     
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
@@ -102,6 +96,16 @@ function appendLabeledCoffeeListToWrapper(coffees, wrapper) {
   });
 
   wrapper.append(coffeeLabel, coffeeList);
+}
+
+function appendCategorizedIngredientListsToWrapper(ingredients, wrapper) {
+  Ingredient.allCategories.forEach(category => {
+    const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
+    
+    if (filteredByCategory.length > 0) { // I.e. there are ingredients with this category
+      wrapper.append(...Ingredient.createLabeledList(filteredByCategory, Ingredient.categoryLabel(category)));
+    }
+  });
 }
 
 function appendLabeledConcoctionAttributesToWrapper(wrapper, concoction, ...concoctionAttributeNames) {
