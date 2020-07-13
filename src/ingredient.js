@@ -13,17 +13,6 @@ class Ingredient {
   static categoryLabel(category) {
     return (category === "Other" ? "Additional Ingredient(s):" : `${category}(s):`);
   }
-
-  static createLabeledList(ingredients, ingredCategory) {
-    const ingredientLabel = Shared.newElementWithText('h3', ingredCategory);
-    const ingredientList = document.createElement('ul');
-
-    ingredients.forEach(ingredient => {
-      ingredientList.append(Shared.newElementWithText('li', `${ingredient.amount} of ${ingredient.name}`))
-    });
-
-    return [ingredientLabel, ingredientList];
-  }
 }
 
 Ingredient.allCategories = ["Liquid", "Sweetener", "Creamer", "Other"];

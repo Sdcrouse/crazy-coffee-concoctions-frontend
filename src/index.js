@@ -106,7 +106,14 @@ function appendCategorizedIngredientListToWrapper(category, ingredients, wrapper
   const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
   
   if (filteredByCategory.length > 0) { // I.e. there are ingredients with this category
-    wrapper.append(...Ingredient.createLabeledList(filteredByCategory, Ingredient.categoryLabel(category)));
+    const ingredientLabel = Shared.newElementWithText('h3', Ingredient.categoryLabel(category));
+    const ingredientList = document.createElement('ul');
+
+    filteredByCategory.forEach(ingredient => { // Move that interpolated string to the Ingredient class.
+      ingredientList.append(Shared.newElementWithText('li', `${ingredient.amount} of ${ingredient.name}`))
+    });
+
+    wrapper.append(ingredientLabel, ingredientList);
   }
 }
 
