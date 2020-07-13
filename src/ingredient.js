@@ -24,21 +24,6 @@ class Ingredient {
 
     return [ingredientLabel, ingredientList];
   }
-
-  static createCategorizedIngredientLists(ingredients) {
-    const arrayOfCategorizedIngredLists = this.allCategories.flatMap(
-      (category) => {
-        const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
-        
-        if (filteredByCategory.length > 0) { // I.e. there are ingredients with this category
-          return this.createLabeledList(filteredByCategory, this.categoryLabel(category));
-        }
-      }
-    );
-    
-    // Some array elements may be undefined, so they need to be filtered out
-    return arrayOfCategorizedIngredLists.filter(arrayElement => !!arrayElement);
-  }
 }
 
 Ingredient.allCategories = ["Liquid", "Sweetener", "Creamer", "Other"];
