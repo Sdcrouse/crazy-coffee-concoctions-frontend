@@ -80,7 +80,11 @@ function displayConcoction(concoctionJson) {
   concoctionNameWrapper.append(Shared.newElementWithText('h2', concoction.name));
 
   appendLabeledCoffeeListToWrapper(concoction.coffees, attributesWrapper);
-  appendCategorizedIngredientListsToWrapper(concoction.ingredients, attributesWrapper);
+
+  Ingredient.allCategories.forEach(category => {
+    appendCategorizedIngredientListToWrapper(category, concoction.ingredients, attributesWrapper);
+  });
+
   appendLabeledConcoctionAttributesToWrapper(attributesWrapper, concoction, "Instructions", "Notes");
     
   mainContainer.innerHTML = ""; // Empty the mainContainer before appending anything to it.
@@ -98,14 +102,12 @@ function appendLabeledCoffeeListToWrapper(coffees, wrapper) {
   wrapper.append(coffeeLabel, coffeeList);
 }
 
-function appendCategorizedIngredientListsToWrapper(ingredients, wrapper) {
-  Ingredient.allCategories.forEach(category => {
-    const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
-    
-    if (filteredByCategory.length > 0) { // I.e. there are ingredients with this category
-      wrapper.append(...Ingredient.createLabeledList(filteredByCategory, Ingredient.categoryLabel(category)));
-    }
-  });
+function appendCategorizedIngredientListToWrapper(category, ingredients, wrapper) {
+  const filteredByCategory = ingredients.filter(ingred => ingred.category === category.toLowerCase());
+  
+  if (filteredByCategory.length > 0) { // I.e. there are ingredients with this category
+    wrapper.append(...Ingredient.createLabeledList(filteredByCategory, Ingredient.categoryLabel(category)));
+  }
 }
 
 function appendLabeledConcoctionAttributesToWrapper(wrapper, concoction, ...concoctionAttributeNames) {
