@@ -48,6 +48,8 @@ So, here's the intended order of operations (subject to change):
   color: white;
 } -->
 
+Another CSS suggestion: I should fiddle around with height/width, flex-direction, and 'align-items: stretch', especially with the main-container and related HTML. align-content and flex-basis may help as well.
+
 I want to add a "select" list like this, but for saved concoctions (Update: DONE!):
 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
 
